@@ -77,9 +77,10 @@ class invoicecreatetable extends Component {
                                             {product}
                                         </tbody>
                                     </table>
+                                    <button type="button" className="btn btn-outline-success mt-5" onClick={this.props.onRowAdd}>Add Another Entry</button>
                                 </div>
                                 <div className="card-footer">
-                                    <button type="button" className="btn btn-outline-success"  onClick={this.props.onRowAdd}>Add Another Entry</button>
+                                    <button type="button" className="btn btn-outline-success">Submit</button>
                                 </div>
                             </form>
                         </div>

@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import InvoiceTable from "../invoice/invoicetable";
 import InvoiceIndividual from "../invoice/invoiceindividual";
+import InvoiceDetails from "../invoice/invoicedetails";
+import InvoiceSmall from "../invoice/invoicesmall";
 import "./invoicenone.css"
 class Invoice extends PureComponent {
     constructor(props)
@@ -9,7 +11,7 @@ class Invoice extends PureComponent {
         this.state={
             active:false,
             invoices:[{ date:'02/02/2020',no:'00001',orderno:'78549',name:'Mr Suresh Goel',duedate:'15/02/2020',amount:'177120'},
-                    { date:'04/02/2020',no:'00002',orderno:'78550',name:'Mr Rohit Bansal',duedate:'16/02/2020',amount:'60000'}],
+                      { date:'04/02/2020',no:'00002',orderno:'78550',name:'Mr Rohit Bansal',duedate:'16/02/2020',amount:'60000'}],
                     selectedId:'',
                     product:''
         }
@@ -23,15 +25,15 @@ class Invoice extends PureComponent {
         let productIndex=this.state.invoices.findIndex(invoice=>invoice.no===no);
         let product;
         if(productIndex!==-1)
-            {
+        {
               product=this.state.invoices[productIndex];
               this.setState({selectedId:no,product,active:true});
-             }
+        }
         else
-       {
+        {
            this.setState({selectedId:'',product:'',active:false});
-       }
-        
+        }
+        console.log(product);   
       }
     render() {
         return (
@@ -49,7 +51,14 @@ class Invoice extends PureComponent {
                             </div>
                         </div>
                     </div>
-                    { this.state.selectedId  ? <InvoiceIndividual invoice={this.state.product} active={this.state.active} cancelHandler={this.cancel} /> : null}
+                    <div className="row">
+                        <div className={this.state.active ? 'col-4' : 'none' }>
+                            {this.state.selectedId ? <InvoiceSmall invoices={this.state.invoices} selectedIdhandler={this.setIdHandler} /> : null }
+                        </div>
+                        <div className={this.state.active ? 'col-8' : 'none'}>
+                            {this.state.selectedId ? <InvoiceDetails invoice={this.state.product} cancelHandler={this.cancel} /> : null}
+                        </div> 
+                    </div>
                 </section>
             </div>
         )

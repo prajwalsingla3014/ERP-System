@@ -57,20 +57,20 @@ class Salesperson extends PureComponent {
                                     </div>
                                     <div className="card card-success card-outline">
                                         <div className="card-body box-profile">
-                                            <h6 className="profile-username" style={{fontSize:'17px'}}>Billing Address</h6>
-                                            <h6 style={{fontSize:'16px'}}>3rd Floor,Mayur Gardens</h6>
-                                            <h6 style={{fontSize:'16px'}}>Opp HDFC Bank,G.S Road</h6>
-                                            <h6 style={{fontSize:'16px'}}>Guwhati,781005</h6>
-                                            <h6 style={{fontSize:'16px'}}>Assam</h6>
+                                            <h6 className="profile-username" style={{fontSize:'16px'}}>Billing Address</h6>
+                                            <h6 style={{fontSize:'14px'}}>3rd Floor,Mayur Gardens</h6>
+                                            <h6 style={{fontSize:'14px'}}>Opp HDFC Bank,G.S Road</h6>
+                                            <h6 style={{fontSize:'14px'}}>Guwhati,781005</h6>
+                                            <h6 style={{fontSize:'14px'}}>Assam</h6>
                                         </div>
                                     </div>
                                     <div className="card card-success card-outline">
                                         <div className="card-body box-profile">
                                             <h6 className="profile-username" style={{fontSize:'16px'}}>Shipping Address</h6>
-                                            <h6 style={{fontSize:'16px'}}>3rd Floor,Mayur Gardens</h6>
-                                            <h6 style={{fontSize:'16px'}}>Opp HDFC Bank,G.S Road</h6>
-                                            <h6 style={{fontSize:'16px'}}>Guwhati,781005</h6>
-                                            <h6 style={{fontSize:'16px'}}>Assam</h6>
+                                            <h6 style={{fontSize:'14px'}}>3rd Floor,Mayur Gardens</h6>
+                                            <h6 style={{fontSize:'14px'}}>Opp HDFC Bank,G.S Road</h6>
+                                            <h6 style={{fontSize:'14px'}}>Guwhati,781005</h6>
+                                            <h6 style={{fontSize:'14px'}}>Assam</h6>
                                         </div>
                                     </div>
                                 </div>
@@ -79,16 +79,16 @@ class Salesperson extends PureComponent {
                                         <div className="card-body box-profile">
                                             <h4 style={{fontSize:'22px'}}>Sales</h4>
                                             <h4 className="text-danger" style={{fontSize:'22px'}}>{this.props.sale.amountwt}</h4>
-                                            <h4 style={{marginTop:'-70px',fontSize:'22px',marginLeft:'260px'}}>Unused Credits</h4>
-                                            <h4 className="text-danger" style={{marginLeft:'290px',marginTop:'-3px'}}>Rs 0.00</h4>
-                                            <h4 style={{fontSize:'20px',marginLeft:'150px',marginTop:'15px'}}>Payment due period</h4>
-                                            <h4 className="text-danger" style={{fontSize:'20px',marginLeft:'165px',marginTop:'0px'}}>Due on Receipt</h4>
+                                            <h4 style={{marginTop:'-70px',fontSize:'22px',marginLeft:'200px'}}>Unused Credits</h4>
+                                            <h4 className="text-danger" style={{marginLeft:'200px',marginTop:'-3px'}}>Rs 0.00</h4>
+                                            <h4 style={{fontSize:'20px',marginLeft:'100px',marginTop:'15px'}}>Payment due period</h4>
+                                            <h4 className="text-danger" style={{fontSize:'20px',marginLeft:'120px',marginTop:'0px'}}>Due on Receipt</h4>
                                             <h3 className="text-center mt-5">
                                                 Sales
                                             </h3>
                                             <Bar
                                                 data={this.state.chartData}
-                                                height={146}
+                                                height={186}
                                                 options={{
                                                     legend:{
                                                         display:true,

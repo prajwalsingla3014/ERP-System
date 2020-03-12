@@ -13,21 +13,21 @@ function Customertable(props) {
     })
     return (
         <table id="customerdetail" className="table table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Name</th>
-                                                <th>Email</th>
-                                                <th>City</th>
-                                                <th>Products</th>
-                                                <th>Amount</th>
-                                                <th>Contact</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {tb}
-                                        </tbody>
-                                    </table>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>City</th>
+                    <th>Products</th>
+                    <th>Amount</th>
+                    <th>Contact</th>
+                </tr>
+            </thead>
+            <tbody>
+                {tb}
+            </tbody>
+        </table>
     )
 }
 

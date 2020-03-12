@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react'
 import ProductTable from "../products/producttable";
 import "../invoice/invoicesmall";
-import ProductIndividual from "../products/productindividual";
+import ProductSmall from "../products/productsmall";
+import ProductsDetail from "../products/productsdetail";
 class Products extends PureComponent {
     constructor(props) {
         super(props)
@@ -46,7 +47,14 @@ class Products extends PureComponent {
                             </div>
                         </div>
                     </div>
-                    {this.state.selectedId ? <ProductIndividual product={this.state.item} active={this.state.active} cancelHandler={this.cancel} /> : null }
+                    <div className="row">
+                        <div className={this.state.active ? 'col-4' : 'none'}>
+                            {this.state.selectedId ? <ProductSmall products={this.state.products} selectedIdHandler={this.setIdHandler} /> : null}
+                        </div>
+                        <div className={this.state.active ? 'col-8' : 'none'}>
+                            {this.state.selectedId ? <ProductsDetail product={this.state.item} cancelHandler={this.cancel} /> : null}
+                        </div>
+                    </div>
                 </section>
             </div>
             

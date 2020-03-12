@@ -1,6 +1,7 @@
 import React, { PureComponent, useDebugValue } from 'react'
 import SaleTable from "../sales/saletable";
-import SaleIndividual from "../sales/saleindividual";
+import SaleSmall from "../sales/salesmall";
+import SalesPerson from "../sales/salesperson";
 import "../invoice/invoicesmall";
 class sale extends PureComponent {
     constructor(props) {
@@ -48,7 +49,14 @@ class sale extends PureComponent {
                                 </div>
                             </div>
                         </div>
-                        {this.state.selectedId ? <SaleIndividual sale={this.state.item} active={this.state.active} cancelHandler={this.cancel}/> : null}
+                        <div className="row">
+                            <div className={this.state.active ? 'col-4' : 'none'}>
+                                {this.state.selectedId ? <SaleSmall sales={this.state.sales} selectedIdhandler={this.setIdHandler} /> : null}
+                            </div>
+                            <div className={this.state.active ? 'col-8' : 'none'}>
+                                {this.state.selectedId ? <SalesPerson sale={this.state.item} cancelHandler={this.cancel} /> : null}
+                            </div>
+                        </div>
                 </section>
             </div>
         )

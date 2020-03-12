@@ -45,7 +45,7 @@ export default function sidenav() {
                                 <a href="#" className="nav-link">
                                     <i className="nav-icon fas fa-users" style={{fontSize:'18px'}}/>
                                     <p className="ml-1" style={{fontSize:'18px'}}>
-                                        <Link to="/suppliertable">
+                                        <Link to="/suppliers">
                                             Suppliers
                                         </Link>
                                         <Link to="/supplierform">

@@ -1,20 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react'
 
-class customersmall extends Component {
-    render() {
+export default function customersmall(props) {
+    let content=props.customers.map((customer,index) => {
         return (
-            <div>
-                <section className="content">
-                    <div className="card">
-                        <div className="card-body">
-                            <h6>{this.props.customer.name}</h6>
-                            <h6> Rs {this.props.customer.amount}</h6>
-                        </div>
-                    </div>
-                </section>
+            <div key={index}>
+                <h6 style={{color:'#25b0b9'}}>{customer.name}</h6>
+                <h6>Rs {customer.amount}</h6>   
             </div>
-        );
-    }
+        )
+    })
+    return (
+        <div className="card">
+            <div className="card-body">
+                {content}
+            </div>
+        </div>
+    )
 }
-
-export default customersmall;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import CustomerIndividual from "../customers/customerindividual";
+import CustomerSmall from "../customers/customersmall";
+import CustomerDetail from "../customers/customerdetail";
 import CustomerTable from "../customers/customertable";
 import "../invoice/invoicesmall";
 export default class customers extends Component {
@@ -19,7 +20,7 @@ export default class customers extends Component {
                        {no:"2",name:"Rohit Bansal",email:"xywz@gmail.com",city:"Noida",product:"LED TV",amount:"55000",contact:"9879230103"},
                        {no:"3",name:"Rahul Singh",email:"bxyz@gmail.com",city:"Gurugram",product:"LED TV",amount:"65000",contact:"9693235103"},
                        {no:"4",name:"Mohit Sinha",email:"axyz@gmail.com",city:"Greater Noida",product:"Refrigerator",amount:"115000",contact:"9822234501"},
-                       {no:"5",name:"Harshit ",email:"nxymz@gmail.com",city:"Delhi",product:"Soundbar",amount:"35000",contact:"9829254703"}],
+                       {no:"5",name:"Harshit Gupta",email:"nxymz@gmail.com",city:"Delhi",product:"Soundbar",amount:"35000",contact:"9829254703"}],
             selectedId:'',
             detail:''
         }
@@ -59,7 +60,14 @@ export default class customers extends Component {
                             </div>
                         </div>
                     </div>
-                    {this.state.selectedId ? <CustomerIndividual customer={this.state.detail} active={this.state.active} cancelHandler={this.cancel}/> : null}
+                    <div className="row">
+                        <div className={this.state.active ? 'col-3' : 'none'}>
+                            {this.state.selectedId ? <CustomerSmall customers={this.state.customers} selectedIdHandler={this.setIdHandler} /> : null}
+                        </div>
+                        <div className={this.state.active ? 'col-9' : 'none'}>
+                            {this.state.selectedId ? <CustomerDetail customer={this.state.detail} cancelHandler={this.cancel} /> : null}
+                        </div>
+                    </div>
                 </section>
             </div> 
         );

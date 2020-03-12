@@ -17,7 +17,7 @@ class Productsdetail extends PureComponent {
                         <div className="col-12">
                             <div className="card">
                                 <div className="card-header">
-                                    <h3 className="card-title" style={{fontSize:'20px'}}>Products Details</h3>
+                                    <h3 className="card-title" style={{fontSize:'20px'}}>{this.props.product.name}</h3>
                                     <div className="card-tools">
                                         <button type="button" className="btn btn-tool" data-card-widget="remove" onClick={this.props.cancelHandler}>
                                             <i className="fas fa-times"></i>
@@ -27,50 +27,50 @@ class Productsdetail extends PureComponent {
                                 <div className="card-body">
                                     <div className="row">
                                         <div className="col-4">
-                                            <h5 className="ml-5 mt-2">Item Type</h5>
+                                            <h5 className="ml-5 mt-2" style={{fontSize:'18px'}}>Item Type</h5>
                                         </div>
                                         <div className="col-8">
-                                            <h5 className="mt-2">Sales Item</h5>
+                                            <h5 className="mt-2" style={{fontSize:'18px'}}>Sales Item</h5>
                                         </div>
                                     </div>
                                     <div className="row">
                                         <div className="col-4">
-                                            <h5 className="ml-5 mt-4">Unit</h5>
+                                            <h5 className="ml-5 mt-4" style={{fontSize:'18px'}}>Unit</h5>
                                         </div>
                                         <div className="col-8">
-                                            <h5 className="mt-4">{this.props.product.unit}</h5>
+                                            <h5 className="mt-4" style={{fontSize:'18px'}}>{this.props.product.unit}</h5>
                                         </div>
                                     </div>
                                     <div className="row">
                                         <div className="col-4">
-                                            <h5 className="ml-5 mt-4">Product ID</h5>
+                                            <h5 className="ml-5 mt-4" style={{fontSize:'18px'}}>Product ID</h5>
                                         </div>
                                         <div className="col-8">
-                                            <h5 className="mt-4">{this.props.product.id}</h5>
+                                            <h5 className="mt-4" style={{fontSize:'18px'}}>{this.props.product.id}</h5>
                                         </div>
                                     </div>
                                     <div className="row">
                                         <div className="col-4">
-                                            <h5 className="ml-5 mt-4">Description</h5>
+                                            <h5 className="ml-5 mt-4" style={{fontSize:'18px'}}>Description</h5>
                                         </div>
                                         <div className="col-8">
-                                            <h5 className="mt-4">{this.props.product.description}</h5>
+                                            <h5 className="mt-4" style={{fontSize:'18px'}}>{this.props.product.description}</h5>
                                         </div>
                                     </div>
                                     <div className="row">
                                         <div className="col-4">
-                                            <h5 className="ml-5 mt-4">Quantity</h5>
+                                            <h5 className="ml-5 mt-4" style={{fontSize:'18px'}}>Quantity</h5>
                                         </div>
                                         <div className="col-8">
-                                            <h5 className="mt-4">{this.props.product.quantity}</h5>
+                                            <h5 className="mt-4" style={{fontSize:'18px'}}>{this.props.product.quantity}</h5>
                                         </div>
                                     </div>
                                     <div className="row">
                                         <div className="col-4">
-                                            <h5 className="ml-5 mt-4">Selling Price</h5>
+                                            <h5 className="ml-5 mt-4" style={{fontSize:'18px'}}>Selling Price</h5>
                                         </div>
                                         <div className="col-8">
-                                            <h5 className="mt-4">Rs {this.props.product.amount}</h5>
+                                            <h5 className="mt-4" style={{fontSize:'18px'}}>Rs {this.props.product.amount}</h5>
                                         </div>
                                     </div>
                                 </div>
