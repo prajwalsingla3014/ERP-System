@@ -28,26 +28,6 @@ export default function header() {
                         </div>
                     </div>
                 </form>
-                {/* Right navbar links */}
-                <ul className="navbar-nav ml-auto">
-                    {/* Messages Dropdown Menu */}
-                    <li className="nav-item dropdown">
-                        <a className="nav-link" data-toggle="dropdown" href="#">
-                            <i className="fas fa-comments"/>
-                            <span className="badge badge-danger navbar-badge">3</span>
-                        </a>
-                    </li>
-                    {/* Notifications Dropdown Menu */}
-                    <li className="nav-item dropdown">
-                        <a className="nav-link" data-toggle="dropdown" href="#">
-                            <i className="fas fa-bell" />
-                            <span className="badge badge-warning navbar-badge">15</span>
-                        </a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" data-widget="control-sidebar" data-slide="true" href="#"><i className="fas fa-th-large"/></a>
-                    </li>
-                </ul>
             </nav>
             {/* /.navbar */}
             {/* Control Sidebar */}

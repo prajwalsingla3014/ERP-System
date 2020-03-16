@@ -26,7 +26,7 @@ class invoicerow extends Component {
                     }} />
                     <EditableCell onProductTableUpdate={this.props.onProductTableUpdate} cellData={{
                         "type":"amount",
-                        value:this.props.product.amount,
+                        value:(this.props.product.price*this.props.product.quantity) + (((this.props.product.quantity)*(this.props.product.price)*(this.props.product.tax))/100),
                         id:this.props.product.id
                     }} />
             </tr>

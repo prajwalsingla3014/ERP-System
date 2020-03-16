@@ -12,7 +12,7 @@ function Producttable(props) {
         </tr>)
     })
     return (
-        <table className="table table-bordered" id="productdetails">
+        <table className="table table-bordered" id="customerdetail">
                 <thead>
                     <tr>
                         <th style={{fontSize:'15px'}}>No</th>

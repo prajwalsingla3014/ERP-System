@@ -87,7 +87,9 @@ export default class dashboard extends Component {
                     <Route path={"/customers"} component={Customers} />
                     <Route path={"/supplierform"} component={SuppliersForm} />
                     <Route path={"/suppliers"} component={Suppliers} />
-                    <Route path={"/invoice"} component={Invoices} />
+                    <Route path={"/invoice"}>
+                        <Invoices />
+                    </Route>
                     <Route path={"/invoicecreate"} component={InvoiceCreate} />
                     <Route path={"/user"} component={User} />
                     <Route path={"/products"} component={Products} />

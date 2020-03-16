@@ -11,7 +11,7 @@ function Invoicetable(props) {
         </tr>)
     })
     return (
-        <table id="invoicedetails" className="table table-bordered">
+        <table id="customerdetail" className="table table-bordered">
             <thead>
                 <tr>
                     <th  style={{fontSize:'16px'}}>Date</th>

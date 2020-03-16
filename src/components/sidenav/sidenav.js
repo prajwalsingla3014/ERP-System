@@ -17,6 +17,16 @@ export default function sidenav() {
                         <ul className="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                             <li className="nav-item has-treeview">
                                 <a href="#" className="nav-link">
+                                    <i className="nav-icon fas fa-tachometer-alt" style={{fontSize:'18px',marginTop:'10px'}}></i>
+                                    <p className="ml-1" style={{fontSize:'18px'}}>
+                                        <Link to="/">
+                                            Dashboard
+                                        </Link>
+                                    </p>
+                                </a>
+                            </li>
+                            <li className="nav-item has-treeview">
+                                <a href="#" className="nav-link">
                                     <i className="nav-icon fas fa-file-invoice" style={{fontSize:'18px'}}></i>
                                     <p className="ml-1" style={{fontSize:'18px'}}>
                                         <Link to="/invoice" style={{color:'#25b0b9'}}>

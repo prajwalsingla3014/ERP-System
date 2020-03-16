@@ -13,7 +13,7 @@ export default class InvoiceCreate extends React.Component {
                 quantity:2,
                 price:'40000',
                 tax:'5',
-                amount:'42000'
+                amount:''
             }
         ];
     };
@@ -57,7 +57,9 @@ export default class InvoiceCreate extends React.Component {
     render() {
       return (
         <div>
-            <InvoiceCreateTable onProductTableUpdate={this.handleProductTable.bind(this)} onRowAdd={this.handleAddEvent.bind(this)} products={this.state.products} filterText={this.state.filterText} />
+            {console.log(this.props.value)}
+            <InvoiceCreateTable onProductTableUpdate={this.handleProductTable.bind(this)} onRowAdd={this.handleAddEvent.bind(this)} products={this.state.products} filterText={this.state.filterText} invoice={this.props.invoice}/>
+
         </div>
         );
   

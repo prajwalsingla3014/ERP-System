@@ -31,6 +31,13 @@ class Products extends PureComponent {
             this.setState({selectedId:'',item:'',active:true});
         }
     }
+    componentDidMount()
+    {
+        const script=document.createElement("script");
+        script.src="js/customertablesort.js";
+        script.async=true;
+        document.body.appendChild(script);
+    }
     render() {
         return (
             <div>

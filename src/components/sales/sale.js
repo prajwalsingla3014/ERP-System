@@ -32,6 +32,13 @@ class sale extends PureComponent {
        {
            this.setState({selectedId:'',item:'',active:false});
        }
+    }
+    componentDidMount()
+    {
+        const script=document.createElement("script");
+        script.src="js/customertablesort.js";
+        script.async=true;
+        document.body.appendChild(script);
     }  
     render() {
         return (
