@@ -11,27 +11,28 @@ import DashboardContent from "../dashboard/dashboardcontent";
 import Products from "../products/products";
 import ProductCreate from "../products/productcreate";
 import Sale from "../sales/sale";
+import SideMenu from "../preferences/sidemenu";
 export default class dashboard extends Component {
     render() {
         return (
             <div className="content-wrapper">
-            <div className="content-header">
                 <div className="container-fluid">
-                    <div className="row mb-2">
-                        <div className="col-sm-6">
-                            <h1 className="m-0 text-dark">Dashboard</h1>
-                        </div>
-                        <div className="col-sm-6">
-                            <ol className="breadcrumb float-sm-right">
-                                <li className="breadcrumb-item">
-                                    <Link to="/">Home</Link>
-                                </li>
-                            </ol>
+                    <div className="content-header">
+                        <div className="container-fluid">
+                            <div className="row mb-2">
+                                <div className="col-sm-6">
+                                    <h1 className="m-0 text-dark">Dashboard</h1>
+                                </div>
+                                <div className="col-sm-6">
+                                    <ol className="breadcrumb float-sm-right">
+                                        <li className="breadcrumb-item">
+                                            <Link to="/">Home</Link>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-                <div className="container-fluid">
                     {/*<div className="row">
                         <div className="col-lg-3 col-6">
                             <div className="small-box bg-info">
@@ -95,8 +96,9 @@ export default class dashboard extends Component {
                     <Route path={"/products"} component={Products} />
                     <Route path={"/productcreate"} component={ProductCreate} />
                     <Route path={"/sale"} component={Sale} />
+                    <Route path={"/settings"} component={SideMenu} />
                 </div>
-        </div>
+            </div>
         )
     }
 }

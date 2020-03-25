@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {Bar} from "react-chartjs-2";
+import {Link} from 'react-router-dom';
 export default class dashboardcontent extends Component {
     constructor(props)
     {
