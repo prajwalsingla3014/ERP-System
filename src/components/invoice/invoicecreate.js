@@ -39,16 +39,10 @@ export default class InvoiceCreate extends React.Component {
             quantity:"",
             price:"",
             tax:"",
-            amount:"50"
+            amount:""
         }
         this.state.products.push(product);
         this.setState(this.state.products);
-    }
-    updateTax = (event) => {
-        const productnew=[...this.state.products];
-        productnew[0].tax=event.target.value;
-        this.setState({products:productnew});
-        console.log(this.state.products[0].tax);
     }
     handleProductTable(event)
     {
@@ -67,8 +61,23 @@ export default class InvoiceCreate extends React.Component {
             }
             return product;
         });
-        this.setState({products:newProducts});
+        this.setState({products:newProducts})
     };
+    updateTax = (event) => {
+        event.preventDefault();
+        const productnew=[...this.state.products];
+        var len=productnew.length;
+        if(len == 1)
+        {
+            productnew[0].tax=event.target.value;
+            this.setState({products:productnew})
+        }
+        if(len > 1)
+        {
+            productnew[len - 1].tax=event.target.value;
+            this.setState({products:productnew})
+        }
+    }
     render() {
       return (
             <InvoiceCreateTable onProductTableUpdate={this.handleProductTable.bind(this)} onRowAdd={this.handleAddEvent.bind(this)} products={this.state.products} filterText={this.state.filterText} invoice={this.props.invoice} taxes={this.state.taxes} updateTax={this.updateTax}/>
