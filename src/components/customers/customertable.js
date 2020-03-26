@@ -2,13 +2,13 @@ import React from 'react'
 function Customertable(props) {
     let tb=props.customers.map((customer,index)=>{
         return(< tr key={index}>
-            <td><button className="btn" onClick={() => props.selectedIdHandler(customer.no)}  style={{fontSize:'15px',color:'#25b0b9',marginTop:'-5px'}}> {customer.no}</button></td>
-            <td style={{fontSize:'15px'}}>{customer.name}</td>
-            <td style={{fontSize:'15px'}}>{customer.email}</td>
-            <td style={{fontSize:'15px'}}>{customer.city}</td>
-            <td style={{fontSize:'15px'}}>{customer.product}</td>
-            <td style={{fontSize:'15px'}}>{customer.amount}</td>
-            <td style={{fontSize:'15px'}}>{customer.contact}</td>
+            <td><button className="btn" onClick={() => props.selectedIdHandler(customer.no)}  style={{fontSize:'15px',marginTop:'-5px',width:'100%'}}> {customer.no}</button></td>
+            <td><button className="btn" onClick={() => props.selectedIdHandler(customer.no)}  style={{fontSize:'15px',marginTop:'-5px',width:'100%'}}>{customer.name}</button></td>
+            <td><button className="btn" onClick={() => props.selectedIdHandler(customer.no)}  style={{fontSize:'15px',marginTop:'-5px',width:'100%'}}>{customer.email}</button></td>
+            <td><button className="btn" onClick={() => props.selectedIdHandler(customer.no)}  style={{fontSize:'15px',marginTop:'-5px',width:'100%'}}>{customer.city}</button></td>
+            <td><button className="btn" onClick={() => props.selectedIdHandler(customer.no)}  style={{fontSize:'15px',marginTop:'-5px',width:'100%'}}>{customer.product}</button></td>
+            <td><button className="btn" onClick={() => props.selectedIdHandler(customer.no)}  style={{fontSize:'15px',marginTop:'-5px',width:'100%'}}>{customer.amount}</button></td>
+            <td><button className="btn" onClick={() => props.selectedIdHandler(customer.no)}  style={{fontSize:'15px',marginTop:'-5px',width:'100%'}}>{customer.contact}</button></td>
         </tr>)
     })
     return (

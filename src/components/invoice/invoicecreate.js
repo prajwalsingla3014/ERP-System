@@ -18,11 +18,11 @@ export default class InvoiceCreate extends React.Component {
         ];
         this.state.taxes=[
             {
-                tax1:'5',
-                tax2:'10',
-                tax3:'12',
-                tax4:'18',
-                tax5:'28'
+                tax1:'GST 5',
+                tax2:'GST 10',
+                tax3:'GST 12',
+                tax4:'GST 18',
+                tax5:'GST 28'
             }
         ]
     };
@@ -69,12 +69,12 @@ export default class InvoiceCreate extends React.Component {
         var len=productnew.length;
         if(len == 1)
         {
-            productnew[0].tax=event.target.value;
+            productnew[0].tax=(event.target.value).slice(3,6);
             this.setState({products:productnew})
         }
         if(len > 1)
         {
-            productnew[len - 1].tax=event.target.value;
+            productnew[len - 1].tax=(event.target.value).slice(3,6);
             this.setState({products:productnew})
         }
     }

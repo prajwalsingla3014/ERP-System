@@ -93,25 +93,35 @@ class invoicecreatetable extends Component {
                                                                 <i className="fas fa-chevron-down" style={{color:'black',marginLeft:'140px',marginTop:'-120px',fontSize:'15px'}}/>
                                                             </a>
                                                             <div className="dropdown-menu dropdown-menu-lg dropdown-menu-left">
-                                                                <button type="button" className="btn" onClick={this.props.updateTax} value={this.props.taxes[0].tax1} style={{width:'100%'}}>
-                                                                    <h6 style={{marginLeft:'-10px'}}>{this.props.taxes[0].tax1}</h6>
-                                                                </button>
+                                                                <h6 style={{marginLeft:'-10px'}}>
+                                                                    <button type="button" className="btn" onClick={this.props.updateTax} value={this.props.taxes[0].tax1} style={{width:'100%'}}>
+                                                                        {this.props.taxes[0].tax1}
+                                                                    </button>
+                                                                </h6>
                                                                 <div className="dropdown-divider"></div>
-                                                                <button type="button" className="btn" onClick={this.props.updateTax} value={this.props.taxes[0].tax2} style={{width:'100%'}}>
-                                                                    <h6 style={{marginLeft:'-10px'}}>{this.props.taxes[0].tax2}</h6>
-                                                                </button>
+                                                                <h6 style={{marginLeft:'-10px'}}>
+                                                                    <button type="button" className="btn" onClick={this.props.updateTax} value={this.props.taxes[0].tax2} style={{width:'100%'}}>
+                                                                        {this.props.taxes[0].tax2}
+                                                                    </button>
+                                                                </h6>
                                                                 <div className="dropdown-divider"></div>
-                                                                <button type="button" className="btn" onClick={this.props.updateTax} value={this.props.taxes[0].tax3} style={{width:'100%'}}>
-                                                                    <h6 style={{marginLeft:'-10px'}}>{this.props.taxes[0].tax3}</h6>
-                                                                </button>
+                                                                <h6 style={{marginLeft:'-10px'}}>
+                                                                    <button type="button" className="btn" onClick={this.props.updateTax} value={this.props.taxes[0].tax3} style={{width:'100%'}}>
+                                                                        {this.props.taxes[0].tax3}
+                                                                    </button>
+                                                                </h6>
                                                                 <div className="dropdown-divider"></div>
-                                                                <button type="button" className="btn" onClick={this.props.updateTax} value={this.props.taxes[0].tax4} style={{width:'100%'}}>
-                                                                    <h6 style={{marginLeft:'-10px'}}>{this.props.taxes[0].tax4}</h6>
-                                                                </button>
+                                                                <h6 style={{marginLeft:'-10px'}}>
+                                                                    <button type="button" className="btn" onClick={this.props.updateTax} value={this.props.taxes[0].tax4} style={{width:'100%'}}>
+                                                                        {this.props.taxes[0].tax4}
+                                                                    </button>
+                                                                </h6>
                                                                 <div className="dropdown-divider"></div>
-                                                                <button type="button" className="btn" onClick={this.props.updateTax} value={this.props.taxes[0].tax5} style={{width:'100%'}}>
-                                                                    <h6 style={{marginLeft:'-10px'}}>{this.props.taxes[0].tax5}</h6>
-                                                                </button>
+                                                                <h6 style={{marginLeft:'-10px'}}>
+                                                                    <button type="button" className="btn" onClick={this.props.updateTax} value={this.props.taxes[0].tax5} style={{width:'100%'}}>
+                                                                        {this.props.taxes[0].tax5}
+                                                                    </button>
+                                                                </h6>
                                                             </div>
                                                         </li>
                                                     </ul>
@@ -124,6 +134,14 @@ class invoicecreatetable extends Component {
                                         </tbody>
                                     </table>
                                     <button type="button" className="btn btn-outline-success mt-5" onClick={this.props.onRowAdd}>Add Another Entry</button>
+                                    <div className="row">
+                                        <div className="col-6">
+                                            <div className="form-group">
+                                                <label for="terms" className="mt-3" style={{fontSize:'20px'}}>Customer Notes</label>
+                                                <textarea className="form-control" rows="3" style={{width:'80%'}}>Thanks for business</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div className="form-group">
                                         <label for="terms" className="mt-3" style={{fontSize:'20px'}}>Terms & Conditions</label>
                                         <textarea className="form-control" rows="4" style={{width:'50%'}}></textarea>
