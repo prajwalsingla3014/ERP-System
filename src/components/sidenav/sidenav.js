@@ -64,6 +64,19 @@ export default function sidenav() {
                                     </p>
                                 </a>
                             </li>
+                            <li className="nav-item has-treeview">
+                                <a href="#" className="nav-link">
+                                    <i className="nav-icon fas fa-shopping-basket" style={{fontSize:'18px'}}/>
+                                    <p className="ml-1" style={{fontSize:'18px'}}>
+                                        <Link to="/purchase">
+                                            Purchase
+                                        </Link>
+                                        <Link to="/purchasecreate">
+                                            <i className="fas fa-plus-circle mt-3" style={{fontSize:'18px',color:'#28a745',marginLeft:'41px'}}></i>
+                                        </Link>
+                                    </p>
+                                </a>
+                            </li>
                             <li className="nav-item">
                                 <a href="#" className="nav-link">
                                     <i className="nav-icon fas fa-boxes" style={{fontSize:'18px'}} />

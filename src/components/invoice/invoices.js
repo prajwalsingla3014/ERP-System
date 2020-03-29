@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import InvoiceTable from "../invoice/invoicetable";
 import InvoiceDetails from "../invoice/invoicedetails";
 import InvoiceSmall from "../invoice/invoicesmall";
-import InvoiceCreate from "../invoice/invoicecreate";
 import "./invoicenone.css"
 class Invoice extends PureComponent {
     constructor(props)
@@ -55,9 +54,6 @@ class Invoice extends PureComponent {
                                     <InvoiceTable  invoices={this.state.invoices}  selectedIdhandler={this.setIdHandler} /> 
                                 </div>
                             </div>
-                        </div>
-                        <div className="none">
-                            <InvoiceCreate value={this.state.invoices.length} />    
                         </div>
                     </div>
                     <div className="row">

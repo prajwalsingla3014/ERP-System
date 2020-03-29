@@ -12,6 +12,54 @@ class invoicecreatetable extends Component {
         }
         console.log(this.props.products[0].tax)
     }
+    renderSubtotal = () => {
+        var len=this.props.products.length;
+        var subtotal=0;
+        for(var i=0;i<len;i++)
+        {
+            if(len==1)
+            {
+                subtotal=subtotal+(this.props.products[i].price)*(this.props.products[i].quantity);
+            }
+            if(len>1)
+            {
+                subtotal=subtotal+(this.props.products[i].price)*(this.props.products[i].quantity);
+            }
+        }
+        return subtotal;
+    }
+    renderTax = () => {
+        var len=this.props.products.length;
+        var tax=0;
+        for(var i=0;i<len;i++)
+        {
+            if(len==1)
+            {
+                tax= tax + ((this.props.products[i].price)*(this.props.products[i].tax)*(this.props.products[i].quantity))/100;
+            }
+            if(len > 1)
+            {
+                tax=tax + ((this.props.products[i].price)*(this.props.products[i].tax)*(this.props.products[i].quantity))/100;
+            }
+        }
+        return tax;
+    }
+    renderAmount = () => {
+        var len=this.props.products.length;
+        var amount=0;
+        for(var i=0;i<len;i++)
+        {
+            if(len==1)
+            {
+                amount= amount + (this.props.products[i].price)*(this.props.products[i].quantity) + ((this.props.products[i].price)*(this.props.products[i].tax)*(this.props.products[i].quantity))/100;
+            }
+            if(len > 1)
+            {
+                amount=amount + (this.props.products[i].price)*(this.props.products[i].quantity) + ((this.props.products[i].price)*(this.props.products[i].tax)*(this.props.products[i].quantity))/100;
+            }
+        }
+        return amount;
+    }
     render() {
         var someDate = new Date();
         someDate.setDate(someDate.getDate() + 0);
@@ -140,6 +188,19 @@ class invoicecreatetable extends Component {
                                                 <label for="terms" className="mt-3" style={{fontSize:'20px'}}>Customer Notes</label>
                                                 <textarea className="form-control" rows="3" style={{width:'80%'}}>Thanks for business</textarea>
                                             </div>
+                                        </div>
+                                        <div className="col-6">
+                                            <label for="terms" style={{fontSize:'20px',marginLeft:'275px'}}>SubTotal:</label>
+                                            <label style={{fontSize:'20px',marginLeft:'30px'}}>Rs {this.renderSubtotal()}</label>
+                                            <label for="terms" style={{fontSize:'20px',marginLeft:'325px'}}>GST:</label>
+                                            <label style={{fontSize:'20px',marginLeft:'30px'}}>Rs {this.renderTax()}</label>
+                                            <label for="terms" style={{fontSize:'15px',marginLeft:'326px'}}>CGST:</label>
+                                            <label style={{fontSize:'18px',marginLeft:'32px'}}>Rs {(this.renderTax())/2}</label>
+                                            <label for="terms" style={{fontSize:'15px',marginLeft:'326px'}}>SGST:</label>
+                                            <label style={{fontSize:'18px',marginLeft:'32px'}}>Rs {(this.renderTax())/2}</label>
+                                            <hr style={{width:'43%',color:'black',marginLeft:'263px'}}/>
+                                            <label for="terms" className="mt-2" style={{fontSize:'20px',marginLeft:'285px'}}>Amount:</label>
+                                            <label style={{fontSize:'20px',marginLeft:'30px'}}>Rs {this.renderAmount()}</label>
                                         </div>
                                     </div>
                                     <div className="form-group">

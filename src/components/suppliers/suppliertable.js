@@ -3,13 +3,13 @@ import React from 'react'
 function Suppliertable(props) {
     let tb=props.suppliers.map((supplier,index)=>{
         return(< tr key={index}>
-            <td><button className="btn" onClick={() => props.selectedIdHandler(supplier.no)}  style={{fontSize:'15px',color:'#25b0b9',marginTop:'-5px'}}> {supplier.no}</button></td>
-            <td style={{fontSize:'15px'}}>{supplier.name}</td>
-            <td style={{fontSize:'15px'}}>{supplier.email}</td>
-            <td style={{fontSize:'15px'}}>{supplier.city}</td>
-            <td style={{fontSize:'15px'}}>{supplier.product}</td>
-            <td style={{fontSize:'15px'}}>{supplier.amount}</td>
-            <td style={{fontSize:'15px'}}>{supplier.contact}</td>
+            <td><button className="btn" onClick={() => props.selectedIdHandler(supplier.no)}  style={{fontSize:'15px',marginTop:'-5px'}}> {supplier.no}</button></td>
+            <td><button className="btn" onClick={() => props.selectedIdHandler(supplier.no)}  style={{fontSize:'15px',marginTop:'-5px'}}>{supplier.name}</button></td>
+            <td><button className="btn" onClick={() => props.selectedIdHandler(supplier.no)}  style={{fontSize:'15px',marginTop:'-5px'}}>{supplier.email}</button></td>
+            <td><button className="btn" onClick={() => props.selectedIdHandler(supplier.no)}  style={{fontSize:'15px',marginTop:'-5px'}}>{supplier.city}</button></td>
+            <td><button className="btn" onClick={() => props.selectedIdHandler(supplier.no)}  style={{fontSize:'15px',marginTop:'-5px'}}>{supplier.product}</button></td>
+            <td><button className="btn" onClick={() => props.selectedIdHandler(supplier.no)}  style={{fontSize:'15px',marginTop:'-5px'}}>{supplier.amount}</button></td>
+            <td><button className="btn" onClick={() => props.selectedIdHandler(supplier.no)}  style={{fontSize:'15px',marginTop:'-5px'}}>{supplier.contact}</button></td>
         </tr>)
     })
     return (
