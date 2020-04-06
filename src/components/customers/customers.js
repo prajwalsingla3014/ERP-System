@@ -24,6 +24,7 @@ export default class customers extends Component {
             selectedId:'',
             detail:''
         }
+        console.log(this.state.customers);
     }
     cancel = (event) => 
     {

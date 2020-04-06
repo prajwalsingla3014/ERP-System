@@ -98,7 +98,7 @@ class purchasecreatetable extends Component {
                                         </div>
                                     </div>
                                     <div className="form-group row">
-                                        <label className="col-sm-2 col-form-label" style={{fontSize:'20px'}}>Order No</label>
+                                        <label className="col-sm-2 col-form-label" style={{fontSize:'20px'}}>Reference</label>
                                         <div className="col-sm-10">
                                             <input type="text" className="form-control"></input>
                                         </div>

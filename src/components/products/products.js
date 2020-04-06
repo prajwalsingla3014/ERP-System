@@ -3,40 +3,48 @@ import ProductTable from "../products/producttable";
 import "../invoice/invoicesmall";
 import ProductSmall from "../products/productsmall";
 import ProductsDetail from "../products/productsdetail";
+import axios from 'axios';
 class Products extends PureComponent {
     constructor(props) {
         super(props)
 
         this.state = {
             active:false,
-            products:[{no:"1",name:"Television",description:"LED",unit:"Kg",id:"985623",quantity:"1",amount:"50000"},
-                      {no:"2",name:"Laptop",description:"Slim",unit:"Kg",id:"985624",quantity:"2",amount:"60000"}],
+            products:[{id:" ",name:" ",description:" ",unit:" ",hsn_code:" ",quantity:" ",selling_price:" "}],
                       selectedId:'',
                       item:''
         }
     }
+    componentDidMount()
+    {
+        axios.get("https://farzi-erp.herokuapp.com/inventory/product/?ordering=created_at")
+            .then(res => {
+                this.setState({products:res.data});
+            })
+            .catch(err => {
+                console.log(err);
+            })
+            console.log(this.state.products)
+        const script=document.createElement("script");
+        script.src="js/customertablesort.js";
+        script.async=true;
+        document.body.appendChild(script);
+    }
     cancel = (event) => {
         this.setState({active:false,selectedId:"",item:""})
     }
-    setIdHandler = (no) => {
-        let itemIndex=this.state.products.findIndex(product => product.no === no);
+    setIdHandler = (id) => {
+        let itemIndex=this.state.products.findIndex(product => product.id === id);
         let item;
         if(itemIndex !==-1)
         {
             item=this.state.products[itemIndex];
-            this.setState({selectedId:no,item,active:true});
+            this.setState({selectedId:id,item,active:true});
         }
         else
         {
             this.setState({selectedId:'',item:'',active:true});
         }
-    }
-    componentDidMount()
-    {
-        const script=document.createElement("script");
-        script.src="js/customertablesort.js";
-        script.async=true;
-        document.body.appendChild(script);
     }
     render() {
         return (
