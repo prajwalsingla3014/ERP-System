@@ -20,7 +20,7 @@ export default class dashboardcontent extends Component {
                             50000
                         ],
                         barThickness:30,
-                        backgroundColor:'rgba(54,162,235,.6)'
+                        backgroundColor:'rgba(54,162,235,.6),rgba(50,100,212,0.6)'
                     },
                     {
                         label:'Expense',
