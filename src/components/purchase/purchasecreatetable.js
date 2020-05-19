@@ -18,30 +18,30 @@ class purchasecreatetable extends Component {
         {
             if(len==1)
             {
-                subtotal=subtotal+(this.props.products[i].price)*(this.props.products[i].quantity);
+                subtotal=subtotal+(this.props.products[i].selling_price)*(this.props.products[i].quantity);
             }
             if(len>1)
             {
-                subtotal=subtotal+(this.props.products[i].price)*(this.props.products[i].quantity);
+                subtotal=subtotal+(this.props.products[i].selling_price)*(this.props.products[i].quantity);
             }
         }
         return subtotal;
     }
     renderTax = () => {
         var len=this.props.products.length;
-        var tax=0;
+        var taxx=0;
         for(var i=0;i<len;i++)
         {
             if(len==1)
             {
-                tax= tax + ((this.props.products[i].price)*(this.props.products[i].tax)*(this.props.products[i].quantity))/100;
+                taxx= taxx + ((this.props.products[i].selling_price)*(this.props.products[i].taxx)*(this.props.products[i].quantity))/100;
             }
             if(len > 1)
             {
-                tax=tax + ((this.props.products[i].price)*(this.props.products[i].tax)*(this.props.products[i].quantity))/100;
+                taxx=taxx + ((this.props.products[i].selling_price)*(this.props.products[i].taxx)*(this.props.products[i].quantity))/100;
             }
         }
-        return tax;
+        return taxx;
     }
     renderAmount = () => {
         var len=this.props.products.length;
@@ -50,11 +50,11 @@ class purchasecreatetable extends Component {
         {
             if(len==1)
             {
-                amount= amount + (this.props.products[i].price)*(this.props.products[i].quantity) + ((this.props.products[i].price)*(this.props.products[i].tax)*(this.props.products[i].quantity))/100;
+                amount= amount + (this.props.products[i].selling_price)*(this.props.products[i].quantity) + ((this.props.products[i].selling_price)*(this.props.products[i].taxx)*(this.props.products[i].quantity))/100;
             }
             if(len > 1)
             {
-                amount=amount + (this.props.products[i].price)*(this.props.products[i].quantity) + ((this.props.products[i].price)*(this.props.products[i].tax)*(this.props.products[i].quantity))/100;
+                amount=amount + (this.props.products[i].selling_price)*(this.props.products[i].quantity) + ((this.props.products[i].selling_price)*(this.props.products[i].taxx)*(this.props.products[i].quantity))/100;
             }
         }
         return amount;
@@ -67,13 +67,18 @@ class purchasecreatetable extends Component {
         some.setDate(some.getDate() + 5);
         var date2=some.toISOString().substr(0,10);
         var onProductTableUpdate=this.props.onProductTableUpdate;
+        var color=this.props.color
+        var items=this.props.items;
         var filterText=this.props.filterText;
+        let supplierss=this.props.suppliers;
+        let suppliers=supplierss.map((supplier) => 
+            <option value={supplier.display_name}>{supplier.display_name}</option>)
         var product=this.props.products.map(function(product) {
             if(product.name.indexOf(filterText) === -1)
             {
                 return ;
             }
-            return (<PurchaseRow onProductTableUpdate={onProductTableUpdate} product={product} key={product.id}  />)
+            return (<PurchaseRow onProductTableUpdate={onProductTableUpdate} product={product} key={product.id} color={color} items={items}  />)
         })
         return (                                                     
             <section className="content">
@@ -88,17 +93,20 @@ class purchasecreatetable extends Component {
                                     <div className="form-group row">
                                         <label className="col-sm-2 col-form-label" style={{fontSize:'20px'}}>Supplier Name</label>
                                         <div className="col-sm-10">
-                                            <input type="text" className="form-control" ></input>
+                                            <select className="form-control" onChange={this.props.onProductTableUpdate}  name="name" >
+                                                <option value=" " disabled selected>Choose name</option>
+                                                {suppliers}
+                                            </select>
                                         </div>
                                     </div>
                                     <div className="form-group row">
                                         <label className="col-sm-2 col-form-label" style={{fontSize:'20px'}}>Purchase No</label>
                                         <div className="col-sm-10">
-                                            <input type="text" className="form-control" value={"0000"  + (this.state.purchases.length + 1) }></input>
+                                            <input type="text" className="form-control" ></input>
                                         </div>
                                     </div>
                                     <div className="form-group row">
-                                        <label className="col-sm-2 col-form-label" style={{fontSize:'20px'}}>Reference</label>
+                                        <label className="col-sm-2 col-form-label" style={{fontSize:'20px'}}>Order No</label>
                                         <div className="col-sm-10">
                                             <input type="text" className="form-control"></input>
                                         </div>
@@ -124,14 +132,27 @@ class purchasecreatetable extends Component {
                                     <table className="table table-bordered">
                                         <thead>
                                             <tr>
-                                                <th><h6 style={{marginTop:'-40px',marginLeft:'30px'}}>Item Details</h6></th>
-                                                <th><h6 style={{marginTop:'-40px',marginLeft:'50px'}}>Quantity</h6></th>
-                                                <th><h6 style={{marginTop:'-40px',marginLeft:'40px'}}>Price/Quantity</h6></th>
-                                                <th><h6 style={{marginLeft:'70px',top:'86%',position:'sticky'}}>Tax</h6>
+                                            <th style={{width:'20%'}}><h6 style={{marginLeft:'40px',fontSize:'16px'}}>Item Details</h6></th>
+                                                <th ><h6 style={{marginLeft:'0px',fontSize:'16px'}}>Quantity</h6></th>
+                                                <th style={{width:'20%'}}><h6 style={{marginLeft:'35px',fontSize:'16px'}}>Price/Quantity</h6></th>
+                                                <th style={{width:'20%'}}>
+                                                    <div className="row">
+                                                        <div className="col-6">
+                                                            <h6 style={{marginTop:'22px'}}>Discount</h6>
+                                                        </div>
+                                                        <div className="col-6">
+                                                            <input type="radio"  style={{marginLeft:'-5px'}}/>
+                                                            <h6 style={{fontSize:'14px',marginTop:'-20px',marginLeft:'15px'}}>Amount</h6>
+                                                            <input type="radio" style={{marginLeft:'-5px'}}/>
+                                                            <h6 style={{fontSize:'14px',marginTop:'-20px',marginLeft:'15px'}}>Percent</h6>
+                                                        </div>
+                                                    </div>
+                                                </th>
+                                                <th style={{width:'20%'}}><h6 style={{marginLeft:'70px',top:'77%',position:'sticky',}}>Tax</h6>
                                                     <ul className="navbar-nav" style={{width:'20%'}}>
                                                         <li className="nav-item dropdown" style={{width:'20%'}}>
-                                                            <a className="nav-link" data-toggle="dropdown" href="#" style={{width:'20%',marginLeft:'50px'}}>
-                                                                <i className="fas fa-chevron-down" style={{color:'black',marginLeft:'140px',marginTop:'-120px',fontSize:'15px'}}/>
+                                                            <a className="nav-link" data-toggle="dropdown" href="#" style={{width:'20%',marginLeft:'30px'}}>
+                                                                <i className="fas fa-chevron-down" style={{color:'black',marginLeft:'140px',fontSize:'15px'}}/>
                                                             </a>
                                                             <div className="dropdown-menu dropdown-menu-lg dropdown-menu-left">
                                                                 <h6 style={{marginLeft:'-10px'}}>
@@ -167,10 +188,10 @@ class purchasecreatetable extends Component {
                                                         </li>
                                                     </ul>
                                                 </th>
-                                                <th><h6 style={{marginTop:'-40px',marginLeft:'60px'}}>Amount</h6></th>
+                                                <th style={{width:'20%'}}><h6 style={{marginLeft:'45px',fontSize:'16px'}}>Amount</h6></th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody className={this.state.active}>
                                             {product}
                                         </tbody>
                                     </table>
@@ -187,10 +208,12 @@ class purchasecreatetable extends Component {
                                             <label style={{fontSize:'20px',marginLeft:'30px'}}>Rs {this.renderSubtotal()}</label>
                                             <label for="terms" style={{fontSize:'20px',marginLeft:'325px'}}>GST:</label>
                                             <label style={{fontSize:'20px',marginLeft:'30px'}}>Rs {this.renderTax()}</label>
-                                            <label for="terms" style={{fontSize:'15px',marginLeft:'326px'}}>CGST:</label>
+                                            <label for="terms" style={{fontSize:'20px',marginLeft:'277px'}}>Discount:</label>
+                                            <label style={{fontSize:'20px',marginLeft:'30px'}}>Rs {this.renderTax()}</label>
+                                            {/*<label for="terms" style={{fontSize:'15px',marginLeft:'326px'}}>CGST:</label>
                                             <label style={{fontSize:'18px',marginLeft:'32px'}}>Rs {(this.renderTax())/2}</label>
                                             <label for="terms" style={{fontSize:'15px',marginLeft:'326px'}}>SGST:</label>
-                                            <label style={{fontSize:'18px',marginLeft:'32px'}}>Rs {(this.renderTax())/2}</label>
+        <label style={{fontSize:'18px',marginLeft:'32px'}}>Rs {(this.renderTax())/2}</label>*/}
                                             <hr style={{width:'43%',color:'black',marginLeft:'263px'}}/>
                                             <label for="terms" className="mt-2" style={{fontSize:'20px',marginLeft:'285px'}}>Amount:</label>
                                             <label style={{fontSize:'20px',marginLeft:'30px'}}>Rs {this.renderAmount()}</label>

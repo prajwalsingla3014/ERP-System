@@ -57,7 +57,8 @@ export default class customersform extends Component {
              gst:' ',
              st:[],
              gs:[],
-             pa:[]
+             pa:[],
+             display:false
         }
     }
     otherdetail = () => {
@@ -105,51 +106,6 @@ export default class customersform extends Component {
     }
     submitHandler = async (e) => {
         e.preventDefault();
-        await axios.get("https://farzi-erp.herokuapp.com/persons_manager/gst/?ordering=created_at")
-            .then(res => {
-                var t=res.data.length;
-                for(var i=0;i<t;i++)
-                {
-                    var t1=(res.data)[i].id;
-                    this.setState({
-                        gs:[...this.state.gs,t1]
-                    });
-                }
-                console.log(res);
-            })
-            .catch(err => {
-                console.log(err);
-            })
-        await axios.get("https://farzi-erp.herokuapp.com/persons_manager/state/?ordering=created_at")
-            .then(res => {
-                var t=res.data.length;
-                for(var i=0;i<t;i++)
-                {
-                    var t1=(res.data)[i].id;
-                    this.setState({
-                        st:[...this.state.st,t1]
-                    });
-                }
-                console.log(res);
-            })
-            .catch(err => {
-                 console.log(err);
-            })
-        await axios.get("https://farzi-erp.herokuapp.com/persons_manager/payment_terms/?ordering=created_at")
-            .then(res => {
-                var t=res.data.length;
-                for(var i=0;i<t;i++)
-                {
-                    var t1=(res.data)[i].id;
-                    this.setState({
-                        pa:[...this.state.pa,t1]
-                    })
-                }
-                console.log(res);
-            })
-            .catch(err => {
-                console.log(err);
-            })
         const cust={
             type:this.state.type,
             salutation:this.state.salutation,
@@ -185,16 +141,63 @@ export default class customersform extends Component {
                 taxable:this.state.payment_details.taxable
             }
         }
-        console.log(cust)
-        /*await axios.post("https://farzi-erp.herokuapp.com/persons_manager/customer/?ordering=created_at",cust)
+        await axios.post("https://farzi-erp.herokuapp.com/persons_manager/customer/?ordering=created_at",cust)
             .then(res => {
                 console.log(res);
             })
             .catch(err => {
                 console.log(err.message);
-            })*/
+            })
         await axios.get("https://farzi-erp.herokuapp.com/persons_manager/customer/?ordering=created_at")
             .then(res => {
+                console.log(res);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+    async componentDidMount()
+    {
+        await axios.get("https://farzi-erp.herokuapp.com/shared/gst/?ordering=created_at")
+        .then(res => {
+            var t=res.data.length;
+            for(var i=0;i<t;i++)
+            {
+                var t1=(res.data)[i].id;
+                this.setState({
+                    gs:[...this.state.gs,t1]
+                });
+            }
+            console.log(res);
+        })
+        .catch(err => {
+            console.log(err);
+        })
+        await axios.get("https://farzi-erp.herokuapp.com/shared/state/?ordering=created_at")
+            .then(res => {
+                var t=res.data.length;
+                for(var i=0;i<t;i++)
+                {
+                    var t1=(res.data)[i].id;
+                    this.setState({
+                        st:[...this.state.st,t1]
+                    });
+                }
+                console.log(res);
+            })
+            .catch(err => {
+                 console.log(err);
+            })
+        await axios.get("https://farzi-erp.herokuapp.com/shared/payment_terms/?ordering=created_at")
+            .then(res => {
+                var t=res.data.length;
+                for(var i=0;i<t;i++)
+                {
+                    var t1=(res.data)[i].id;
+                    this.setState({
+                        pa:[...this.state.pa,t1]
+                    })
+                }
                 console.log(res);
             })
             .catch(err => {
@@ -288,14 +291,14 @@ export default class customersform extends Component {
                                             <div className="form-group row">
                                                 <label className="col-sm-2 col-form-label" style={{fontSize:'18px'}}>GST Treatment</label>
                                                 <div className="col-sm-10">
-                                                    <select className="form-control" defaultValue="Select a GST Treatment" onChange={this.changeHandler} name="gst">
-                                                            <option value={this.state.gs[0]}>Registered Business - Composition </option>
-                                                            <option value={this.state.gs[1]}>Registered Business - Regular</option>
-                                                            <option value={this.state.gs[2]}>Unregistered Business</option>
-                                                            <option value={this.state.gs[3]}>Consumer</option>
-                                                            <option value={this.state.gs[4]}>Overseas</option>
-                                                            <option value={this.state.gs[5]}>Special Economic Zone</option>
-                                                            <option value={this.state.gs[6]}>Deemed Export</option>
+                                                    <select className="form-control" onChange={this.changeHandler} name="gst">
+                                                        <option value={this.state.gs[0]}>Registered Business - Composition </option>
+                                                        <option value={this.state.gs[1]}>Registered Business - Regular</option>
+                                                        <option value={this.state.gs[2]}>Unregistered Business</option>
+                                                        <option value={this.state.gs[3]}>Consumer</option>
+                                                        <option value={this.state.gs[4]}>Overseas</option>
+                                                        <option value={this.state.gs[5]}>Special Economic Zone</option>
+                                                        <option value={this.state.gs[6]}>Deemed Export</option>
                                                     </select>
                                                 </div>
                                             </div>

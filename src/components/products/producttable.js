@@ -7,7 +7,7 @@ function Producttable(props) {
             <td><button className="btn" onClick={() => props.selectedIdHandler(product.id)} style={{fontSize:'16px',marginTop:'-5px',width:'100%'}}>{product.description}</button></td>
             <td><button className="btn" onClick={() => props.selectedIdHandler(product.id)} style={{fontSize:'16px',marginTop:'-5px',width:'100%'}}>{product.unit}</button></td>
             <td><button className="btn" onClick={() => props.selectedIdHandler(product.id)} style={{fontSize:'16px',marginTop:'-5px',width:'100%'}}>{product.hsn_code}</button></td>
-            <td><button className="btn" onClick={() => props.selectedIdHandler(product.id)} style={{fontSize:'16px',marginTop:'-5px',width:'100%'}}>{product.quantity}</button></td>
+            <td><button className="btn" onClick={() => props.selectedIdHandler(product.id)} style={{fontSize:'16px',marginTop:'-5px',width:'100%'}}>{product.quantity_total}</button></td>
             <td><button className="btn" onClick={() => props.selectedIdHandler(product.id)} style={{fontSize:'16px',marginTop:'-5px',width:'100%'}}>{product.selling_price}</button></td>
         </tr>)
     })

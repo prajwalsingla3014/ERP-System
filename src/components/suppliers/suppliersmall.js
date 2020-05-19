@@ -4,8 +4,8 @@ function Suppliersmall(props) {
     let content=props.suppliers.map((supplier,index) => {
         return (
             <div key={index}>
-                <h6 style={{color:'#25b0b9'}}>{supplier.name}</h6>
-                <h6>Rs {supplier.amount}</h6>   
+                <h6 style={{color:'#25b0b9'}}>{supplier.display_name}</h6>
+                <h6>Rs {supplier.total_amount}</h6>   
             </div>
         )
     })

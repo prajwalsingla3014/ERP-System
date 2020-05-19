@@ -10,22 +10,23 @@ class Products extends PureComponent {
 
         this.state = {
             active:false,
-            products:[{id:" ",name:" ",description:" ",unit:" ",hsn_code:" ",quantity:" ",selling_price:" "}],
+            products:[{id:" ",name:" ",description:" ",unit:" ",hsn_code:" ",quantity_total:" ",selling_price:" ",taxable:" ",tax:{name:" ",rate:" "}}],
                       selectedId:'',
                       item:''
         }
     }
-    componentDidMount()
+    async componentDidMount()
     {
-        axios.get("https://farzi-erp.herokuapp.com/inventory/product/?ordering=created_at")
+        await axios.get("https://farzi-erp.herokuapp.com/inventory/product/?ordering=created_at")
             .then(res => {
                 this.setState({products:res.data});
+                console.log(res)
             })
             .catch(err => {
                 console.log(err);
             })
-            console.log(this.state.products)
         const script=document.createElement("script");
+        console.log(script)
         script.src="js/customertablesort.js";
         script.async=true;
         document.body.appendChild(script);

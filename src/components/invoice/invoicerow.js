@@ -2,33 +2,40 @@ import React, { Component } from 'react';
 import EditableCell from "../invoice/editablecell";
 class invoicerow extends Component {
     render() {
+        let content=this.props.items;
+        let options=content.map((data) => 
+        <option value={data.id}>{data.name + " " + data.description}</option>)
         return (
             <tr className="eachRow">
-                    <EditableCell onProductTableUpdate={this.props.onProductTableUpdate} cellData={{
-                        "type":"name",
-                        value:this.props.product.name,
-                        id:this.props.product.id
-                    }} />
-                    <EditableCell onProductTableUpdate={this.props.onProductTableUpdate} cellData={{
-                        "type":"quantity",
-                        value:this.props.product.quantity,
-                        id:this.props.product.id
-                    }} />
-                    <EditableCell onProductTableUpdate={this.props.onProductTableUpdate} cellData={{
-                        "type":"price",
-                        value:this.props.product.price,
-                        id:this.props.product.id
-                    }} />
-                    <EditableCell onProductTableUpdate={this.props.onProductTableUpdate} cellData={{
-                        "type":"tax",
-                        value:this.props.product.tax,
-                        id:this.props.product.id
-                    }} />
-                    <EditableCell onProductTableUpdate={this.props.onProductTableUpdate} cellData={{
-                        "type":"amount",
-                        value:(this.props.product.price*this.props.product.quantity) + (((this.props.product.quantity)*(this.props.product.price)*(this.props.product.tax))/100),
-                        id:this.props.product.id
-                    }} />
+                <select onChange={this.props.onProductTableUpdate} style={{width:'90%',marginTop:'12px',height:'30px',marginLeft:'13px'}} name="product" id={this.props.prod.id}>
+                    <option value=" " disabled selected>Choose item</option>
+                    {options}
+                </select>
+                <EditableCell onProductTableUpdate={this.props.onProductTableUpdate} cellData={{
+                    "type":"quantity",
+                    value:this.props.prod.quantity,
+                    id:this.props.prod.id
+                }} />
+                <EditableCell onProductTableUpdate={this.props.onProductTableUpdate} cellData={{
+                    "type":"price",
+                    value:this.props.prod.price,
+                    id:this.props.prod.id
+                }} />
+                <EditableCell onProductTableUpdate={this.props.onProductTableUpdate} cellData={{
+                    "type":"discount",
+                    value:this.props.prod.discount,
+                    id:this.props.prod.id
+                }} />
+                <EditableCell onProductTableUpdate={this.props.onProductTableUpdate} cellData={{
+                    "type":"tax",
+                    value:this.props.prod.taxx,
+                    id:this.props.prod.id
+                }} />
+                <EditableCell onProductTableUpdate={this.props.onProductTableUpdate} cellData={{
+                    "type":"sub_total",
+                    value:(this.props.prod.price*this.props.prod.quantity),
+                    id:this.props.prod.id
+                }} />
             </tr>
         );
     }

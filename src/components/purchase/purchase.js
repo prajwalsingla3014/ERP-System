@@ -3,14 +3,58 @@ import PurchaseTable from "../purchase/purchasetable";
 import PurchaseDetails from "../purchase/purchasedetails";
 import PurchaseSmall from "../purchase/purchasesmall";
 import "../invoice/invoicenone.css";
+import axios from 'axios';
 class Purchase extends PureComponent {
     constructor(props)
     {
         super(props);
         this.state={
             active:false,
-            purchases:[{ date:'02/02/2020',no:'00001',name:'Mr Suresh Goel',amount:'177120'},
-                      { date:'04/02/2020',no:'00002',name:'Mr Rohit Bansal',amount:'60000'}],
+            purchases:[{
+                id:' ',
+                supplier:{
+                    id:' ',
+                    payment_details:{
+                        shipping_address:{
+                            address:' ',
+                            city:' ',
+                            state:' ',
+                            zip_code:' ',
+                            country:' '
+                        },
+                        billing_address:{
+                            address:' ',
+                            city:' ',
+                            state:' ',
+                            zip_code:' ',
+                            country:' '
+                        }
+                    }
+                },
+                invoice_no:' ',
+                invoice_date:' ',
+                payment_terms:' ',
+                expected_delivery:' ',
+                notes:' ',
+                terms_and_conditions:' ',
+                total_subtotal:' ',
+                total_tax:' ',
+                total_discount:' ',
+                total_amount:' ',
+                purchased_items:[{
+                    id:' ',
+                    price:' ',
+                    quantity:' ',
+                    discount:' ',
+                    discount_type:' ',
+                    sub_total:' ',
+                    tax:' ',
+                    product:[{
+                        name:' ',
+                        description:' '
+                    }]
+                }]
+            }],
                     selectedId:'',
                     product:''
         }
@@ -20,21 +64,31 @@ class Purchase extends PureComponent {
 
         this.setState({active:false,selectedId:'',product:''})
     }
-    setIdHandler=(no)=>{
-        let productIndex=this.state.purchases.findIndex(purchase=>purchase.no===no);
+    setIdHandler=(id)=>{
+        let productIndex=this.state.purchases.findIndex(purchase=>purchase.id===id);
         let product;
         if(productIndex!==-1)
         {
               product=this.state.purchases[productIndex];
-              this.setState({selectedId:no,product,active:true});
+              this.setState({selectedId:id,product,active:true});
         }
         else
         {
            this.setState({selectedId:'',product:'',active:false});
         }  
       }
-      componentDidMount()
+      async componentDidMount()
       {
+          await axios.get("https://farzi-erp.herokuapp.com/invoice/purchase_invoice/?ordering=created_at")
+            .then(res => {
+                this.setState({
+                    purchases:res.data
+                })
+                console.log(res)
+            })
+            .catch(err => {
+                console.log(err)
+            })
           const script=document.createElement("script");
           script.src="js/customertablesort.js";
           script.async=true;

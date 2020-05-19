@@ -35,6 +35,14 @@ class Productsdetail extends PureComponent {
                                     </div>
                                     <div className="row">
                                         <div className="col-4">
+                                            <h5 className="ml-5 mt-4" style={{fontSize:'18px'}}>HSN Code</h5>
+                                        </div>
+                                        <div className="col-8">
+                                            <h5 className="mt-4" style={{fontSize:'18px'}}>{this.props.product.hsn_code}</h5>
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-4">
                                             <h5 className="ml-5 mt-4" style={{fontSize:'18px'}}>Unit</h5>
                                         </div>
                                         <div className="col-8">
@@ -43,10 +51,10 @@ class Productsdetail extends PureComponent {
                                     </div>
                                     <div className="row">
                                         <div className="col-4">
-                                            <h5 className="ml-5 mt-4" style={{fontSize:'18px'}}>Product ID</h5>
+                                            <h5 className="ml-5 mt-4" style={{fontSize:'18px'}}>Tax</h5>
                                         </div>
                                         <div className="col-8">
-                                            <h5 className="mt-4" style={{fontSize:'18px'}}>{this.props.product.hsn_code}</h5>
+                                            <h5 className="mt-4" style={{fontSize:'18px'}}>{this.props.product.tax.name + " " + this.props.product.tax.rate}</h5>
                                         </div>
                                     </div>
                                     <div className="row">
@@ -62,7 +70,7 @@ class Productsdetail extends PureComponent {
                                             <h5 className="ml-5 mt-4" style={{fontSize:'18px'}}>Quantity</h5>
                                         </div>
                                         <div className="col-8">
-                                            <h5 className="mt-4" style={{fontSize:'18px'}}>{this.props.product.quantity}</h5>
+                                            <h5 className="mt-4" style={{fontSize:'18px'}}>{this.props.product.quantity_total}</h5>
                                         </div>
                                     </div>
                                     <div className="row">

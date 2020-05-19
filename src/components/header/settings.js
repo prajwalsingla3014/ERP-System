@@ -23,7 +23,9 @@ function Settings() {
                         <div className="media">
                             <div className="media-body">
                                 <i className="far fa-building"></i>
-                                <h6 style={{marginLeft:'25px',marginTop:'-21px'}}>Organization Profile</h6>
+                                <Link to="/userprofile">
+                                    <h6 style={{marginLeft:'25px',marginTop:'-21px'}}>Organization Profile</h6>
+                                </Link>
                             </div>
                         </div>
                     </a>

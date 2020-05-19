@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 class editablecell extends Component {
     render() {
         return (

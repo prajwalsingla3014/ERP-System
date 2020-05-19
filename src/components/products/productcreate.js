@@ -15,16 +15,20 @@ class Productcreate extends PureComponent {
             unit:' ',
             hsn_code:' ',
             sac:' ',
-            quantity:' ',
+            quantity_purchased:' ',
+            quantity_total:' ',
             selling_price:' ',
             description:' ',
             taxable:' ',
-            rate:' ',
+            tax:' ',
             active:false,
             check:false,
             check1:false,
-            tax:[],
-            loadedFiles:[]
+            taxx:[],
+            loadedFiles:[],
+            file:[],
+            pro:' ',
+            images:[]
         }
     }
     changeHandler = (e) => {
@@ -55,29 +59,6 @@ class Productcreate extends PureComponent {
     }
     submitHandler = async (e) => {
         e.preventDefault();
-        let taxes={
-            name:this.state.rate.slice(0,4),
-            rate:this.state.rate.slice(4,6)
-        }
-        /*await axios.post("https://farzi-erp.herokuapp.com/inventory/tax/?ordering=created_at",taxes)
-            .then(res => {
-                console.log(res);
-            })
-            .catch(err => {
-                console.log(err)
-            })*/
-        await axios.get("https://farzi-erp.herokuapp.com/inventory/tax/?ordering=created_at")
-            .then(res => {
-                var t=res.data.length;
-                var t1=(res.data)[t-1].id;
-                this.setState({
-                    tax:[...this.state.tax,t1]
-                });
-                console.log(res)
-            })
-            .catch(err => {
-                console.log(err)
-            })
         const data={
             type:this.state.type,
             name:this.state.name,
@@ -85,51 +66,58 @@ class Productcreate extends PureComponent {
             unit:this.state.unit,
             hsn_code:this.state.hsn_code,
             sac:this.state.sac,
-            quantity:this.state.quantity,
+            quantity_purchased:this.state.quantity_purchased,
+            quantity_total:this.state.quantity_purchased,
             selling_price:this.state.selling_price,
             description:this.state.description,
             taxable:this.state.taxable,
             tax:this.state.tax
         }
-        console.log(data)
-        /*axios.post("https://farzi-erp.herokuapp.com/inventory/product/?ordering=created_at",data)
+        await axios.post("https://farzi-erp.herokuapp.com/inventory/product/?ordering=created_at",data) 
             .then(res => {
                 console.log(res);
             })
             .catch(err => {
                 console.log(err);
-            })*/
-        
+            })
+        var len=this.state.loadedFiles.length;
+        for(var i=0;i<len;i++)
+        {
+            var image=this.state.loadedFiles[i].img;
+            await this.setState((prevState) => ({
+                images:[...prevState.images,image]
+            }))
+        }
+        let form_data=new FormData();
+        var len1=this.state.images.length;
+        form_data.append("product",this.state.pro)
+        for(var j=0;j<len1;j++)
+        {
+            var file=(this.state.images)[j];
+            form_data.append('images',file,file.name)
+        }
+        form_data.append("default_image_index", "0");
+        await axios.post("https://farzi-erp.herokuapp.com/inventory/product_images/",form_data , {
+            headers:{
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+            .then(res => {
+                console.log(res);
+            })
+            .catch(err => {
+                console.log(err);
+            })
     }
     onFileLoad(e) {
-        //Get current selected or dropped file (it gives you the ability to load multiple images).
-        const file = e.currentTarget.files[0];
-        //Create instance 
-        let fileReader = new FileReader();
-        //Register event listeners
-        fileReader.onload = () => {
-          console.log("IMAGE LOADED: ", fileReader.result);
-          const file={
-              data:fileReader.result,
-              isUploading:false
-          }
-          this.addLoadedFile(file);
+        const file={
+            data:URL.createObjectURL(e.target.files[0]),
+            isUploading:false,
+            img:e.target.files[0],
         }
-        //Operation Aborted 
-        fileReader.onabort = () => {
-          alert("Reading Aborted");
-        }
-        //Error when loading 
-        fileReader.onerror = () => {
-          alert("Reading ERROR!");
-        }
-        //Read the file as a Data URL (which gonna give you a base64 encoded image data)
-        fileReader.readAsDataURL(file);
-      }
-    addLoadedFile(file) {
         this.setState((prevState) => ({
-          loadedFiles: [...prevState.loadedFiles,file]
-        }));
+            loadedFiles:[...prevState.loadedFiles,file]
+        }))
     }
     removeLoadedFile(file) {
         this.setState((prevState) => {
@@ -141,25 +129,48 @@ class Productcreate extends PureComponent {
         });
     }
     removeAllLoadedFile() {
-      this.setState({loadedFiles: []});
-    }
-    updateLoadedFile(oldFile,newFile) {
+        this.setState({loadedFiles: []});
+      }
+      updateLoadedFile(oldFile, newFile) {
         this.setState((prevState) => {
-            const loadedFiles=[...prevState.loadedFiles];
-            _.find(loadedFiles,(file,idx) => {
-                if(file == oldFile)  loadedFiles[idx]=newFile;
+          const loadedFiles = [...prevState.loadedFiles];
+          _.find(loadedFiles, (file, idx) => {
+            if (file == oldFile) 
+              loadedFiles[idx] = newFile;
             });
-            return  {loadedFiles};
-        })
-        return newFile; 
-    }
-    onUpload() {
-        const {loadedFiles} = this.state;
-        loadedFiles.map((file, idx) => {
-          let newFile = this.updateLoadedFile(file, {...file,isUploading: true});
-          setTimeout(() => {
-            this.updateLoadedFile(newFile, {...newFile,isUploading: false});}, 3000);
+          return {loadedFiles};
         });
+        return newFile;
+    }
+     async componentDidMount()
+    {
+        await axios.get("https://farzi-erp.herokuapp.com/shared/tax/?ordering=created_at")
+            .then(res => {
+                var t=res.data.length;
+                for(var i=0;i<t;i++)
+                {
+                    var t1=(res.data)[i].id;
+                    this.setState({
+                        taxx:[...this.state.taxx,t1]
+                    });
+                }
+                console.log(res);
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        await axios.get("https://farzi-erp.herokuapp.com/inventory/product/?ordering=created_at")
+            .then(res => {
+                var t=res.data.length;
+                var t1=(res.data)[t-1].id;
+                this.setState({
+                    pro:t1
+                })
+                console.log(res);
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
     render() {
         const {loadedFiles}=this.state;
@@ -197,16 +208,16 @@ class Productcreate extends PureComponent {
                                             {/* Product Image Section */}
                                             <div className="col-6 inner-container" style={{display:'flex',flexDirection:'column'}}>
                                                 <div className="draggable-container">
-                                                    <input type="file" id="file-browser-input" name="file-browser-input" ref={input => this.fileInput = input} onDragOver={(e) => { e.preventDefault(); e.stopPropagation(); }} onDrop={this.onFileLoad.bind(this)} onChange={this.onFileLoad.bind(this)} />
+                                                    <input type="file" id="file-browser-input" name="file-browser-input" ref={input => this.fileInput = input} onChange={this.onFileLoad.bind(this)} />
                                                     <div className="files-preview-container">
-                                                        {loadedFiles.map((file,idx) => {
+                                                        {loadedFiles.map((item,idx) => {
                                                             return <div className="file" key={idx}>
-                                                                            <img src={file.data} />
+                                                                            <img src={item.data} />
                                                                             <div className="container">
                                                                                 <span className="progress-bar">
-                                                                                    {file.isUploading && <ProgressBar />}
+                                                                                    {item.isUploading && <ProgressBar />}
                                                                                 </span>
-                                                                                <span className="remove-btn" onClick={() => this.removeLoadedFile(file)}>
+                                                                                <span className="remove-btn" onClick={() => this.removeLoadedFile(item)}>
                                                                                     <i className="fas fa-times" style={{fontSize:'20px'}}></i>
                                                                                 </span>
                                                                             </div>
@@ -215,7 +226,7 @@ class Productcreate extends PureComponent {
                                                     </div>
                                                     <div className="helper-text">Add Images</div>
                                                     <div className="file-browser-container">
-                                                        <button className="btn btn-outline-info" onClick={() => this.fileInput.click()}>Browse</button>
+                                                        <button type="button" className="btn btn-outline-info" onClick={() => this.fileInput.click()}>Browse</button>
 
                                                     </div>
                                                 </div>
@@ -251,8 +262,8 @@ class Productcreate extends PureComponent {
                                         <div className="form-group row">
                                             <label className="col-2 col-form-label" style={{fontSize:'18px'}}>Tax Preference</label>
                                             <div className="col-1 form-check ml-1" style={{marginTop:'10px'}}>
-                                                <input className="form-check-input" type="radio" value="true" checked={this.state.taxable === "true"} name="taxable" id="tax" onChange={this.taxchangeHandler}/>
-                                                <label className="form-check-label " for="tax" style={{fontWeight:'bold',fontSize:'17px'}}>
+                                                <input className="form-check-input" type="radio" value="true" checked={this.state.taxable === "true"} name="taxable" id="taxed" onChange={this.taxchangeHandler}/>
+                                                <label className="form-check-label " for="taxed" style={{fontWeight:'bold',fontSize:'17px'}}>
                                                         Taxable
                                                 </label>
                                             </div>
@@ -266,7 +277,7 @@ class Productcreate extends PureComponent {
                                         <div className="form-group row">
                                             <label className="col-2 col-form-label" style={{fontSize:'18px'}}>Quantity</label>
                                             <div className="col-10">
-                                                <input type="text" name="quantity" className="form-control" value={this.state.quantity} onChange={this.changeHandler}></input>
+                                                <input type="text" name="quantity_purchased" className="form-control" value={this.state.quantity} onChange={this.changeHandler}></input>
                                             </div>
                                         </div>
                                         <div className="form-group row">
@@ -284,24 +295,24 @@ class Productcreate extends PureComponent {
                                         <div className={this.state.active? "form-group row" : "none"}>
                                             <label className="col-2 col-form-label" style={{fontSize:'18px'}}>Intra State Tax Rate</label>
                                             <div className="col-10">
-                                                <select className="form-control mt-2" onChange={this.changeHandler} name="rate">
-                                                    <option value="GST 0 % [0%]">GST0 [0%]</option>
-                                                    <option value="GST 5 % [5%]">GST5 [5%]</option>
-                                                    <option value="GST 12% [12%]">GST12 [12%]</option>
-                                                    <option value="GST 18% [18%]">GST18 [18%]</option>
-                                                    <option value="GST 28% [28%]">GST28 [28%]</option>
+                                                <select className="form-control mt-2" onChange={this.changeHandler} name="tax">
+                                                    <option value={this.state.taxx[0]}>GST0 [0%]</option>
+                                                    <option value={this.state.taxx[1]}>GST5 [5%]</option>
+                                                    <option value={this.state.taxx[2]}>GST12 [12%]</option>
+                                                    <option value={this.state.taxx[3]}>GST18 [18%]</option>
+                                                    <option value={this.state.taxx[4]}>GST28 [28%]</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div className={this.state.active ?  "form-group row" :"none"}>
                                             <label className="col-2 col-form-label" style={{fontSize:'18px'}} >Inter State Tax Rate</label>
                                             <div className="col-10">
-                                                <select className="form-control mt-2" onChange={this.changeHandler} name="rate">
-                                                    <option value="IGST0 %  [0% ]">IGST0 [0%]</option>
-                                                    <option value="IGST5 %  [5% ]">IGST5 [5%]</option>
-                                                    <option value="IGST12%[12% ]">IGST12 [12%]</option>
-                                                    <option value="IGST18%[18% ]">IGST18 [18%]</option>
-                                                    <option value="IGST28%[28% ]">IGST28 [28%]</option>
+                                                <select className="form-control mt-2" onChange={this.changeHandler} name="tax">
+                                                    <option value={this.state.taxx[5]}>IGST0 [0%]</option>
+                                                    <option value={this.state.taxx[6]}>IGST5 [5%]</option>
+                                                    <option value={this.state.taxx[7]}>IGST12 [12%]</option>
+                                                    <option value={this.state.taxx[8]}>IGST18 [18%]</option>
+                                                    <option value={this.state.taxx[9]}>IGST28 [28%]</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -314,7 +325,6 @@ class Productcreate extends PureComponent {
                         </div>
                     </div>
                 </section>
-                {console.log(this.state.loadedFiles)}
             </div>
         )
     }

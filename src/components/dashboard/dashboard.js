@@ -12,6 +12,7 @@ import Products from "../products/products";
 import ProductCreate from "../products/productcreate";
 import Sale from "../sales/sale";
 import SideMenu from "../preferences/sidemenu";
+import Users from "../user/users";
 import Purchase from "../purchase/purchase";
 import PurchaseCreate from "../purchase/purchasecreate";
 export default class dashboard extends Component {
@@ -99,6 +100,7 @@ export default class dashboard extends Component {
                     <Route path={"/productcreate"} component={ProductCreate} />
                     <Route path={"/sale"} component={Sale} />
                     <Route path={"/settings"} component={SideMenu} />
+                    <Route path={"/userprofile"} component={Users} />
                     <Route path={"/purchase"} component={Purchase} />
                     <Route path={"/purchasecreate"} component={PurchaseCreate} />
                 </div>

@@ -3,42 +3,96 @@ import InvoiceTable from "../invoice/invoicetable";
 import InvoiceDetails from "../invoice/invoicedetails";
 import InvoiceSmall from "../invoice/invoicesmall";
 import "./invoicenone.css"
+import axios from 'axios';
 class Invoice extends PureComponent {
     constructor(props)
     {
         super(props);
         this.state={
             active:false,
-            invoices:[{ date:'02/02/2020',no:'00001',orderno:'78549',name:'Mr Suresh Goel',duedate:'15/02/2020',amount:'177120'},
-                      { date:'04/02/2020',no:'00002',orderno:'78550',name:'Mr Rohit Bansal',duedate:'16/02/2020',amount:'60000'}],
-                    selectedId:'',
-                    product:''
+            invoices:[{
+                id:' ',
+                customer:{
+                    id:' ',
+                    payment_details:{
+                        shipping_address:{
+                            address:' ',
+                            city:' ',
+                            state:' ',
+                            country:' ',
+                            zip_code:' '
+                        },
+                        billing_address:{
+                            address:' ',
+                            city:' ',
+                            state:' ',
+                            country:' ',
+                            zip_code:' '
+                        }
+                    }
+                },
+                invoice_no:' ',
+                order_no:' ',
+                invoice_date:' ',
+                payment_terms:' ',
+                due_date:' ',
+                sold_items:[{
+                    id:' ',
+                    product:[{
+                        name:' ',
+                        description:' '
+                    }],
+                    quantity:' ',
+                    price:' ',
+                    discount:' ',
+                    discount_type:' ',
+                    tax:' ',
+                    sub_total:' '
+                }],
+                total_subtotal:' ',
+                total_tax:' ',
+                total_discount:' ',
+                total_amount:' ',
+                notes:' ',
+                terms_and_conditions:' '
+            }],
+            selectedId:'',
+            product:''
         }
+    }
+    async componentDidMount()
+    {
+        await axios.get("https://farzi-erp.herokuapp.com/invoice/sale_invoice/?ordering=created_at")
+            .then(res => {
+                this.setState({invoices:res.data})
+                console.log(res)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        const script=document.createElement("script");
+        script.src="js/customertablesort.js";
+        script.async=true;
+        document.body.appendChild(script);
     }
     cancel = (event) => 
     {
 
         this.setState({active:false,selectedId:'',product:''})
     }
-    setIdHandler=(no)=>{
-        let productIndex=this.state.invoices.findIndex(invoice=>invoice.no===no);
+    setIdHandler=(id)=>{
+        let productIndex=this.state.invoices.findIndex(invoice=>invoice.id===id);
         let product;
         if(productIndex!==-1)
         {
               product=this.state.invoices[productIndex];
-              this.setState({selectedId:no,product,active:true});
+              console.log(product)
+              this.setState({selectedId:id,product,active:true});
         }
         else
         {
            this.setState({selectedId:'',product:'',active:false});
         }  
-      }
-      componentDidMount()
-      {
-          const script=document.createElement("script");
-          script.src="js/customertablesort.js";
-          script.async=true;
-          document.body.appendChild(script);
       }
     render() {
         return (

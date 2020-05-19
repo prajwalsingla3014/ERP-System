@@ -31,122 +31,11 @@ export default class customerdetail extends Component {
                 ]
             }
         }
-        /*this.editInfo=this.editInfo.bind(this);
-        this.nameChange=this.nameChange.bind(this);
-        this.saveInfo=this.saveInfo.bind(this);*/
 
     }
-    /*editInfo()
-    {
-        this.setState({
-            disable:!this.state.disable
-        })
-    }
-    nameChange(event)
-    {
-        this.setState({
-            name:event.target.value
-        })
-    }
-    emailChange(event)
-    {
-        this.setState({
-            email:event.target.value
-        })
-    }
-    addressChange(event)
-    {
-        this.setState({
-            address:event.target.value
-        })
-    }
-    contactChange(event)
-    {
-        this.setState({
-            contact:event.target.value
-        })
-    }
-    saveInfo(event)
-    {
-        event.preventDefault();
-        console.log("Prevented")
-        this.setState({
-            name:this.state.name,
-            email:this.state.email
-        })
-    }*/
     render()
     {
         return (
-                /*<div>
-                    <section className="content">
-                        <div className="card">
-                            <div className="card-header">
-                                <div className="card-tools">
-                                    <button type="button" className="btn btn-tool" data-card-widget="remove" onClick={this.props.cancelHandler}>
-                                        <i className="fas fa-times"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div className="card-body">
-                                <div className="row">
-                                    <div className="col-md-3">
-                                        <div className="card card-info card-outline">
-                                            <div className="card-body box-profile">
-                                                <h3 className="profile-username">{this.props.customer.name}</h3>
-                                            </div>
-                                        </div>
-                                        <div className="card card-info card-outline">
-                                            <div className="card-body">
-                                                <h4><i className="fas fa-boxes mr-3 " style={{fontSize:'23px'}}></i> Orders</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-9">
-                                        <div className="card card-info card-outline">
-                                            <div className="card-header">
-                                                <h3 className="card-title text-muted" style={{fontSize:'25px'}}>General Information</h3>
-                                                <button type="button" className="btn btn-outline-success float-right" onClick={this.editInfo}>Edit</button>
-                                            </div>
-                                            <form className="form-horizontal">
-                                                <div className="card-body">
-                                                    <div className="form-group row">
-                                                        <label className="col-sm-3 col-form-label" style={{fontSize:'20px'}}>Name</label>
-                                                        <div className="col-sm-9">
-                                                            <input type="text" className="form-control" id="inputName" value={this.props.customer.name} onChange={this.nameChange} disabled={this.state.disable}></input>
-                                                        </div>
-                                                    </div>
-                                                    <div className="form-group row">
-                                                        <label className="col-sm-3 col-form-label" style={{fontSize:'20px'}}>Email</label>
-                                                        <div className="col-sm-9">
-                                                            <input type="text" className="form-control" id="inputEmail" value={this.props.customer.email} onChange={this.emailChange} disabled={this.state.disable}></input>
-                                                        </div>
-                                                    </div>
-                                                    <div className="form-group row">
-                                                        <label className="col-sm-3 col-form-label" style={{fontSize:'20px'}}>Address</label>
-                                                        <div className="col-sm-9">
-                                                            <input type="text" className="form-control" id="inputAddress" value={this.props.customer.city} onChange={this.addressChange} disabled={this.state.disable}></input>
-                                                        </div>
-                                                    </div>
-                                                    <div className="form-group row">
-                                                        <label className="col-sm-3 col-form-label" style={{fontSize:'20px'}}>Contact</label>
-                                                        <div className="col-sm-9">
-                                                            <input type="text" className="form-control" id="inputNumber" value={this.props.customer.contact} onChange={this.contactChange} disabled={this.state.disable}></input>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="card-footer">
-                                                    <button className="btn btn-outline-success" type="submit" onClick={this.saveInfo}>Save</button>
-                                                    <button className="btn btn-outline-danger float-right" type="submit">Cancel</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </div>*/
                 <div>
                     <section className="content">
                         <div className="card">
@@ -162,27 +51,27 @@ export default class customerdetail extends Component {
                                     <div className="col-md-4">
                                         <div className="card card-success card-outline">
                                             <div className="card-body box-profile">
-                                                <h6 className="profile-username" style={{fontSize:'17px'}}>Mr {this.props.customer.name}</h6>
-                                                <h6 style={{fontSize:'17px'}}>{this.props.customer.email}</h6>
-                                                <h6 style={{fontSize:'17px'}}>{this.props.customer.contact}</h6>
+                                                <h6 className="profile-username" style={{fontSize:'17px'}}>{this.props.customer.display_name}</h6>
+                                                <h6 style={{fontSize:'15px'}}>{this.props.customer.email}</h6>
+                                                <h6 style={{fontSize:'16px'}}>{this.props.customer.mobile}</h6>
                                             </div>
                                         </div>
                                         <div className="card card-success card-outline">
                                             <div className="card-body box-profile">
                                                 <h6 className="profile-username" style={{fontSize:'16px'}}>Billing Address</h6>
-                                                <h6 style={{fontSize:'14px'}}>3rd Floor,Mayur Gardens</h6>
-                                                <h6 style={{fontSize:'14px'}}>Opp HDFC Bank,G.S Road</h6>
-                                                <h6 style={{fontSize:'14px'}}>Guwhati,781005</h6>
-                                                <h6 style={{fontSize:'14px'}}>Assam</h6>
+                                                <h6 style={{fontSize:'14px'}}>{this.props.customer.payment_details.billing_address.address}</h6>
+                                                <h6 style={{fontSize:'14px'}}>{this.props.customer.payment_details.billing_address.city}</h6>
+                                                <h6 style={{fontSize:'14px'}}>{this.props.customer.payment_details.billing_address.zip_code}</h6>
+                                                <h6 style={{fontSize:'14px'}}>{this.props.customer.payment_details.billing_address.state.name + "," + this.props.customer.payment_details.billing_address.country}</h6>
                                             </div>
                                         </div>
                                         <div className="card card-success card-outline">
                                             <div className="card-body box-profile">
                                                 <h6 className="profile-username" style={{fontSize:'16px'}}>Shipping Address</h6>
-                                                <h6 style={{fontSize:'14px'}}>3rd Floor,Mayur Gardens</h6>
-                                                <h6 style={{fontSize:'14px'}}>Opp HDFC Bank,G.S Road</h6>
-                                                <h6 style={{fontSize:'14px'}}>Guwhati,781005</h6>
-                                                <h6 style={{fontSize:'14px'}}>Assam</h6>
+                                                <h6 style={{fontSize:'14px'}}>{this.props.customer.payment_details.shipping_address.address}</h6>
+                                                <h6 style={{fontSize:'14px'}}>{this.props.customer.payment_details.shipping_address.city}</h6>
+                                                <h6 style={{fontSize:'14px'}}>{this.props.customer.payment_details.shipping_address.zip_code}</h6>
+                                                <h6 style={{fontSize:'14px'}}>{this.props.customer.payment_details.shipping_address.state.name + "," + this.props.customer.payment_details.shipping_address.country}</h6>
                                             </div>
                                         </div>
                                     </div>
@@ -190,11 +79,11 @@ export default class customerdetail extends Component {
                                         <div className="card card-success card-outline">
                                             <div className="card-body box-profile">
                                                 <h4 style={{fontSize:'20px'}}>Sales</h4>
-                                                <h4 className="text-danger" style={{fontSize:'20px'}}>{this.props.customer.amount}</h4>
-                                                <h4 style={{marginTop:'-65px',fontSize:'20px',marginLeft:'200px'}}>Unused Credits</h4>
+                                                <h4 className="text-danger" style={{fontSize:'20px'}}>Rs {this.props.customer.total_amount}</h4>
+                                                <h4 style={{marginTop:'-63px',fontSize:'20px',marginLeft:'200px'}}>Unused Credits</h4>
                                                 <h4 className="text-danger" style={{marginLeft:'200px',marginTop:'0px',fontSize:'20px'}}>Rs 0.00</h4>
                                                 <h4 style={{fontSize:'20px',marginLeft:'200px',marginTop:'15px'}}>Payment due period</h4>
-                                                <h4 className="text-danger" style={{fontSize:'20px',marginLeft:'200px',marginTop:'0px'}}>Due on Receipt</h4>
+                                                <h4 className="text-danger" style={{fontSize:'20px',marginLeft:'200px',marginTop:'0px'}}>{this.props.customer.payment_details.payment_terms.name}</h4>
                                                 <h3 className="text-center mt-5">
                                                     Sales
                                                 </h3>

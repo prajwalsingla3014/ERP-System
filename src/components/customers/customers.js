@@ -3,9 +3,18 @@ import CustomerSmall from "../customers/customersmall";
 import CustomerDetail from "../customers/customerdetail";
 import CustomerTable from "../customers/customertable";
 import "../invoice/invoicesmall";
+import axios from 'axios';
 export default class customers extends Component {
-    componentDidMount()
+    async componentDidMount()
     {
+        await axios.get("https://farzi-erp.herokuapp.com/persons_manager/customer/?ordering=created_at")
+            .then(res => {
+                this.setState({customers:res.data})
+                console.log(res)
+            })
+            .catch(err => {
+                console.log(err)
+            })
         const script=document.createElement("script");
         script.src="js/customertablesort.js";
         script.async=true;
@@ -16,28 +25,53 @@ export default class customers extends Component {
         super(props);
         this.state={
             active:false,
-            customers:[{no:"1",name:"Suresh Goel",email:"xyz@gmail.com",city:"Noida",product:"LED TV,Mobile",amount:"75000",contact:"9899234103"},
-                       {no:"2",name:"Rohit Bansal",email:"xywz@gmail.com",city:"Noida",product:"LED TV",amount:"55000",contact:"9879230103"},
-                       {no:"3",name:"Rahul Singh",email:"bxyz@gmail.com",city:"Gurugram",product:"LED TV",amount:"65000",contact:"9693235103"},
-                       {no:"4",name:"Mohit Sinha",email:"axyz@gmail.com",city:"Greater Noida",product:"Refrigerator",amount:"115000",contact:"9822234501"},
-                       {no:"5",name:"Harshit Gupta",email:"nxymz@gmail.com",city:"Delhi",product:"Soundbar",amount:"35000",contact:"9829254703"}],
+            customers:[
+                {
+                    id:' ',
+                    salutation:' ',
+                    first_name:' ',
+                    last_name:' ',
+                    display_name:' ',
+                    email:' ',
+                    mobile:' ',
+                    total_amount:' ',
+                    product:' ',
+                    payment_details:{
+                        shipping_address:{
+                            address:' ',
+                            city:' ',
+                            state:' ',
+                            country:' ',
+                            zip_code:' '
+                        },
+                        billing_address:{
+                            address:' ',
+                            city:' ',
+                            state:' ',
+                            country:' ',
+                            zip_code:' '
+                        },
+                        gst_treatment:' ',
+                        payment_terms:' '
+                    }
+                }
+            ],
             selectedId:'',
             detail:''
         }
-        console.log(this.state.customers);
     }
     cancel = (event) => 
     {
         console.log(this.state.active)
         this.setState({active:false,selectedId:'',product:''})
     }
-    setIdHandler=(no)=>{
-        let detailIndex=this.state.customers.findIndex(customer=>customer.no===no);
+    setIdHandler=(id)=>{
+        let detailIndex=this.state.customers.findIndex(customer=>customer.id===id);
         let detail;
         if(detailIndex!==-1)
             {
               detail=this.state.customers[detailIndex];
-              this.setState({selectedId:no,detail,active:true});
+              this.setState({selectedId:id,detail,active:true});
              }
         else
        {

@@ -2,13 +2,12 @@ import React from 'react'
 function Customertable(props) {
     let tb=props.customers.map((customer,index)=>{
         return(< tr key={index}>
-            <td><button className="btn" onClick={() => props.selectedIdHandler(customer.no)}  style={{fontSize:'15px',marginTop:'-5px',width:'100%'}}> {customer.no}</button></td>
-            <td><button className="btn" onClick={() => props.selectedIdHandler(customer.no)}  style={{fontSize:'15px',marginTop:'-5px',width:'100%'}}>{customer.name}</button></td>
-            <td><button className="btn" onClick={() => props.selectedIdHandler(customer.no)}  style={{fontSize:'15px',marginTop:'-5px',width:'100%'}}>{customer.email}</button></td>
-            <td><button className="btn" onClick={() => props.selectedIdHandler(customer.no)}  style={{fontSize:'15px',marginTop:'-5px',width:'100%'}}>{customer.city}</button></td>
-            <td><button className="btn" onClick={() => props.selectedIdHandler(customer.no)}  style={{fontSize:'15px',marginTop:'-5px',width:'100%'}}>{customer.product}</button></td>
-            <td><button className="btn" onClick={() => props.selectedIdHandler(customer.no)}  style={{fontSize:'15px',marginTop:'-5px',width:'100%'}}>{customer.amount}</button></td>
-            <td><button className="btn" onClick={() => props.selectedIdHandler(customer.no)}  style={{fontSize:'15px',marginTop:'-5px',width:'100%'}}>{customer.contact}</button></td>
+            <td><button className="btn" onClick={() => props.selectedIdHandler(customer.id)}  style={{fontSize:'15px',marginTop:'-5px',width:'100%',marginLeft:'-12px'}}> {customer.id}</button></td>
+            <td><button className="btn" onClick={() => props.selectedIdHandler(customer.id)}  style={{fontSize:'15px',marginTop:'-5px',width:'100%'}}>{customer.display_name}</button></td>
+            <td><button className="btn" onClick={() => props.selectedIdHandler(customer.id)}  style={{fontSize:'15px',marginTop:'-5px',width:'100%'}}>{customer.company_name}</button></td>
+            <td><button className="btn" onClick={() => props.selectedIdHandler(customer.id)}  style={{fontSize:'15px',marginTop:'-5px',width:'100%'}}>{customer.email}</button></td>
+            <td><button className="btn" onClick={() => props.selectedIdHandler(customer.id)}  style={{fontSize:'15px',marginTop:'-5px',width:'100%'}}>{customer.payment_details.shipping_address.city}</button></td>
+            <td><button className="btn" onClick={() => props.selectedIdHandler(customer.id)}  style={{fontSize:'15px',marginTop:'-5px',width:'100%'}}>{customer.mobile}</button></td>
         </tr>)
     })
     return (
@@ -16,11 +15,10 @@ function Customertable(props) {
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>Name</th>
+                    <th style={{width:'20%'}}>Name</th>
+                    <th>Company Name</th>
                     <th>Email</th>
                     <th>City</th>
-                    <th>Products</th>
-                    <th>Amount</th>
                     <th>Contact</th>
                 </tr>
             </thead>
