@@ -20,10 +20,10 @@ export default class dashboardcontent extends Component {
                             50000
                         ],
                         barThickness:30,
-                        backgroundColor:'rgba(54,162,235,.6),rgba(50,100,212,0.6)'
+                        backgroundColor:'rgba(80,248,67,.8)'
                     },
                     {
-                        label:'Expense',
+                        label:'Expenses',
                         data:[
                             50000,
                             70000,
@@ -33,7 +33,7 @@ export default class dashboardcontent extends Component {
                             48000
                         ],
                         barThickness:30,
-                        backgroundColor:'rgba(255,206,86,.6)'
+                        backgroundColor:'rgba(250,28,10,.6)'
                     }
                 ]
             }
@@ -46,7 +46,7 @@ export default class dashboardcontent extends Component {
                     <div className="card-body">
                         <Bar
                             data={this.state.chartData}
-                            height={75}
+                            height={100}
                             options={{
                                 legend:{
                                     display:true,
@@ -56,13 +56,27 @@ export default class dashboardcontent extends Component {
                                         scaleLabel:{
                                             display:true,
                                             labelString:'Month'
+                                        },
+                                        gridLines:{
+                                            drawBorder:true
+                                        },
+                                        ticks:{
+                                            fontColor:'#838181'
                                         }
                                     }],
                                     yAxes:[{
                                         scaleLabel:{
                                             display:true,
                                             labelString:'Amount'
-                                        }
+                                        },
+                                        gridLines:{
+                                            drawBorder:true,
+                                            display:false
+                                        },
+                                        ticks:{
+                                            fontColor:'#9c9c9c',
+                                            stepSize:10000
+                                        },
                                     }]
                                 }
                             }}
@@ -73,48 +87,48 @@ export default class dashboardcontent extends Component {
                     <div className="col-6">
                         <div className="card">
                             <div className="card-header">
-                                <h6 className="card-title">Sales,Expense and Dues</h6>
+                                <h6 className="card-title" style={{color:'#737673',fontFamily:'Acme',fontSize:'20px'}}>Sales,Expenses and Dues</h6>
                             </div>
                             <div className="card-body">
-                                <table className="table table-bordered">
+                                <table className="table">
                                     <thead>
                                         <tr>
                                             <th></th>
-                                            <th>Sales</th>
-                                            <th>Expense</th>
-                                            <th>Dues</th>
+                                            <th style={{fontWeight:'normal',color:'#868785',fontFamily:'Acme'}}>SALES</th>
+                                            <th style={{fontWeight:'normal',color:'#868785',fontFamily:'Acme'}}>EXPENSES</th>
+                                            <th style={{fontWeight:'normal',color:'#868785',fontFamily:'Acme'}}>DUES</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Today</td>
-                                            <td>Rs 5000</td>
-                                            <td>Rs 5500</td>
-                                            <td>Rs 200</td>
+                                    <tbody style={{color:'#737673'}}>
+                                        <tr style={{borderBottom:'0'}}>
+                                            <td style={{fontFamily:'Acme',fontSize:'16px'}}>Today</td>
+                                            <td style={{fontFamily:'Acme',fontSize:'16px'}}>Rs 5000</td>
+                                            <td style={{fontFamily:'Acme',fontSize:'16px'}}>Rs 5500</td>
+                                            <td style={{fontFamily:'Acme',fontSize:'16px'}}>Rs 200</td>
                                         </tr>
                                         <tr>
-                                            <td>This Week</td>
-                                            <td>Rs 50000</td>
-                                            <td>Rs 55000</td>
-                                            <td>Rs 20000</td>
+                                            <td style={{fontFamily:'Acme',fontSize:'16px'}}>This Week</td>
+                                            <td style={{fontFamily:'Acme',fontSize:'16px'}}>Rs 50000</td>
+                                            <td style={{fontFamily:'Acme',fontSize:'16px'}}>Rs 55000</td>
+                                            <td style={{fontFamily:'Acme',fontSize:'16px'}}>Rs 20000</td>
                                         </tr>
                                         <tr>
-                                            <td>This Month</td>
-                                            <td>Rs 150000</td>
-                                            <td>Rs 10000</td>
-                                            <td>Rs 60000</td>
+                                            <td style={{fontFamily:'Acme',fontSize:'16px'}}>This Month</td>
+                                            <td style={{fontFamily:'Acme',fontSize:'16px'}}>Rs 150000</td>
+                                            <td style={{fontFamily:'Acme',fontSize:'16px'}}>Rs 10000</td>
+                                            <td style={{fontFamily:'Acme',fontSize:'16px'}}>Rs 60000</td>
                                         </tr>
                                         <tr>
-                                            <td>This Quarter</td>
-                                            <td>Rs 700000</td>
-                                            <td>Rs 650000</td>
-                                            <td>Rs 100000</td>
+                                            <td style={{fontFamily:'Acme',fontSize:'16px'}}>This Quarter</td>
+                                            <td style={{fontFamily:'Acme',fontSize:'16px'}}>Rs 700000</td>
+                                            <td style={{fontFamily:'Acme',fontSize:'16px'}}>Rs 650000</td>
+                                            <td style={{fontFamily:'Acme',fontSize:'16px'}}>Rs 100000</td>
                                         </tr>
                                         <tr>
-                                            <td>This Year</td>
-                                            <td>Rs 10000000</td>
-                                            <td>Rs 9000000</td>
-                                            <td>Rs 2000000</td>
+                                            <td style={{fontFamily:'Acme',fontSize:'16px'}}>This Year</td>
+                                            <td style={{fontFamily:'Acme',fontSize:'16px'}}>Rs 10000000</td>
+                                            <td style={{fontFamily:'Acme',fontSize:'16px'}}>Rs 9000000</td>
+                                            <td style={{fontFamily:'Acme',fontSize:'16px'}}>Rs 2000000</td>
                                         </tr>
                                     </tbody>
                                 </table>

@@ -102,7 +102,7 @@ class Invoice extends PureComponent {
                         <div className={this.state.active ? 'none' : 'col-12'}>
                             <div className="card">
                                 <div className="card-header">
-                                    <h3 className="card-title">All Invoices</h3>
+                                    <h3 className="card-title" style={{fontFamily:'Acme',fontSize:'18px'}}>All Invoices</h3>
                                 </div>
                                 <div className="card-body">
                                     <InvoiceTable  invoices={this.state.invoices}  selectedIdhandler={this.setIdHandler} /> 

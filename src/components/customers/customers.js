@@ -87,7 +87,7 @@ export default class customers extends Component {
                         <div className={this.state.active ? 'none' : 'col-12'}>
                             <div className="card">
                                 <div className="card-header">
-                                    <h3 className="card-title">Customers Details</h3>
+                                    <h3 className="card-title" style={{fontFamily:'Acme',fontSize:'18px'}}>Customers Details</h3>
                                 </div>
                                 <div className="card-body">
                                     <CustomerTable customers={this.state.customers} selectedIdHandler={this.setIdHandler} />

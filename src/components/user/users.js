@@ -1,6 +1,93 @@
 import React, { Component } from 'react'
-
+import "../invoice/invoicenone.css";
+import axios from 'axios';
 export default class users extends Component {
+    constructor(props)
+    {
+        super(props);
+        this.state={
+            other:false,
+            addres:false,
+            remark:false,
+            st:[],
+            gs:[],
+            pa:[],
+        }
+    }
+    otherdetail = () => {
+        if(!this.state.other)
+            this.setState({other : !this.state.other})
+        if(this.state.addres)
+            this.setState({addres:!this.state.addres})
+        if(this.state.remark)
+            this.setState({remark : !this.state.remark})
+    }
+    toggleaddress = () => {
+        if(this.state.other)
+            this.setState({other : !this.state.other})
+        if(!this.state.addres)
+            this.setState({addres:!this.state.addres})
+        if(this.state.remark)
+            this.setState({remark : !this.state.remark})        
+    }   
+
+    toggleremarks= () => {
+        if(this.state.other)
+            this.setState({other : !this.state.other})
+        if(this.state.addres)
+            this.setState({addres:!this.state.addres})
+        if(!this.state.remark)
+            this.setState({remark : !this.state.remark})
+        
+    }
+    async componentDidMount()
+    {
+        await axios.get("https://farzi-erp.herokuapp.com/shared/gst/?ordering=created_at")
+        .then(res => {
+            var t=res.data.length;
+            for(var i=0;i<t;i++)
+            {
+                var t1=(res.data)[i].id;
+                this.setState({
+                    gs:[...this.state.gs,t1]
+                });
+            }
+            console.log(res);
+        })
+        .catch(err => {
+            console.log(err);
+        })
+        await axios.get("https://farzi-erp.herokuapp.com/shared/state/?ordering=created_at")
+            .then(res => {
+                var t=res.data.length;
+                for(var i=0;i<t;i++)
+                {
+                    var t1=(res.data)[i].id;
+                    this.setState({
+                        st:[...this.state.st,t1]
+                    });
+                }
+                console.log(res);
+            })
+            .catch(err => {
+                 console.log(err);
+            })
+        await axios.get("https://farzi-erp.herokuapp.com/shared/payment_terms/?ordering=created_at")
+            .then(res => {
+                var t=res.data.length;
+                for(var i=0;i<t;i++)
+                {
+                    var t1=(res.data)[i].id;
+                    this.setState({
+                        pa:[...this.state.pa,t1]
+                    })
+                }
+                console.log(res);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
     render() {
         return (
             <div>
@@ -14,7 +101,22 @@ export default class users extends Component {
                                 <form className="form-horizontal">
                                     <div className="card-body">
                                         <div className="form-group row">
-                                        <label  className="col-sm-2 col-form-label" style={{fontSize:'18px'}}>Primary Contact</label>
+                                            <label className="col-2 col-form-label" style={{fontSize:'18px'}}>User Type</label>
+                                            <div className="col-1 form-check ml-1" style={{marginTop:'10px'}}>
+                                                <input className="form-check-input" type="radio" value="business"  name="type" id="business" onChange={this.changeHandler} />
+                                                <label className="form-check-label " for="business" style={{fontWeight:'bold',fontSize:'17px'}}>
+                                                        Business
+                                                </label>
+                                            </div>
+                                            <div className="col-1 form-check ml-3" style={{marginTop:'10px'}}>
+                                                <input className="form-check-input" type="radio" value="individual"   name="type" id="individual" onChange={this.changeHandler}/>
+                                                <label className="form-check-label" for="individual" style={{fontWeight:'bold',fontSize:'17px'}}>
+                                                       Individual
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div className="form-group row">
+                                            <label  className="col-sm-2 col-form-label" style={{fontSize:'18px'}}>Primary Contact</label>
                                             <div className="col-sm-3">
                                                 <select className="form-control"  name="salutation" onChange={this.changeHandler}>
                                                         <option value="Dr.">Dr.</option>
@@ -98,65 +200,150 @@ export default class users extends Component {
                                             </div>
                                         </div>
                                         <div className="form-group row">
-                                            <label className="col-2 col-form-label" style={{fontSize:'18px'}}>Address</label>
-                                            <div className="col-10">
-                                                    <textarea className="form-control"  onChange={this.addresschangeHandler} name="shipping_add"></textarea>
+                                            <label className="col-sm-2 col-form-label" style={{fontSize:'18px'}}>Website</label>
+                                            <div className="col-sm-10">
+                                                <input type="text" name="website" className="form-control" onChange={this.changeHandler} />
                                             </div>
                                         </div>
-                                        <div className="form-group row">
-                                            <label className="col-sm-2 col-form-label" style={{fontSize:'18px'}}>City</label>
-                                            <div className="col-sm-10">
-                                                <input type="text" className="form-control" name="city" onChange={this.changeHandler} />
-                                            </div>
-                                        </div> 
-                                        <div className="form-group row">
-                                            <label className="col-sm-2 col-form-label" style={{fontSize:'18px'}}>State</label>
-                                            <div className="col-10">
-                                                    <select className="form-control" onChange={this.addresschangeHandler} name="billing_state">
-                                                        <option>[AN] - Andaman and Nicobar Islands </option>
-                                                        <option>[AD] - Andhra Pradesh</option>
-                                                        <option>[AR] - Arunachal Pradesh</option>
-                                                        <option>[AS] - Assam</option>
-                                                        <option>[BR] - Bihar</option>
-                                                        <option>[CH] - Chandigarh</option>
-                                                        <option>[CG] - Chhattisgarh</option>
-                                                        <option>[DN] - Dadra and Nagar Haveli</option>
-                                                        <option>[DD] - Daman and Diu</option>
-                                                        <option>[DL] - Delhi</option>
-                                                        <option>[GA] - Goa</option>
-                                                        <option>[GJ] - Gujarat</option>
-                                                        <option>[HR] - Haryana</option>
-                                                        <option>[HP] - Himachal Pradesh</option>
-                                                        <option>[JK] - Jammu and Kashmir</option>
-                                                        <option>[JH] - Jharkhand</option>
-                                                        <option>[KA] - Karnataka</option>
-                                                        <option>[KL] - Kerala</option>
-                                                        <option>[LA] - Ladakh</option>
-                                                        <option>[LD] - Lakshadweep</option>
-                                                        <option>[MP] - Madhya Pradesh</option>
-                                                        <option>[MH] - Maharashtra</option>
-                                                        <option>[MN] - Manipur</option>
-                                                        <option>[ML] - Meghalaya</option>
-                                                        <option>[MZ] - Mizoram</option>
-                                                        <option>[NL] - Nagaland</option>
-                                                        <option>[OD] - Odisha</option>
-                                                        <option>[PY] - Puducherry</option>
-                                                        <option>[PB] - Punjab</option>
-                                                        <option>[RJ] - Rajasthan</option>
-                                                        <option>[SK] - Sikkim</option>
-                                                        <option>[TN] - Tamil Nadu</option>
-                                                        <option>[TS] - Telangana</option>
-                                                        <option>[TR] - Tripura</option>
-                                                        <option>[UP] - Uttar Pradesh</option>
-                                                        <option>[UK] - Uttarakhand</option>
-                                                        <option>[WB] - West Bengal</option>
+                                        <hr />
+                                        <button type="button" className="btn btn-outline-info" onClick={this.otherdetail}>Other Details</button>
+                                        <button type="button" className="btn btn-outline-info ml-3" onClick={this.toggleaddress}>Address</button>
+                                        <button type="button" className="btn btn-outline-info ml-3" onClick={this.toggleremarks}>Remarks</button>
+                                        <hr />
+                                        <div className= {this.state.other ?  "col-sm-12" : "none"}>
+                                            <div className="form-group row">
+                                                <label className="col-sm-2 col-form-label" style={{fontSize:'18px'}}>GST Treatment</label>
+                                                <div className="col-sm-10">
+                                                    <select className="form-control" onChange={this.changeHandler} name="gst">
+                                                        <option value={this.state.gs[0]}>Registered Business - Composition </option>
+                                                        <option value={this.state.gs[1]}>Registered Business - Regular</option>
+                                                        <option value={this.state.gs[2]}>Unregistered Business</option>
+                                                        <option value={this.state.gs[3]}>Consumer</option>
+                                                        <option value={this.state.gs[4]}>Overseas</option>
+                                                        <option value={this.state.gs[5]}>Special Economic Zone</option>
+                                                        <option value={this.state.gs[6]}>Deemed Export</option>
                                                     </select>
                                                 </div>
+                                            </div>
+                                            <div className="form-group row">
+                                                <label className="col-2 col-form-label" style={{fontSize:'18px'}}>Tax Preference</label>
+                                                <div className="col-1 form-check ml-1" style={{marginTop:'10px'}}>
+                                                    <input className="form-check-input" type="radio" value="true"  name="taxable" id="tax" onChange={this.changeHandler}/>
+                                                    <label className="form-check-label " for="taxable" style={{fontWeight:'bold',fontSize:'17px'}}>
+                                                            Taxable
+                                                    </label>
+                                                </div>
+                                                <div className="col-2 form-check ml-3" style={{marginTop:'10px'}}>
+                                                    <input className="form-check-input" type="radio" value="false"   name="taxable" id="tax exempt" onChange={this.changeHandler}/>
+                                                    <label className="form-check-label" for="tax exempt" style={{fontWeight:'bold',fontSize:'17px'}}>
+                                                        Tax Exempt
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div className="form-group row">
+                                                <label className="col-2 col-form-label" style={{fontSize:'18px'}}>Payment Terms</label>
+                                                <div className="col-10">
+                                                    <select className="form-control"  onChange={this.changeHandler} name="pay">
+                                                            <option value={this.state.pa[0]}>Net 15</option>
+                                                            <option value={this.state.pa[1]}>Net 30</option>
+                                                            <option value={this.state.pa[2]}>Net 45</option>
+                                                            <option value={this.state.pa[3]}>Net 60</option>
+                                                            <option value={this.state.pa[4]}>Due end of month</option>
+                                                            <option value={this.state.pa[5]}>Due end of next month</option>
+                                                            <option value={this.state.pa[6]}>Due on receipt</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div className="form-group row">
+                                                <label className="col-2 col-form-label" style={{fontSize:'18px'}}>Facebook</label>
+                                                <div className="col-10 input-group mb-2">
+                                                    <div className="input-group-prepend">
+                                                        <i className="input-group-text fab fa-facebook-square" style={{fontSize:'16px',color:'blue'}}></i>
+                                                    </div>
+                                                    <input type="text" className="form-control" onChange={this.changeHandler} name="facebook_profile" />
+                                                </div>
+                                                <p style={{marginLeft:'185px',fontSize:'14px'}}>https://www.facebook.com/</p>
+                                            </div>
+                                            <div className="form-group row">
+                                                <label className="col-2 col-form-label" style={{fontSize:'18px'}}>Twitter</label>
+                                                <div className="col-10 input-group mb-2">
+                                                    <div className="input-group-prepend">
+                                                        <i className="input-group-text fab fa-twitter-square" style={{fontSize:'16px',color:'#17a2b8'}}></i>
+                                                    </div>
+                                                    <input type="text" className="form-control" onChange={this.changeHandler} name="twitter_profile" />
+                                                </div>
+                                                <p style={{marginLeft:'185px',fontSize:'14px'}}>https://www.twitter.com/</p>
+                                            </div>
                                         </div>
-                                        <div className="form-group row">
-                                            <label className="col-sm-2 col-form-label" style={{fontSize:'18px'}}>Zip Code</label>
-                                            <div className="col-sm-10">
-                                                <input type="text" className="form-control" onChange={this.changeHandler} />
+                                        <div className={this.state.addres ? "col-sm-12" : 'none'}>
+                                            <div className="form-group row">
+                                                <label className="col-12 col-form-label" style={{fontSize:'18px'}}>User Address</label>
+                                                <label className="col-2 col-form-label mt-3" style={{fontSize:'18px'}}>Address</label>
+                                                <div className="col-10">
+                                                    <textarea className="form-control mt-4"  onChange={this.addresschangeHandler} name="shipping_add"></textarea>
+                                                </div>
+                                                <label className="col-2 col-form-label mt-3" style={{fontSize:'18px'}}>City</label>
+                                                <div className="col-10">
+                                                    <input type="text" className="form-control mt-3" onChange={this.addresschangeHandler} name="shipping_city" />
+                                                </div>
+                                                <label className="col-2 col-form-label mt-3" style={{fontSize:'18px'}}>State</label>
+                                                <div className="col-10">
+                                                    <select className="form-control mt-3" onChange={this.addresschangeHandler} name="shipping_state">
+                                                        <option value={this.state.st[0]}>[AN] - Andaman and Nicobar Islands </option>
+                                                        <option value={this.state.st[1]}>[AD] - Andhra Pradesh</option>
+                                                        <option value={this.state.st[2]}>[AR] - Arunachal Pradesh</option>
+                                                        <option value={this.state.st[3]}>[AS] - Assam</option>
+                                                        <option value={this.state.st[4]}>[BR] - Bihar</option>
+                                                        <option value={this.state.st[5]}>[CH] - Chandigarh</option>
+                                                        <option value={this.state.st[6]}>[CG] - Chhattisgarh</option>
+                                                        <option value={this.state.st[7]}>[DN] - Dadra and Nagar Haveli</option>
+                                                        <option value={this.state.st[8]}>[DD] - Daman and Diu</option>
+                                                        <option value={this.state.st[9]}>[DL] - Delhi</option>
+                                                        <option value={this.state.st[10]}>[GA] - Goa</option>
+                                                        <option value={this.state.st[11]}>[GJ] - Gujarat</option>
+                                                        <option value={this.state.st[12]}>[HR] - Haryana</option>
+                                                        <option value={this.state.st[13]}>[HP] - Himachal Pradesh</option>
+                                                        <option value={this.state.st[14]}>[JK] - Jammu and Kashmir</option>
+                                                        <option value={this.state.st[15]}>[JH] - Jharkhand</option>
+                                                        <option value={this.state.st[16]}>[KA] - Karnataka</option>
+                                                        <option value={this.state.st[17]}>[KL] - Kerala</option>
+                                                        <option value={this.state.st[18]}>[LA] - Ladakh</option>
+                                                        <option value={this.state.st[19]}>[LD] - Lakshadweep</option>
+                                                        <option value={this.state.st[20]}>[MP] - Madhya Pradesh</option>
+                                                        <option value={this.state.st[21]}>[MH] - Maharashtra</option>
+                                                        <option value={this.state.st[22]}>[MN] - Manipur</option>
+                                                        <option value={this.state.st[23]}>[ML] - Meghalaya</option>
+                                                        <option value={this.state.st[24]}>[MZ] - Mizoram</option>
+                                                        <option value={this.state.st[25]}>[NL] - Nagaland</option>
+                                                        <option value={this.state.st[26]}>[OD] - Odisha</option>
+                                                        <option value={this.state.st[27]}>[PY] - Puducherry</option>
+                                                        <option value={this.state.st[28]}>[PB] - Punjab</option>
+                                                        <option value={this.state.st[28]}>[RJ] - Rajasthan</option>
+                                                        <option value={this.state.st[30]}>[SK] - Sikkim</option>
+                                                        <option value={this.state.st[31]}>[TN] - Tamil Nadu</option>
+                                                        <option value={this.state.st[32]}>[TS] - Telangana</option>
+                                                        <option value={this.state.st[33]}>[TR] - Tripura</option>
+                                                        <option value={this.state.st[34]}>[UP] - Uttar Pradesh</option>
+                                                        <option value={this.state.st[35]}>[UK] - Uttarakhand</option>
+                                                        <option value={this.state.st[36]}>[WB] - West Bengal</option>
+                                                    </select>
+                                                </div>
+                                                <label className="col-2 col-form-label mt-3" style={{fontSize:'18px'}}>Zip Code</label>
+                                                <div className="col-10">
+                                                    <input type="text" className="form-control mt-3" onChange={this.addresschangeHandler} name="shipping_zip_code" />
+                                                </div>
+                                                <label className="col-2 col-form-label mt-3" style={{fontSize:'18px'}}>Country</label>
+                                                <div className="col-10">
+                                                    <input type="text" className="form-control mt-3" onChange={this.addresschangeHandler} name="shipping_country" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className={this.state.remark ?  "col-sm-12" : 'none'}>
+                                            <div className="form-group row">
+                                                <label className="col-2 col-form-label" style={{fontSize:'20px'}}>Remarks</label>
+                                                <div className="col-10">
+                                                    <textarea className="form-control" onChange={this.changeHandler} name="remarks"></textarea>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
