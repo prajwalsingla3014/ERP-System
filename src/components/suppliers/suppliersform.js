@@ -209,29 +209,29 @@ class suppliersform extends Component {
             <section className='content'>
                     <div className="row">
                         <div className="col-md-12">
-                            <div className="card card-info">
+                            <div className="card card-info" style={{border:'none',boxShadow:'0 0 1px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.1)'}}>
                                 <div className="card-header">
-                                    <h3 className="card-title" style={{fontSize:'20px'}}>New Supplier</h3>
+                                    <h3 className="card-title" style={{fontSize:'20px',fontFamily:'Acme'}}>New Supplier</h3>
                                 </div>
                                 <form className="form-horizontal" onSubmit={this.submitHandler}>
                                     <div className="card-body">
                                         <div className="form-group row">
-                                            <label className="col-2 col-form-label" style={{fontSize:'18px'}}>Supplier Type</label>
+                                            <label className="col-2 col-form-label"  style={{fontSize:'20px',fontFamily:'Acme'}}>Supplier Type</label>
                                             <div className="col-1 form-check ml-1" style={{marginTop:'10px'}}>
                                                 <input className="form-check-input" type="radio" value="business"  name="type" id="business" onChange={this.changeHandler} />
-                                                <label className="form-check-label " for="business" style={{fontWeight:'bold',fontSize:'17px'}}>
+                                                <label className="form-check-label " for="business" style={{fontWeight:'bold',fontSize:'18px',fontFamily:'Acme'}}>
                                                         Business
                                                 </label>
                                             </div>
                                             <div className="col-1 form-check ml-3" style={{marginTop:'10px'}}>
                                                 <input className="form-check-input" type="radio" value="individual"   name="type" id="individual" onChange={this.changeHandler}/>
-                                                <label className="form-check-label" for="individual" style={{fontWeight:'bold',fontSize:'17px'}}>
+                                                <label className="form-check-label" for="individual" style={{fontWeight:'bold',fontSize:'18px',fontFamily:"Acme"}}>
                                                        Individual
                                                 </label>
                                             </div>
                                         </div>
                                         <div className="form-group row">
-                                            <label  className="col-sm-2 col-form-label" style={{fontSize:'18px'}}>Primary Contact</label>
+                                            <label  className="col-sm-2 col-form-label"  style={{fontSize:'20px',fontFamily:'Acme'}}>Primary Contact</label>
                                             <div className="col-sm-3">
                                                 <select className="form-control"  name="salutation" onChange={this.changeHandler}>
                                                         <option value="Dr.">Dr.</option>
@@ -249,25 +249,31 @@ class suppliersform extends Component {
                                             </div>
                                         </div>
                                         <div className="form-group row">
-                                            <label  className="col-sm-2 col-form-label" style={{fontSize:'18px'}}>Company Name</label>
+                                            <label  className="col-sm-2 col-form-label" style={{fontSize:'20px',fontFamily:'Acme'}}>Company Name</label>
                                             <div className="col-sm-10">
                                                 <input type="text" name="company_name" className="form-control"  onChange={this.changeHandler} />
                                             </div>
                                         </div>
                                         <div className="form-group row">
-                                            <label  className="col-sm-2 col-form-label" style={{fontSize:'18px'}}>Supplier Display Name</label>
+                                            <label  className="col-sm-2 col-form-label"  style={{fontSize:'20px',fontFamily:'Acme'}}>Supplier Display Name *</label>
                                             <div className="col-sm-10">
                                                 <input type="text" name="display_name" className="form-control mt-2"  onChange={this.changeHandler} />
                                             </div>
                                         </div>
                                         <div className="form-group row">
-                                            <label className="col-sm-2 col-form-label" style={{fontSize:'18px'}}>Supplier Email</label>
+                                            <label  className="col-sm-2 col-form-label"  style={{fontSize:'20px',fontFamily:'Acme'}}>GST No</label>
+                                            <div className="col-sm-10">
+                                                <input type="text" name="gst_no" className="form-control mt-2"  onChange={this.changeHandler} />
+                                            </div>
+                                        </div>
+                                        <div className="form-group row">
+                                            <label className="col-sm-2 col-form-label"  style={{fontSize:'20px',fontFamily:'Acme'}}>Supplier Email</label>
                                             <div className="col-sm-10">
                                                 <input type="email" name="email" className="form-control" onChange={this.changeHandler} />
                                             </div>
                                         </div>
                                         <div className="form-group row">
-                                            <label className="col-sm-2 col-form-label" style={{fontSize:'18px'}}>Supplier Phone</label>
+                                            <label className="col-sm-2 col-form-label"  style={{fontSize:'20px',fontFamily:'Acme'}}>Supplier Phone</label>
                                             <div className="col-sm-5">
                                                 <input type="text" name="phone" className="form-control"  placeholder="Work Phone" onChange={this.changeHandler}/>
                                             </div>
@@ -276,7 +282,7 @@ class suppliersform extends Component {
                                             </div>
                                         </div>
                                         <div className="form-group row">
-                                            <label className="col-sm-2 col-form-label" style={{fontSize:'18px'}}>Website</label>
+                                            <label className="col-sm-2 col-form-label"  style={{fontSize:'20px',fontFamily:'Acme'}}>Website</label>
                                             <div className="col-sm-10">
                                                 <input type="text" name="website" className="form-control" onChange={this.changeHandler} />
                                             </div>
@@ -288,7 +294,7 @@ class suppliersform extends Component {
                                         <hr />
                                         <div className={this.state.other ?  "col-sm-12" : 'none' }>
                                             <div className="form-group row">
-                                                <label className="col-sm-2 col-form-label" style={{fontSize:'18px'}}>GST Treatment</label>
+                                                <label className="col-sm-2 col-form-label"  style={{fontSize:'20px',fontFamily:'Acme'}}>GST Treatment *</label>
                                                 <div className="col-sm-10">
                                                     <select className="form-control" onChange={this.changeHandler} name="gst">
                                                             <option value={this.state.gs[0]}>Registered Business - Composition </option>
@@ -302,7 +308,7 @@ class suppliersform extends Component {
                                                 </div>
                                             </div>
                                             <div className="form-group row">
-                                                <label className="col-sm-2 col-form-label" style={{fontSize:'18px'}}>Source of Supply</label>
+                                                <label className="col-sm-2 col-form-label" style={{fontSize:'20px',fontFamily:'Acme'}}>Source of Supply *</label>
                                                 <div className="col-sm-10">
                                                     <select className="form-control" onChange={this.changeHandler} name="supply">
                                                         <option value={this.state.st[0]}>[AN] - Andaman and Nicobar Islands </option>
@@ -346,22 +352,22 @@ class suppliersform extends Component {
                                                 </div>
                                             </div>
                                             <div className="form-group row">
-                                                <label className="col-2 col-form-label" style={{fontSize:'18px'}}>Tax Preference</label>
+                                                <label className="col-2 col-form-label" style={{fontSize:'20px',fontFamily:'Acme'}}>Tax Preference *</label>
                                                 <div className="col-1 form-check ml-1" style={{marginTop:'10px'}}>
                                                     <input className="form-check-input" type="radio" value="true" checked={this.state.payment_details.taxable === "true"}  name="taxable" id="tax" onChange={this.changeHandler}/>
-                                                    <label className="form-check-label " for="taxable" style={{fontWeight:'bold',fontSize:'17px'}}>
+                                                    <label className="form-check-label " for="taxable" style={{fontWeight:'bold',fontSize:'18px',fontFamily:'Acme'}}>
                                                             Taxable
                                                     </label>
                                                 </div>
                                                 <div className="col-2 form-check ml-3" style={{marginTop:'10px'}}>
                                                     <input className="form-check-input" type="radio" value="false" checked={this.state.payment_details.taxable === "false"}  name="taxable" id="tax exempt" onChange={this.changeHandler}/>
-                                                    <label className="form-check-label" for="tax exempt" style={{fontWeight:'bold',fontSize:'17px'}}>
+                                                    <label className="form-check-label" for="tax exempt" style={{fontWeight:'bold',fontSize:'18px',fontFamily:'Acme'}}>
                                                         Tax Exempt
                                                     </label>
                                                 </div>
                                             </div>
                                             <div className="form-group row">
-                                                <label className="col-2 col-form-label" style={{fontSize:'18px'}}>Payment Terms</label>
+                                                <label className="col-2 col-form-label" style={{fontSize:'20px',fontFamily:'Acme'}}>Payment Terms</label>
                                                 <div className="col-10">
                                                     <select className="form-control"  onChange={this.changeHandler} name="pay">
                                                             <option value={this.state.pa[0]}>Net 15</option>
@@ -375,51 +381,51 @@ class suppliersform extends Component {
                                                 </div>
                                             </div>
                                             <div className="form-group row">
-                                                <label className="col-2 col-form-label" style={{fontSize:'18px'}}>Facebook</label>
+                                                <label className="col-2 col-form-label"  style={{fontSize:'20px',fontFamily:'Acme'}}>Facebook</label>
                                                 <div className="col-10 input-group mb-2">
                                                     <div className="input-group-prepend">
                                                         <i className="input-group-text fab fa-facebook-square" style={{fontSize:'16px',color:'blue'}}></i>
                                                     </div>
                                                     <input type="text" className="form-control" onChange={this.changeHandler} name="facebook_profile" />
                                                 </div>
-                                                <p style={{marginLeft:'185px',fontSize:'14px'}}>https://www.facebook.com/</p>
+                                                <p style={{marginLeft:'185px',fontSize:'14px',fontFamily:"Acme"}}>https://www.facebook.com/</p>
                                             </div>
                                             <div className="form-group row">
-                                                <label className="col-2 col-form-label" style={{fontSize:'18px'}}>Twitter</label>
+                                                <label className="col-2 col-form-label"  style={{fontSize:'20px',fontFamily:'Acme'}}>Twitter</label>
                                                 <div className="col-10 input-group mb-2">
                                                     <div className="input-group-prepend">
                                                         <i className="input-group-text fab fa-twitter-square" style={{fontSize:'16px',color:'#17a2b8'}}></i>
                                                     </div>
                                                     <input type="text" className="form-control" onChange={this.changeHandler} name="twitter_profile" />
                                                 </div>
-                                                <p style={{marginLeft:'185px',fontSize:'14px'}}>https://www.twitter.com/</p>
+                                                <p style={{marginLeft:'185px',fontSize:'14px',fontFamily:'Acme'}}>https://www.twitter.com/</p>
                                             </div>
                                         </div>
                                         <div className={this.state.addres ? "col-sm-12" : 'none'}>
                                             <div className="form-group row">
-                                                <label className="col-6 col-form-label" style={{fontSize:'18px'}}>Billing Address</label>
-                                                <label className="col-6 col-form-label" style={{fontSize:'18px'}}>Shipping Address</label>
-                                                <label className="col-2 col-form-label mt-3" style={{fontSize:'18px'}}>Address</label>
+                                                <label className="col-6 col-form-label"  style={{fontSize:'22px',fontFamily:'Acme'}}>Billing Address</label>
+                                                <label className="col-6 col-form-label"  style={{fontSize:'22px',fontFamily:'Acme'}}>Shipping Address</label>
+                                                <label className="col-2 col-form-label mt-3" style={{fontSize:'20px',fontFamily:'Acme'}}>Address</label>
                                                 <div className="col-3">
                                                     <textarea className="form-control mt-4"  onChange={this.addresschangeHandler} name="billing_add"></textarea>
                                                 </div>
                                                 <div className="col-1"></div>
-                                                <label className="col-2 col-form-label mt-3" style={{fontSize:'18px'}}>Address</label>
+                                                <label className="col-2 col-form-label mt-3"  style={{fontSize:'20px',fontFamily:'Acme'}}>Address</label>
                                                 <div className="col-3">
                                                     <textarea className="form-control mt-4"  onChange={this.addresschangeHandler} name="shipping_add"></textarea>
                                                 </div>
                                                 <div className="col-1"></div>
-                                                <label className="col-2 col-form-label mt-3" style={{fontSize:'18px'}}>City</label>
+                                                <label className="col-2 col-form-label mt-3"  style={{fontSize:'20px',fontFamily:'Acme'}}>City</label>
                                                 <div className="col-3">
                                                     <input type="text" className="form-control mt-3" onChange={this.addresschangeHandler} name="billing_city" />
                                                 </div>
                                                 <div className="col-1"></div>
-                                                <label className="col-2 col-form-label mt-3" style={{fontSize:'18px'}}>City</label>
+                                                <label className="col-2 col-form-label mt-3"  style={{fontSize:'20px',fontFamily:'Acme'}}>City</label>
                                                 <div className="col-3">
                                                     <input type="text" className="form-control mt-3" onChange={this.addresschangeHandler} name="shipping_city" />
                                                 </div>
                                                 <div className="col-1"></div>
-                                                <label className="col-2 col-form-label mt-3" style={{fontSize:'18px'}}>State</label>
+                                                <label className="col-2 col-form-label mt-3"  style={{fontSize:'20px',fontFamily:'Acme'}}>State</label>
                                                 <div className="col-3">
                                                     <select className="form-control mt-3" onChange={this.addresschangeHandler} name="billing_state">
                                                         <option value={this.state.st[0]}>[AN] - Andaman and Nicobar Islands </option>
@@ -462,7 +468,7 @@ class suppliersform extends Component {
                                                     </select>
                                                 </div>
                                                 <div className="col-1"></div>
-                                                <label className="col-2 col-form-label mt-3" style={{fontSize:'18px'}}>State</label>
+                                                <label className="col-2 col-form-label mt-3"  style={{fontSize:'20px',fontFamily:'Acme'}}>State</label>
                                                 <div className="col-3">
                                                     <select className="form-control mt-3" onChange={this.addresschangeHandler} name="shipping_state">
                                                         <option value={this.state.st[0]}>[AN] - Andaman and Nicobar Islands </option>
@@ -505,22 +511,22 @@ class suppliersform extends Component {
                                                     </select>
                                                 </div>
                                                 <div className="col-1"></div>
-                                                <label className="col-2 col-form-label mt-3" style={{fontSize:'18px'}}>Zip Code</label>
+                                                <label className="col-2 col-form-label mt-3"  style={{fontSize:'20px',fontFamily:'Acme'}}>Zip Code</label>
                                                 <div className="col-3">
                                                     <input type="text" className="form-control mt-3" onChange={this.addresschangeHandler} name="billing_zip_code" />
                                                 </div>
                                                 <div className="col-1"></div>
-                                                <label className="col-2 col-form-label mt-3" style={{fontSize:'18px'}}>Zip Code</label>
+                                                <label className="col-2 col-form-label mt-3" style={{fontSize:'20px',fontFamily:'Acme'}}>Zip Code</label>
                                                 <div className="col-3">
                                                     <input type="text" className="form-control mt-3" onChange={this.addresschangeHandler} name="shipping_zip_code" />
                                                 </div>
                                                 <div className="col-1"></div>
-                                                <label className="col-2 col-form-label mt-3" style={{fontSize:'18px'}}>Country</label>
+                                                <label className="col-2 col-form-label mt-3" style={{fontSize:'20px',fontFamily:'Acme'}}>Country</label>
                                                 <div className="col-3">
                                                     <input type="text" className="form-control mt-3" onChange={this.addresschangeHandler} name="billing_country" />
                                                 </div>
                                                 <div className="col-1"></div>
-                                                <label className="col-2 col-form-label mt-3" style={{fontSize:'18px'}}>Country</label>
+                                                <label className="col-2 col-form-label mt-3" style={{fontSize:'20px',fontFamily:'Acme'}}>Country</label>
                                                 <div className="col-3">
                                                     <input type="text" className="form-control mt-3" onChange={this.addresschangeHandler} name="shipping_country" />
                                                 </div>
@@ -529,7 +535,7 @@ class suppliersform extends Component {
                                         </div>
                                         <div className={this.state.remark ?  "col-sm-12" : 'none'}>
                                             <div className="form-group row">
-                                                <label className="col-2 col-form-label" style={{fontSize:'20px'}}>Remarks</label>
+                                                <label className="col-2 col-form-label"  style={{fontSize:'20px',fontFamily:'Acme'}}>Remarks</label>
                                                 <div className="col-10">
                                                     <textarea className="form-control" onChange={this.changeHandler} name="remarks"></textarea>
                                                 </div>

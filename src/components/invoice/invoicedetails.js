@@ -56,10 +56,10 @@ export default function invoicedetails(props) {
                             <br />
                             <div className="row">
                                 <div className="col-12 table-responsive">
-                                    <table className="table table-bordered mt-1">
+                                    <table className="table  mt-1">
                                         <thead>
                                             <tr>
-                                                <th  style={{fontFamily:'Acme',fontSize:'15px'}}>No</th>
+                                                <th style={{fontFamily:'Acme',fontSize:'15px'}}>No</th>
                                                 <th style={{fontFamily:'Acme',fontSize:'15px',width:'50%'}}>Product</th>
                                                 <th style={{fontFamily:'Acme',fontSize:'15px'}}>Quanity</th>
                                                 <th style={{fontFamily:'Acme',fontSize:'15px'}}>Price/Quantity</th>

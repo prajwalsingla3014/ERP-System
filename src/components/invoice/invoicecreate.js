@@ -345,14 +345,14 @@ export default class InvoiceCreate extends React.Component {
         <section className="content">
         <div className="row">
             <div className="col-md-12">
-                <div className="card card-primary">
+                <div className="card card-primary" style={{border:'none',boxShadow:'0 0 1px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.1)'}}>
                     <div className="card-header">
                         <h3 className="card-title" style={{fontSize:'22px',fontFamily:'Acme'}}>New Invoice</h3>
                     </div>
                     <form className="form-horizontal" onSubmit={this.submitHandler}>
                         <div className="card-body">
                             <div className="form-group row">
-                                <label className="col-sm-2 col-form-label" style={{fontSize:'20px',fontFamily:'Acme'}}>Customer Name</label>
+                                <label className="col-sm-2 col-form-label" style={{fontSize:'20px',fontFamily:'Acme'}}>Customer Name *</label>
                                 <div className="col-sm-10">
                                     <select className="form-control" onChange={this.changeHandler}  name="customer" >
                                         <option value=" " disabled selected>Choose name</option>
@@ -361,7 +361,7 @@ export default class InvoiceCreate extends React.Component {
                                 </div>
                             </div>
                             <div className="form-group row">
-                                <label className="col-sm-2 col-form-label" style={{fontSize:'20px',fontFamily:'Acme'}}>Invoice No</label>
+                                <label className="col-sm-2 col-form-label" style={{fontSize:'20px',fontFamily:'Acme'}}>Invoice No *</label>
                                 <div className="col-sm-10">
                                     <input type="text" className="form-control" onChange={this.changeHandler} name="invoice_no" value={Number(this.state.inv)+1 }></input>
                                 </div>
@@ -373,7 +373,7 @@ export default class InvoiceCreate extends React.Component {
                                 </div>
                             </div>
                             <div className="form-group row">
-                                <label className="col-sm-2 col-form-label" style={{fontSize:'20px',fontFamily:'Acme'}}>Invoice Date</label>
+                                <label className="col-sm-2 col-form-label" style={{fontSize:'20px',fontFamily:'Acme'}}>Invoice Date *</label>
                                 <div className="col-sm-2">
                                     <input type="date" className="form-control" id="today" defaultValue={date} onLoad={this.updateHandler} name="invoice_date" />
                                 </div>
@@ -389,10 +389,11 @@ export default class InvoiceCreate extends React.Component {
                                         <option value={this.state.pa[6]}>Due on receipt</option>
                                     </select>
                                 </div>
-                                <label className="col-sm-2 col-form-label " style={{fontSize:'20px',marginLeft:'88px',fontFamily:'Acme'}}>Due Date</label>
+                                <label className="col-sm-2 col-form-label " style={{fontSize:'20px',marginLeft:'85px',fontFamily:'Acme'}}>Due Date</label>
                                 <div className="col-sm-2">
                                     <input type="date" className="form-control" defaultValue={date2}></input>
                                 </div>
+                                <div className="col-1"></div>
                             </div>
                             <table className="table table-bordered">
                                 <thead>
@@ -413,45 +414,51 @@ export default class InvoiceCreate extends React.Component {
                                                 </div>
                                             </div>
                                         </th>
-                                        <th style={{width:'20%'}}><h6 style={{marginLeft:'70px',top:'130%',position:'sticky',fontFamily:'Acme'}}>Tax</h6>
-                                            <ul className="navbar-nav" style={{width:'20%'}}>
-                                                <li className="nav-item dropdown" style={{width:'20%'}}>
-                                                    <a className="nav-link" data-toggle="dropdown" href="#" style={{width:'20%',marginLeft:'30px'}}>
-                                                        <i className="fas fa-chevron-down" style={{color:'black',marginLeft:'140px',fontSize:'15px'}}/>
-                                                    </a>
-                                                    <div className="dropdown-menu dropdown-menu-lg dropdown-menu-left">
+                                        <th style={{width:'10%'}}><h6 style={{marginLeft:'30px',fontSize:'16px',fontFamily:'Acme'}}>Tax</h6>
+                                        {/*<div className="dropdown"> 
+                                                <button className="btn dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{width:'100%',fontFamily:'Acme'}}>Tax
+                                                    <span className="caret" style={{marginLeft:'18px'}}></span>
+                                                </button>
+                                                <ul className="dropdown-menu dropdown-menu-lg">
+                                                    <li>
                                                         <h6 style={{marginLeft:'-10px'}}>
                                                             <button type="button" className="btn" onClick={this.updateTax} value={this.state.taxes[0].tax1} style={{width:'100%'}}>
                                                                 {this.state.taxes[0].tax1}
                                                             </button>
                                                         </h6>
-                                                        <div className="dropdown-divider"></div>
+                                                    </li>
+                                                    <li>                                                        <div className="dropdown-divider"></div>
                                                         <h6 style={{marginLeft:'-10px'}}>
                                                             <button type="button" className="btn" onClick={this.updateTax} value={this.state.taxes[0].tax2} style={{width:'100%'}}>
                                                                 {this.state.taxes[0].tax2}
                                                             </button>
-                                                        </h6>
-                                                        <div className="dropdown-divider"></div>
+                                                        </h6></li>
+                                                    <li>
+                                                    <div className="dropdown-divider"></div>
                                                         <h6 style={{marginLeft:'-10px'}}>
                                                             <button type="button" className="btn" onClick={this.updateTax} value={this.state.taxes[0].tax3} style={{width:'100%'}}>
                                                                 {this.state.taxes[0].tax3}
                                                             </button>
                                                         </h6>
-                                                        <div className="dropdown-divider"></div>
+                                                    </li>
+                                                    <li>
+                                                    <div className="dropdown-divider"></div>
                                                         <h6 style={{marginLeft:'-10px'}}>
                                                             <button type="button" className="btn" onClick={this.updateTax} value={this.state.taxes[0].tax4} style={{width:'100%'}}>
                                                                 {this.state.taxes[0].tax4}
                                                             </button>
                                                         </h6>
-                                                        <div className="dropdown-divider"></div>
+                                                    </li>
+                                                    <li>
+                                                    <div className="dropdown-divider"></div>
                                                         <h6 style={{marginLeft:'-10px'}}>
                                                             <button type="button" className="btn" onClick={this.updateTax} value={this.state.taxes[0].tax5} style={{width:'100%'}}>
                                                                 {this.state.taxes[0].tax5}
                                                             </button>
                                                         </h6>
-                                                    </div>
-                                                </li>
-                                            </ul>
+                                                    </li>
+                                                </ul>
+    </div>*/}
                                         </th>
                                         <th style={{width:'20%'}}><h6 style={{marginLeft:'45px',fontSize:'16px',fontFamily:'Acme'}}>Amount</h6></th>
                                     </tr>

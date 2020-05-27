@@ -83,9 +83,9 @@ export default class suppliers extends Component {
                 <section className="content">
                     <div className="row">
                         <div className={this.state.active ? 'none' : 'col-12'}>
-                            <div className="card">
+                            <div className="card" style={{border:'none',boxShadow:'0 0 1px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.1)'}}>
                                 <div className="card-header">
-                                    <h3 className="card-title">Suppliers Details</h3>
+                                    <h3 className="card-title"  style={{fontFamily:'Acme',fontSize:'18px'}}>Suppliers Details</h3>
                                 </div>
                                 <div className="card-body">
                                     <SupplierTable suppliers={this.state.suppliers} selectedIdHandler={this.setIdHandler} />

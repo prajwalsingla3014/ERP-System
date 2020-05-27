@@ -7,10 +7,10 @@ export default function productsmall(props) {
                 <section className="content">
                     <div className="row">
                         <div className="col-3">
-                            <h6>No.{product.id}</h6>
+                            <h6 style={{fontSize:'17px',fontFamily:'Acme'}}>No.{product.id}</h6>
                         </div>
-                        <div className="col-7">
-                            <h6 style={{color:'#25b0b9'}}>{product.name}</h6>
+                        <div className="col-9">
+                            <h6 style={{color:'#25b0b9',fontFamily:'Acme',fontSize:'17px'}}>{product.name + " " + product.description}</h6>
                         </div>
                     </div>
                 </section>

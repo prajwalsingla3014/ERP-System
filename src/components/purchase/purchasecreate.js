@@ -332,14 +332,14 @@ export default class PurchaseCreate extends React.Component {
         <section className="content">
             <div className="row">
                 <div className="col-md-12">
-                    <div className="card card-primary">
+                    <div className="card card-primary" style={{border:'none',boxShadow:'0 0 1px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.1)'}}>
                         <div className="card-header">
-                            <h3 className="card-title" style={{fontSize:'20px'}}>New Purchase</h3>
+                            <h3 className="card-title" style={{fontSize:'22px',fontFamily:'Acme'}}>New Purchase</h3>
                         </div>
                         <form className="form-horizontal" onSubmit={this.submitHandler}>
                             <div className="card-body">
                                 <div className="form-group row">
-                                    <label className="col-sm-2 col-form-label" style={{fontSize:'20px'}}>SupplierName</label>
+                                    <label className="col-sm-2 col-form-label" style={{fontSize:'20px',fontFamily:'Acme'}}>SupplierName *</label>
                                     <div className="col-sm-10">
                                         <select className="form-control" onChange={this.changeHandler}  name="supplier" >
                                             <option value=" " disabled selected>Choose name</option>
@@ -348,17 +348,17 @@ export default class PurchaseCreate extends React.Component {
                                     </div>
                                 </div>
                                 <div className="form-group row">
-                                    <label className="col-sm-2 col-form-label" style={{fontSize:'20px'}}>Purchase No</label>
+                                    <label className="col-sm-2 col-form-label" style={{fontSize:'20px',fontFamily:'Acme'}}>Purchase No *</label>
                                     <div className="col-sm-10">
                                         <input type="text" className="form-control" onChange={this.changeHandler} name="invoice_no"></input>
                                     </div>
                                 </div>
                                 <div className="form-group row">
-                                    <label className="col-sm-2 col-form-label" style={{fontSize:'20px'}}>Invoice Date</label>
+                                    <label className="col-sm-2 col-form-label" style={{fontSize:'20px',fontFamily:'Acme'}}>Purchase Date</label>
                                     <div className="col-sm-2">
                                         <input type="date" className="form-control" id="today" defaultValue={date} onLoad={this.updateHandler} name="invoice_date" />
                                     </div>
-                                    <label className="col-sm-1 col-form-label" style={{fontSize:'20px'}}>Terms</label>
+                                    <label className="col-sm-1 col-form-label" style={{fontSize:'20px',fontFamily:'Acme'}}>Terms</label>
                                     <div className="col-sm-2">
                                         <select className="form-control" onChange={this.changeHandler} name="payment_terms">
                                             <option value={this.state.pa[0]}>Net 15</option>
@@ -370,7 +370,7 @@ export default class PurchaseCreate extends React.Component {
                                             <option value={this.state.pa[6]}>Due on receipt</option>
                                         </select>
                                     </div>
-                                    <label className="col-sm-3 col-form-label " style={{fontSize:'20px',marginLeft:'0px'}}>Expected Delivery</label>
+                                    <label className="col-sm-3 col-form-label " style={{fontSize:'20px',fontFamily:'Acme'}}>Expected Delivery</label>
                                     <div className="col-sm-2">
                                         <input type="date" className="form-control" defaultValue={date2}></input>
                                     </div>
@@ -378,23 +378,23 @@ export default class PurchaseCreate extends React.Component {
                                 <table className="table table-bordered">
                                     <thead>
                                         <tr>
-                                            <th style={{width:'20%'}}><h6 style={{marginLeft:'40px',fontSize:'16px'}}>Item Details</h6></th>
-                                            <th ><h6 style={{marginLeft:'0px',fontSize:'16px'}}>Quantity</h6></th>
-                                            <th style={{width:'20%'}}><h6 style={{marginLeft:'35px',fontSize:'16px'}}>Price/Quantity</h6></th>
+                                            <th style={{width:'20%'}}><h6 style={{marginLeft:'40px',fontSize:'16px',fontFamily:'Acme'}}>Item Details</h6></th>
+                                            <th ><h6 style={{marginLeft:'0px',fontSize:'16px',fontFamily:'Acme'}}>Quantity</h6></th>
+                                            <th style={{width:'20%'}}><h6 style={{marginLeft:'35px',fontSize:'16px',fontFamily:'Acme'}}>Price/Quantity</h6></th>
                                             <th style={{width:'20%'}}>
                                                 <div className="row">
                                                     <div className="col-6">
-                                                        <h6 style={{marginTop:'22px'}}>Discount</h6>
+                                                        <h6 style={{marginTop:'22px',fontFamily:'Acme'}}>Discount</h6>
                                                     </div>
                                                     <div className="col-6">
                                                         <input type="radio" value="amount" name="discount_type" id="amount" onChange={this.updateHandler} style={{marginLeft:'-5px'}}/>
-                                                        <h6  for="amount" style={{fontSize:'14px',marginTop:'-20px',marginLeft:'15px'}}>Amount</h6>
+                                                        <h6  for="amount" style={{fontSize:'14px',marginTop:'-20px',marginLeft:'15px',fontFamily:'Acme'}}>Amount</h6>
                                                         <input type="radio" value="percentage" name="discount_type" id="percentage" onChange={this.updateHandler} style={{marginLeft:'-5px'}}/>
-                                                        <h6  for="percentage" style={{fontSize:'14px',marginTop:'-20px',marginLeft:'15px'}}>Percent</h6>
+                                                        <h6  for="percentage" style={{fontSize:'14px',marginTop:'-20px',marginLeft:'15px',fontFamily:'Acme'}}>Percent</h6>
                                                     </div>
                                                 </div>
                                             </th>
-                                            <th style={{width:'20%'}}><h6 style={{marginLeft:'70px',top:'77%',position:'sticky',}}>Tax</h6>
+                                            <th style={{width:'20%'}}><h6 style={{marginLeft:'70px',top:'130%',position:'sticky',fontFamily:'Acme'}}>Tax</h6>
                                                 <ul className="navbar-nav" style={{width:'20%'}}>
                                                     <li className="nav-item dropdown" style={{width:'20%'}}>
                                                         <a className="nav-link" data-toggle="dropdown" href="#" style={{width:'20%',marginLeft:'30px'}}>
@@ -434,7 +434,7 @@ export default class PurchaseCreate extends React.Component {
                                                     </li>
                                                 </ul>
                                             </th>
-                                            <th style={{width:'20%'}}><h6 style={{marginLeft:'45px',fontSize:'16px'}}>Amount</h6></th>
+                                            <th style={{width:'20%'}}><h6 style={{marginLeft:'45px',fontSize:'16px',fontFamily:'Acme'}}>Amount</h6></th>
                                         </tr>
                                     </thead>
                                     <tbody className={this.state.active}>
@@ -445,28 +445,28 @@ export default class PurchaseCreate extends React.Component {
                                 <div className="row">
                                     <div className="col-6">
                                         <div className="form-group">
-                                            <label for="terms" className="mt-3" style={{fontSize:'20px'}}>Customer Notes</label>
+                                            <label for="terms" className="mt-3" style={{fontSize:'20px',fontFamily:'Acme'}}>Customer Notes</label>
                                             <textarea className="form-control" rows="3" style={{width:'80%'}} onChange={this.changeHandler} name="notes"></textarea>
                                         </div>
                                     </div>
                                     <div className="col-6">
-                                        <label for="terms" style={{fontSize:'20px',marginLeft:'275px'}}>SubTotal:</label>
-                                        <label style={{fontSize:'20px',marginLeft:'30px'}}>Rs {this.renderSubtotal()}</label>
-                                        <label for="terms" style={{fontSize:'20px',marginLeft:'325px'}}>GST:</label>
-                                        <label style={{fontSize:'20px',marginLeft:'30px'}}>Rs {this.renderTax()}</label>
-                                        <label for="terms" style={{fontSize:'20px',marginLeft:'277px'}}>Discount:</label>
-                                        <label style={{fontSize:'20px',marginLeft:'30px'}}>Rs {this.renderDiscount()}</label>
+                                        <label style={{fontSize:'20px',marginLeft:'285px',fontFamily:'Acme'}}>SubTotal:</label>
+                                        <label style={{fontSize:'20px',marginLeft:'28px',fontFamily:'Acme'}}>Rs {this.renderSubtotal()}</label>
+                                        <label style={{fontSize:'20px',marginLeft:'325px',fontFamily:'Acme'}}>GST:</label>
+                                        <label style={{fontSize:'20px',marginLeft:'30px',fontFamily:'Acme'}}>Rs {this.renderTax()}</label>
+                                        <label style={{fontSize:'20px',marginLeft:'285px',fontFamily:'Acme'}}>Discount:</label>
+                                        <label style={{fontSize:'20px',marginLeft:'30px',fontFamily:'Acme'}}>Rs {this.renderDiscount()}</label>
                                         {/*<label for="terms" style={{fontSize:'15px',marginLeft:'326px'}}>CGST:</label>
                                         <label style={{fontSize:'18px',marginLeft:'32px'}}>Rs {(this.renderTax())/2}</label>
                                         <label for="terms" style={{fontSize:'15px',marginLeft:'326px'}}>SGST:</label>
     <label style={{fontSize:'18px',marginLeft:'32px'}}>Rs {(this.renderTax())/2}</label>*/}
                                         <hr style={{width:'43%',color:'black',marginLeft:'263px'}}/>
-                                        <label for="terms" className="mt-2" style={{fontSize:'20px',marginLeft:'285px'}}>Amount:</label>
-                                        <label style={{fontSize:'20px',marginLeft:'30px'}}>Rs {this.renderAmount()}</label>
+                                        <label  className="mt-2" style={{fontSize:'20px',marginLeft:'290px',fontFamily:'Acme'}}>Amount:</label>
+                                        <label style={{fontSize:'20px',marginLeft:'30px',fontFamily:'Acme'}}>Rs {this.renderAmount()}</label>
                                     </div>
                                 </div>
                                 <div className="form-group">
-                                    <label for="terms" className="mt-3" style={{fontSize:'20px'}}>Terms & Conditions</label>
+                                    <label for="terms" className="mt-3" style={{fontSize:'20px',fontFamily:'Acme'}}>Terms & Conditions</label>
                                     <textarea className="form-control" rows="4" style={{width:'50%'}}  onChange={this.changeHandler} name="terms_and_conditions"></textarea>
                                 </div>
                             </div>

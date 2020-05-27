@@ -11,7 +11,7 @@ function Customertable(props) {
         </tr>)
     })
     return (
-        <table id="customerdetail" className="table table-bordered">
+        <table id="customerdetail" className="table table-hover">
             <thead>
                 <tr>
                     <th style={{fontFamily:'Acme',fontSize:'16px'}}>No</th>

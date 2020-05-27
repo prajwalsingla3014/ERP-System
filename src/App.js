@@ -6,7 +6,7 @@ import {BrowserRouter} from "react-router-dom";
 export default function App() {
   return (
     <BrowserRouter>
-      <div>
+      <div style={{backgroundColor:'#fafdd6',width:'100%'}}>
         <Header />
         <SideNav />
         <Dashboard/>

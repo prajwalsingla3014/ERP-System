@@ -50,40 +50,40 @@ export default class supplierdetail extends Component {
                                 <div className="col-md-4">
                                     <div className="card card-success card-outline">
                                         <div className="card-body box-profile">
-                                            <h6 className="profile-username" style={{fontSize:'17px'}}>{this.props.supplier.display_name}</h6>
-                                            <h6 style={{fontSize:'15px'}}>{this.props.supplier.email}</h6>
-                                            <h6 style={{fontSize:'16px'}}>{this.props.supplier.mobile}</h6>
+                                            <h6 className="profile-username" style={{fontSize:'18px',fontFamily:'Acme'}}>{this.props.supplier.display_name}</h6>
+                                            <h6 style={{fontSize:'16px',fontFamily:'Acme'}}>{this.props.supplier.email}</h6>
+                                            <h6 style={{fontSize:'16px',fontFamily:'Acme'}}>{this.props.supplier.mobile}</h6>
                                         </div>
                                     </div>
                                     <div className="card card-success card-outline">
                                         <div className="card-body box-profile">
-                                            <h6 className="profile-username" style={{fontSize:'16px'}}>Billing Address</h6>
-                                            <h6 style={{fontSize:'14px'}}>{this.props.supplier.payment_details.billing_address.address}</h6>
-                                            <h6 style={{fontSize:'14px'}}>{this.props.supplier.payment_details.billing_address.city}</h6>
-                                            <h6 style={{fontSize:'14px'}}>{this.props.supplier.payment_details.billing_address.zip_code}</h6>
-                                            <h6 style={{fontSize:'14px'}}>{this.props.supplier.payment_details.billing_address.state.name + "," + this.props.supplier.payment_details.billing_address.country}</h6>
+                                            <h6 className="profile-username"  style={{fontSize:'18px',fontFamily:'Acme'}}>Billing Address</h6>
+                                            <h6  style={{fontSize:'16px',fontFamily:'Acme'}}>{this.props.supplier.payment_details.billing_address.address}</h6>
+                                            <h6  style={{fontSize:'16px',fontFamily:'Acme'}}>{this.props.supplier.payment_details.billing_address.city}</h6>
+                                            <h6  style={{fontSize:'16px',fontFamily:'Acme'}}>{this.props.supplier.payment_details.billing_address.zip_code}</h6>
+                                            <h6  style={{fontSize:'16px',fontFamily:'Acme'}}>{this.props.supplier.payment_details.billing_address.state.name + "," + this.props.supplier.payment_details.billing_address.country}</h6>
                                         </div>
                                     </div>
                                     <div className="card card-success card-outline">
                                         <div className="card-body box-profile">
-                                            <h6 className="profile-username" style={{fontSize:'16px'}}>Shipping Address</h6>
-                                            <h6 style={{fontSize:'14px'}}>{this.props.supplier.payment_details.shipping_address.address}</h6>
-                                            <h6 style={{fontSize:'14px'}}>{this.props.supplier.payment_details.shipping_address.city}</h6>
-                                            <h6 style={{fontSize:'14px'}}>{this.props.supplier.payment_details.shipping_address.zip_code}</h6>
-                                            <h6 style={{fontSize:'14px'}}>{this.props.supplier.payment_details.shipping_address.state.name + "," + this.props.supplier.payment_details.shipping_address.country}</h6>
+                                            <h6 className="profile-username" style={{fontSize:'18px',fontFamily:'Acme'}}>Shipping Address</h6>
+                                            <h6 style={{fontSize:'16px',fontFamily:'Acme'}}>{this.props.supplier.payment_details.shipping_address.address}</h6>
+                                            <h6 style={{fontSize:'16px',fontFamily:'Acme'}}>{this.props.supplier.payment_details.shipping_address.city}</h6>
+                                            <h6 style={{fontSize:'16px',fontFamily:'Acme'}}>{this.props.supplier.payment_details.shipping_address.zip_code}</h6>
+                                            <h6 style={{fontSize:'16px',fontFamily:'Acme'}}>{this.props.supplier.payment_details.shipping_address.state.name + "," + this.props.supplier.payment_details.shipping_address.country}</h6>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="col-md-8">
                                     <div className="card card-success card-outline">
                                         <div className="card-body box-profile">
-                                            <h4 style={{fontSize:'20px'}}>Sales</h4>
-                                            <h4 className="text-danger" style={{fontSize:'20px'}}>Rs {this.props.supplier.total_amount}</h4>
-                                            <h4 style={{marginTop:'-63px',fontSize:'20px',marginLeft:'200px'}}>Unused Credits</h4>
-                                            <h4 className="text-danger" style={{marginLeft:'200px',marginTop:'0px',fontSize:'20px'}}>Rs 0.00</h4>
-                                            <h4 style={{fontSize:'20px',marginLeft:'200px',marginTop:'15px'}}>Payment due period</h4>
-                                            <h4 className="text-danger" style={{fontSize:'20px',marginLeft:'200px',marginTop:'0px'}}>{this.props.supplier.payment_details.payment_terms.name}</h4>
-                                            <h3 className="text-center mt-5">
+                                            <h4 style={{fontSize:'20px',fontFamily:'Acme'}}>Sales</h4>
+                                            <h4 className="text-danger" style={{fontSize:'20px',fontFamily:'Acme'}}>Rs {this.props.supplier.total_amount}</h4>
+                                            <h4 style={{marginTop:'-63px',fontSize:'20px',marginLeft:'200px',fontFamily:'Acme'}}>Unused Credits</h4>
+                                            <h4 className="text-danger" style={{marginLeft:'200px',marginTop:'0px',fontSize:'20px',fontFamily:'Acme'}}>Rs 0.00</h4>
+                                            <h4 style={{fontSize:'20px',marginLeft:'200px',marginTop:'15px',fontFamily:'Acme'}}>Payment due period</h4>
+                                            <h4 className="text-danger" style={{fontSize:'20px',marginLeft:'200px',marginTop:'0px',fontFamily:'Acme'}}>{this.props.supplier.payment_details.payment_terms.name}</h4>
+                                            <h3 className="text-center mt-5"  style={{fontFamily:"Acme",fontSize:'20px'}}>
                                                 Sales
                                             </h3>
                                             <Bar

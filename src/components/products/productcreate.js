@@ -179,29 +179,29 @@ class Productcreate extends PureComponent {
                 <section className="content">
                     <div className="row">
                         <div className="col-12">
-                            <div className="card card-warning">
+                            <div className="card card-info" style={{border:'none',boxShadow:'0 0 1px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.1)'}}>
                                 <div className="card-header">
-                                    <h3 className="card-title" style={{fontSize:'20px'}}>New Product</h3>
+                                    <h3 className="card-title" style={{fontSize:'22px',fontFamily:'Acme'}}>New Product</h3>
                                 </div>
                                 <form className="form-horizontal" onSubmit={this.submitHandler}>
                                     <div className="card-body">
                                         <div className="form-group row">
-                                            <label className="col-2 col-form-label" style={{fontSize:'18px'}}>Type</label>
+                                            <label className="col-2 col-form-label" style={{fontSize:'20px',fontFamily:'Acme'}}>Type</label>
                                             <div className="col-1 form-check ml-1" style={{marginTop:'10px'}}>
                                                 <input className="form-check-input" type="radio" value="goods" checked={this.state.type === "goods"} name="type" id="goods" onChange={this.goodchangeHandler}/>
-                                                <label className="form-check-label " for="goods" style={{fontWeight:'bold',fontSize:'17px'}}>
+                                                <label className="form-check-label " for="goods" style={{fontWeight:'bold',fontSize:'18px',fontFamily:'Acme'}}>
                                                         Goods
                                                 </label>
                                             </div>
                                             <div className="col-1 form-check ml-3" style={{marginTop:'10px'}}>
                                                 <input className="form-check-input" type="radio" value="service"  checked={this.state.type === "service"} name="type" id="service" onChange={this.servicechangeHandler}/>
-                                                <label className="form-check-label" for="service" style={{fontWeight:'bold',fontSize:'17px'}}>
+                                                <label className="form-check-label" for="service" style={{fontWeight:'bold',fontSize:'18px',fontFamily:'Acme'}}>
                                                         Service
                                                 </label>
                                             </div>
                                         </div>
                                         <div className="form-group row" style={{height:'43px'}}>
-                                            <label className="col-2 col-form-label" style={{fontSize:'18px',height:'41px'}}>Name</label>
+                                            <label className="col-2 col-form-label" style={{fontSize:'20px',height:'41px',fontFamily:'Acme'}}>Name *</label>
                                             <div className="col-4" style={{height:"41px"}}>
                                                 <input type="text" name="name" className="form-control" value={this.state.name} onChange={this.changeHandler} ></input>
                                             </div>
@@ -233,13 +233,13 @@ class Productcreate extends PureComponent {
                                             </div>
                                         </div>
                                         <div className="form-group row">
-                                            <label className="col-2 col-form-label" style={{fontSize:'18px'}}>SKU</label>
+                                            <label className="col-2 col-form-label" style={{fontSize:'20px',fontFamily:'Acme'}}>SKU</label>
                                             <div className="col-4">
                                                 <input type="text" name="sku" className="form-control" value={this.state.sku} onChange={this.changeHandler}></input>
                                             </div>
                                         </div>
                                         <div className="form-group row">
-                                            <label className="col-2 col-form-label" style={{fontSize:'18px'}}>Unit</label>
+                                            <label className="col-2 col-form-label" style={{fontSize:'20px',fontFamily:'Acme'}}>Unit</label>
                                             <div className="col-4">
                                                 <select className="form-control" onChange={this.changeHandler} name="unit">
                                                     <option value="g">g</option>
@@ -250,8 +250,8 @@ class Productcreate extends PureComponent {
                                             </div>
                                         </div>
                                         <div className="form-group row">
-                                            <label className={this.state.check ? "col-2 col-form-label" : "none"} style={{fontSize:'18px'}}>HSN Code</label>
-                                            <label className={this.state.check1 ? "col-2 col-form-label" : "none"} style={{fontSize:'18px'}}>SAC Code</label>
+                                            <label className={this.state.check ? "col-2 col-form-label" : "none"} style={{fontSize:'20px',fontFamily:'Acme'}}>HSN Code</label>
+                                            <label className={this.state.check1 ? "col-2 col-form-label" : "none"} style={{fontSize:'20px',fontFamily:'Acme'}}>SAC Code</label>
                                             <div className={this.state.check ? "col-4" : "none"}>
                                                 <input type="text" name="hsn_code" className="form-control" value={this.state.hsn_code} onChange={this.changeHandler}></input>
                                             </div>
@@ -260,40 +260,40 @@ class Productcreate extends PureComponent {
                                             </div>
                                         </div>
                                         <div className="form-group row">
-                                            <label className="col-2 col-form-label" style={{fontSize:'18px'}}>Tax Preference</label>
+                                            <label className="col-2 col-form-label" style={{fontSize:'20px',fontFamily:'Acme'}}>Tax Preference *</label>
                                             <div className="col-1 form-check ml-1" style={{marginTop:'10px'}}>
                                                 <input className="form-check-input" type="radio" value="true" checked={this.state.taxable === "true"} name="taxable" id="taxed" onChange={this.taxchangeHandler}/>
-                                                <label className="form-check-label " for="taxed" style={{fontWeight:'bold',fontSize:'17px'}}>
+                                                <label className="form-check-label " for="taxed" style={{fontWeight:'bold',fontSize:'18px',fontFamily:'Acme'}}>
                                                         Taxable
                                                 </label>
                                             </div>
                                             <div className="col-2 form-check ml-3" style={{marginTop:'10px'}}>
                                                 <input className="form-check-input" type="radio" value="false"  checked={this.state.taxable === "false"} name="taxable" id="non-tax" onChange={this.taxchangeHandler}/>
-                                                <label className="form-check-label" for="non-tax" style={{fontWeight:'bold',fontSize:'17px'}}>
+                                                <label className="form-check-label" for="non-tax" style={{fontWeight:'bold',fontSize:'18px',fontFamily:'Acme'}}>
                                                         Non-Taxable
                                                 </label>
                                             </div>
                                         </div>
                                         <div className="form-group row">
-                                            <label className="col-2 col-form-label" style={{fontSize:'18px'}}>Quantity</label>
+                                            <label className="col-2 col-form-label" style={{fontSize:'20px',fontFamily:'Acme'}}>Quantity</label>
                                             <div className="col-10">
                                                 <input type="text" name="quantity_purchased" className="form-control" value={this.state.quantity} onChange={this.changeHandler}></input>
                                             </div>
                                         </div>
                                         <div className="form-group row">
-                                            <label className="col-2 col-form-label" style={{fontSize:'18px'}}>Selling Price</label>
+                                            <label className="col-2 col-form-label" style={{fontSize:'20px',fontFamily:'Acme'}}>Selling Price</label>
                                             <div className="col-10">
                                                 <input type="text" name="selling_price" className="form-control" value={this.state.selling_price} onChange={this.changeHandler}></input>
                                             </div>
                                         </div>
                                         <div className="form-group row">
-                                            <label className="col-2 col-form-label" style={{fontSize:'18px'}}>Description</label>
+                                            <label className="col-2 col-form-label" style={{fontSize:'20px',fontFamily:'Acme'}}>Description</label>
                                             <div className="col-10">
                                                 <textarea className="form-control" name="description" onChange={this.changeHandler} value={this.state.description}></textarea>
                                             </div>
                                         </div>
                                         <div className={this.state.active? "form-group row" : "none"}>
-                                            <label className="col-2 col-form-label" style={{fontSize:'18px'}}>Intra State Tax Rate</label>
+                                            <label className="col-2 col-form-label" style={{fontSize:'20px',fontFamily:'Acme'}}>Intra State Tax Rate</label>
                                             <div className="col-10">
                                                 <select className="form-control mt-2" onChange={this.changeHandler} name="tax">
                                                     <option value={this.state.taxx[0]}>GST0 [0%]</option>
@@ -305,7 +305,7 @@ class Productcreate extends PureComponent {
                                             </div>
                                         </div>
                                         <div className={this.state.active ?  "form-group row" :"none"}>
-                                            <label className="col-2 col-form-label" style={{fontSize:'18px'}} >Inter State Tax Rate</label>
+                                            <label className="col-2 col-form-label" style={{fontSize:'20px',fontFamily:'Acme'}} >Inter State Tax Rate</label>
                                             <div className="col-10">
                                                 <select className="form-control mt-2" onChange={this.changeHandler} name="tax">
                                                     <option value={this.state.taxx[5]}>IGST0 [0%]</option>
