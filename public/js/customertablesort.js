@@ -1,4 +1,3 @@
-
 $(function () {
     $('#customerdetail').DataTable({
       "paging": true,

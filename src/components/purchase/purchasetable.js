@@ -10,7 +10,7 @@ function Purchasetable(props) {
         </tr>)
     })
     return (
-        <table id="customerdetail" className="table table-hover">
+        <table id="purchasedetail" className="table table-hover">
             <thead>
                 <tr>
                     <th  style={{fontSize:'16px',fontFamily:'Acme'}}>Date</th>

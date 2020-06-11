@@ -55,6 +55,15 @@ class Purchase extends PureComponent {
                     }]
                 }]
             }],
+            employee:{
+                first_name:' ',
+                display_name:' ',
+                payment_details:{
+                    billing_address:{
+
+                    }
+                }
+            },
                     selectedId:'',
                     product:''
         }
@@ -89,8 +98,16 @@ class Purchase extends PureComponent {
             .catch(err => {
                 console.log(err)
             })
+        await axios.get("https://farzi-erp.herokuapp.com/persons_manager/employee/")
+            .then(res => {
+                this.setState({employee:res.data})
+                console.log(res)
+            })
+            .catch(err => {
+                console.log(err)
+            })
           const script=document.createElement("script");
-          script.src="js/customertablesort.js";
+          script.src="js/purchasetablesort.js";
           script.async=true;
           document.body.appendChild(script);
       }
@@ -115,7 +132,7 @@ class Purchase extends PureComponent {
                             {this.state.selectedId ? <PurchaseSmall purchases={this.state.purchases} selectedIdhandler={this.setIdHandler} /> : null }
                         </div>
                         <div className={this.state.active ? 'col-8' : 'none'}>
-                            {this.state.selectedId ? <PurchaseDetails purchase={this.state.product} cancelHandler={this.cancel} /> : null}
+                            {this.state.selectedId ? <PurchaseDetails purchase={this.state.product} employee={this.state.employee} cancelHandler={this.cancel} /> : null}
                         </div>
                     </div>
                 </section>

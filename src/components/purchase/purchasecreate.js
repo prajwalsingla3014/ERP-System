@@ -8,6 +8,7 @@ export default class PurchaseCreate extends React.Component {
         this.state={
             active:false,
             filterText:"",
+            pur:"",
             items:[
                 {
                     id:' ',
@@ -306,6 +307,16 @@ export default class PurchaseCreate extends React.Component {
             .catch(err => {
                 console.log(err.message)
             })
+        await axios.get("https://farzi-erp.herokuapp.com/invoice/purchase_invoice/?ordering=created_at")
+            .then(res => {
+                var t=res.data.length;
+                var t1=(res.data)[t-1].invoice_no;
+                this.setState({pur:t1})
+                console.log(res)
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
     render() {
         var someDate = new Date();
@@ -350,7 +361,7 @@ export default class PurchaseCreate extends React.Component {
                                 <div className="form-group row">
                                     <label className="col-sm-2 col-form-label" style={{fontSize:'20px',fontFamily:'Acme'}}>Purchase No *</label>
                                     <div className="col-sm-10">
-                                        <input type="text" className="form-control" onChange={this.changeHandler} name="invoice_no"></input>
+                                        <input type="text" className="form-control" onChange={this.changeHandler} name="invoice_no" value={((this.state.pur).slice(((this.state.pur).length-2),(this.state.pur).length) ) > 0 ? (this.state.pur).slice(0,(this.state.pur).length-1).concat(parseInt((this.state.pur).slice(((this.state.pur).length-2),(this.state.pur).length))+1) : this.state.pur}></input>
                                     </div>
                                 </div>
                                 <div className="form-group row">

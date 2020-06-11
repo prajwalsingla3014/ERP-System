@@ -56,6 +56,15 @@ class Invoice extends PureComponent {
                 notes:' ',
                 terms_and_conditions:' '
             }],
+            employee:{
+                first_name:' ',
+                display_name:' ',
+                payment_details:{
+                    billing_address:{
+
+                    }
+                }
+            },
             selectedId:'',
             product:''
         }
@@ -70,8 +79,16 @@ class Invoice extends PureComponent {
             .catch(err => {
                 console.log(err)
             })
+        await axios.get("https://farzi-erp.herokuapp.com/persons_manager/employee/")
+            .then(res => {
+                this.setState({employee:res.data})
+                console.log(res)
+            })
+            .catch(err => {
+                console.log(err)
+            })
         const script=document.createElement("script");
-        script.src="js/customertablesort.js";
+        script.src="js/invoicetablesort.js";
         script.async=true;
         document.body.appendChild(script);
     }
@@ -86,7 +103,6 @@ class Invoice extends PureComponent {
         if(productIndex!==-1)
         {
               product=this.state.invoices[productIndex];
-              console.log(product)
               this.setState({selectedId:id,product,active:true});
         }
         else
@@ -115,7 +131,7 @@ class Invoice extends PureComponent {
                             {this.state.selectedId ? <InvoiceSmall invoices={this.state.invoices} selectedIdhandler={this.setIdHandler} /> : null }
                         </div>
                         <div className={this.state.active ? 'col-8' : 'none'}>
-                            {this.state.selectedId ? <InvoiceDetails invoice={this.state.product} cancelHandler={this.cancel} /> : null}
+                            {this.state.selectedId ? <InvoiceDetails invoice={this.state.product} employee={this.state.employee} cancelHandler={this.cancel} /> : null}
                         </div> 
                     </div>
                 </section>

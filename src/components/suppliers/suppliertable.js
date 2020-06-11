@@ -12,7 +12,7 @@ function Suppliertable(props) {
         </tr>)
     })
     return (
-        <table className="table table-hover" id="customerdetail">
+        <table className="table table-hover" id="supplierdetail">
             <thead>
                 <tr>
                     <th style={{fontFamily:'Acme',fontSize:'16px'}}>No</th>

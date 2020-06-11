@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Bar} from "react-chartjs-2";
+import {Bar, Line} from "react-chartjs-2";
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 export default class dashboardcontent extends Component {
@@ -7,7 +7,7 @@ export default class dashboardcontent extends Component {
     {
         super();
         this.state={
-            graphdata:{
+            saledata:{
                 monthly:{
                 },
                 stats:{
@@ -18,47 +18,74 @@ export default class dashboardcontent extends Component {
                     year:" "
                 }
             },
-            chartData:{
-                /*labels:['April 2020','May 2020','June 2020','July 2020','Aug 2020','Sept 2020','Oct 2020','Nov 2020','Dec 2020','Jan 2021','Feb 2021','Mar 2021'],
-                datasets:[
-                    {
-                        label:"Sale",
-                        data:this.state.graphdata,
-                        barThickness:30,
-                        backgroundColor:'rgba(97,249,85,.8)'
-                    },
-                    {
-                        label:'Expenses',
-                        data:[
-                            50000,
-                            70000,
-                            55000,
-                            68000,
-                            85000,
-                            48000
-                        ],
-                        barThickness:30,
-                        backgroundColor:'rgba(250,28,10,.6)'
-                    }
-                ]*/
+            expensedata:{
+                stats:{
+                    today:" ",
+                    week:" ",
+                    month:" ",
+                    quarter:" ",
+                    year:" "
+                }
+            },
+            barData:{
+            },
+            pieData:{
+
             }
         }
     }
     async componentDidMount() {
-        await axios.get("https://farzi-erp.herokuapp.com/invoice/sale_data/")
+        await axios.get("https://farzi-erp.herokuapp.com/invoice/graph_data/")
             .then(res => {
                 const dat=res.data;
-                let bardata={...dat.monthly};
-                console.log(bardata)
-                this.setState({graphdata:res.data,chartData: {
-                    labels:['April 2020','May 2020','June 2020','July 2020','Aug 2020','Sept 2020','Oct 2020','Nov 2020','Dec 2020','Jan 2021','Feb 2021','Mar 2021'],
-                    datasets:[{
-                        label:'Sale',
-                        data:[bardata.April_2020,bardata.May_2020,bardata.June_2020,bardata.July_2020,bardata.August_2020,bardata.September_2020,bardata.October_2020,bardata.November_2020,bardata.December_2020,bardata.January_2021,bardata.February_2021,bardata.March_2021],
-                        barThickness:10,
-                        backgroundColor:'#6fdbc9'
-                    }]
-                }})
+                let salesdata={...dat.sale.stats};
+                let expensesdata={...dat.purchase.stats};
+                this.setState({saledata:salesdata,expensedata:expensesdata,pieData:{
+                    labels:Object.keys(dat.sale.stats),
+                    datasets:[
+                        {
+                            label:'Sale',
+                            data:["50000","450000","1400000","4500000","17000000"],
+                            backgroundColor:'#6fdbc9',
+                            borderColor:'#6fdbc9',
+                            borderWidth: 3,
+                            fill:false,
+                            lineTension: 0.5,
+                        },
+                        {
+                            label:'Expenses',
+                            data:["30000","750000","1900000","2500000","14000000"],
+                            backgroundColor:'#f48be3' ,
+                            borderColor:'#f48be3' ,
+                            borderWidth: 3,
+                            fill:false,
+                            lineTension: 0.5,
+                        }
+                    ]
+                    },
+                    barData: {
+                        labels:Object.keys(dat.sale.monthly),
+                        datasets:[
+                            {
+                                label:'Sale',
+                                data:Object.values(dat.sale.monthly),
+                                barThickness:10,
+                                backgroundColor:'#6fdbc9'
+                            },
+                            {
+                                label:'Expenses',
+                                data:Object.values(dat.purchase.monthly),
+                                barThickness:10,
+                                backgroundColor:'#f48be3' 
+                            }
+                        ]
+                    }
+                })
+
+                console.log(res);
+            })
+            .catch(err => {
+                console.log(err);
             })
     }
     render() {
@@ -72,7 +99,7 @@ export default class dashboardcontent extends Component {
                             </div>
                             <div className="col-sm-8">
                                 <h6 className="mt-3" style={{marginLeft:'400px',color:'#868785',fontFamily:'Acme',fontSize:'18px'}}>Helpline - 1800 102 5671</h6>
-                                <h6 style={{fontWeight:'normal',marginLeft:'420px',fontSize:'12px',marginTop:'-5px',color:'#868785',fontFamily:'Acme',fontSize:'13px'}}>Mon-Sat 9:00AM - 7:00PM</h6>
+                                <h6 style={{fontWeight:'normal',marginLeft:'420px',marginTop:'-5px',color:'#868785',fontFamily:'Acme',fontSize:'13px'}}>Mon-Sat 9:00AM - 7:00PM</h6>
                                 <p style={{marginLeft:'625px',marginTop:'-48px',fontFamily:'Acme',fontSize:'20px',color:'#021132'}}><Link to="/" style={{color:'#021132'}}>Home</Link></p>
                             </div>
                         </div>
@@ -81,7 +108,7 @@ export default class dashboardcontent extends Component {
                 <div className="card"  style={{border:'none',boxShadow:'0 0 1px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.1)'}}>
                     <div className="card-body">
                         <Bar
-                            data={this.state.chartData}
+                            data={this.state.barData}
                             height={75}
                             options={{
                                 legend:{
@@ -98,7 +125,7 @@ export default class dashboardcontent extends Component {
                                             borderBottom:'10px solid black'
                                         },
                                         ticks:{
-                                            fontColor:'#838181'
+                                            fontColor:'#838181',
                                         }
                                     }],
                                     yAxes:[{
@@ -111,7 +138,7 @@ export default class dashboardcontent extends Component {
                                         },
                                         ticks:{
                                             fontColor:'#9c9c9c',
-                                            stepSize:10000
+                                            stepSize:50000
                                         },
                                     }]
                                 }
@@ -137,35 +164,79 @@ export default class dashboardcontent extends Component {
                                     <tbody style={{color:'#737673'}}>
                                         <tr style={{borderBottom:'0'}}>
                                             <td style={{fontFamily:'Acme',fontSize:'16px'}}>Today</td>
-                                            <td style={{fontFamily:'Acme',fontSize:'16px'}}>Rs {this.state.graphdata.stats.today}</td>
-                                            <td style={{fontFamily:'Acme',fontSize:'16px'}}>Rs 5500</td>
+                                            <td style={{fontFamily:'Acme',fontSize:'16px'}}>Rs {this.state.saledata.today ? this.state.saledata.today : 0}</td>
+                                            <td style={{fontFamily:'Acme',fontSize:'16px'}}>Rs {this.state.expensedata.today ? this.state.expensedata.today : 0}</td>
                                         </tr>
                                         <tr>
                                             <td style={{fontFamily:'Acme',fontSize:'16px'}}>This Week</td>
-                                            <td style={{fontFamily:'Acme',fontSize:'16px'}}>Rs {this.state.graphdata.stats.week}</td>
-                                            <td style={{fontFamily:'Acme',fontSize:'16px'}}>Rs 50000</td>
+                                            <td style={{fontFamily:'Acme',fontSize:'16px'}}>Rs {this.state.saledata.week ? this.state.saledata.week : 0}</td>
+                                            <td style={{fontFamily:'Acme',fontSize:'16px'}}>Rs {this.state.expensedata.week ? this.state.expensedata.week : 0}</td>
                                         </tr>
                                         <tr>
                                             <td style={{fontFamily:'Acme',fontSize:'16px'}}>This Month</td>
-                                            <td style={{fontFamily:'Acme',fontSize:'16px'}}>Rs {this.state.graphdata.stats.month}</td>
-                                            <td style={{fontFamily:'Acme',fontSize:'16px'}}>Rs 100000</td>
+                                            <td style={{fontFamily:'Acme',fontSize:'16px'}}>Rs {this.state.saledata.month ? this.state.saledata.month : 0}</td>
+                                            <td style={{fontFamily:'Acme',fontSize:'16px'}}>Rs {this.state.expensedata.month ? this.state.expensedata.month : 0}</td>
                                         </tr>
                                         <tr>
                                             <td style={{fontFamily:'Acme',fontSize:'16px'}}>This Quarter</td>
-                                            <td style={{fontFamily:'Acme',fontSize:'16px'}}>Rs {this.state.graphdata.stats.quarter}</td>
-                                            <td style={{fontFamily:'Acme',fontSize:'16px'}}>Rs 650000</td>
+                                            <td style={{fontFamily:'Acme',fontSize:'16px'}}>Rs {this.state.saledata.quarter}</td>
+                                            <td style={{fontFamily:'Acme',fontSize:'16px'}}>Rs {this.state.expensedata.quarter}</td>
                                         </tr>
                                         <tr>
                                             <td style={{fontFamily:'Acme',fontSize:'16px'}}>This Year</td>
-                                            <td style={{fontFamily:'Acme',fontSize:'16px'}}>Rs {this.state.graphdata.stats.year}</td>
-                                            <td style={{fontFamily:'Acme',fontSize:'16px'}}>Rs 9000000</td>
+                                            <td style={{fontFamily:'Acme',fontSize:'16px'}}>Rs {this.state.saledata.year}</td>
+                                            <td style={{fontFamily:'Acme',fontSize:'16px'}}>Rs {this.state.expensedata.year}</td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
+                    <div className="col-6">
+                        <div className="card"  style={{border:'none',boxShadow:'0 0 1px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.1)'}}>
+                            <div className="card-body">
+                                <Line 
+                                    data={this.state.pieData}
+                                    height={200}
+                                    options={{
+                                        legend:{
+                                          display:true,
+                                        },
+                                        scales:{
+                                            xAxes:[{
+                                                scaleLabel:{
+                                                    display:true,
+                                                    labelString:'Time'
+                                                },
+                                                gridLines:{
+                                                    drawBorder:true,
+                                                    borderBottom:'10px solid black'
+                                                },
+                                                ticks:{
+                                                    fontColor:'#838181',
+                                                }
+                                            }],
+                                            yAxes:[{
+                                                scaleLabel:{
+                                                    display:true,
+                                                    labelString:'Amount'
+                                                },
+                                                gridLines:{
+                                                    display:false
+                                                },
+                                                ticks:{
+                                                    fontColor:'#9c9c9c',
+                                                },
+                                            }]
+                                        }
+                                      }}
+                                />
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <br />
+                <br />
             </div>
         )
     }

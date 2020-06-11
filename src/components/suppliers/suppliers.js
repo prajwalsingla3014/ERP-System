@@ -16,7 +16,7 @@ export default class suppliers extends Component {
                 console.log(err)
             })
         const script=document.createElement("script");
-        script.src="js/customertablesort.js";
+        script.src="js/suppliertablesort.js";
         script.async=true;
         document.body.appendChild(script);
     }

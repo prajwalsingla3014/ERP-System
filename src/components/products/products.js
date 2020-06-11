@@ -27,7 +27,7 @@ class Products extends PureComponent {
             })
         const script=document.createElement("script");
         console.log(script)
-        script.src="js/customertablesort.js";
+        script.src="js/producttablesort.js";
         script.async=true;
         document.body.appendChild(script);
     }

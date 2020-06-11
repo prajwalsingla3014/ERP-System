@@ -116,19 +116,6 @@ export default function sidenav() {
                                     </p>
                                 </a>
                             </li>
-                            <li className="nav-item has-treeview">
-                                <a href="#" className="nav-link">
-                                    <i className="nav-icon fas fa-chart-line" style={{fontSize:'15px',marginLeft:'-15px'}}/>
-                                    <p className="ml-1" style={{fontSize:'18px',fontFamily:'Acme'}}>
-                                        <Link to="/sale" style={{color:'#021132'}}>
-                                            Sales
-                                        </Link>
-                                        <Link to="/">
-                                            <i className="fas fa-plus-circle mt-3" style={{fontSize:'18px',color:'#021132',marginLeft:'129px'}}></i>
-                                        </Link>
-                                    </p>
-                                </a>
-                            </li>
                         </ul>
                     </nav>
                 </div>

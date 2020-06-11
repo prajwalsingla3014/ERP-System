@@ -243,7 +243,8 @@ export default class InvoiceCreate extends React.Component {
         var some=new Date();
         some.setDate(some.getDate() + 5);
         var date2=some.toISOString().substr(0,10);
-        await this.setState({total_subtotal:total_subtotal,total_discount:total_discount,total_tax:total_tax,total_amount:total_amount,invoice_date:date,due_date:date2})
+        var invno=Number(this.state.inv)+1;
+        await this.setState({total_subtotal:total_subtotal,total_discount:total_discount,total_tax:total_tax,total_amount:total_amount,invoice_date:date,due_date:date2,invoice_no:invno})
         const item=[...this.state.sold_items];
         var len=this.state.sold_items.length;
         for(var i=0;i<len;i++)
@@ -268,13 +269,13 @@ export default class InvoiceCreate extends React.Component {
             terms_and_conditions:this.state.terms_and_conditions
         }
         console.log(sale_invoice)
-        /*await axios.post("https://farzi-erp.herokuapp.com/invoice/sale_invoice/?ordering=created_at",sale_invoice)
+        await axios.post("https://farzi-erp.herokuapp.com/invoice/sale_invoice/?ordering=created_at",sale_invoice)
             .then(res => {
                 console.log(res);
             })
             .catch(err => {
                 console.log(err)
-            })*/
+            })
     }
     async componentDidMount()
     {
@@ -482,10 +483,6 @@ export default class InvoiceCreate extends React.Component {
                                     <label style={{fontSize:'20px',marginLeft:'30px',fontFamily:'Acme'}}>Rs {this.renderTax()}</label>
                                     <label  style={{fontSize:'20px',marginLeft:'285px',fontFamily:'Acme'}}>Discount:</label>
                                     <label style={{fontSize:'20px',marginLeft:'30px',fontFamily:'Acme'}}>Rs {this.renderDiscount()}</label>
-                                    {/*<label for="terms" style={{fontSize:'15px',marginLeft:'326px'}}>CGST:</label>
-                                    <label style={{fontSize:'18px',marginLeft:'32px'}}>Rs {(this.renderTax())/2}</label>
-                                    <label for="terms" style={{fontSize:'15px',marginLeft:'326px'}}>SGST:</label>
-<label style={{fontSize:'18px',marginLeft:'32px'}}>Rs {(this.renderTax())/2}</label>*/}
                                     <hr style={{width:'43%',color:'black',marginLeft:'263px'}}/>
                                     <label  className="mt-2" style={{fontSize:'20px',marginLeft:'290px',fontFamily:'Acme'}}>Amount:</label>
                                     <label style={{fontSize:'20px',marginLeft:'30px',fontFamily:'Acme'}}>Rs {this.renderAmount()}</label>
