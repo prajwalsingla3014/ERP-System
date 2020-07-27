@@ -40,12 +40,13 @@ export default class dashboardcontent extends Component {
                 const dat=res.data;
                 let salesdata={...dat.sale.stats};
                 let expensesdata={...dat.purchase.stats};
-                this.setState({saledata:salesdata,expensedata:expensesdata,pieData:{
-                    labels:Object.keys(dat.sale.stats),
-                    datasets:[
+                this.setState({saledata:salesdata,expensedata:expensesdata,
+                    pieData:{
+                        labels:Object.keys(dat.sale.stats),
+                        datasets:[
                         {
                             label:'Sale',
-                            data:["50000","450000","1400000","4500000","17000000"],
+                            data:Object.values(salesdata),
                             backgroundColor:'#6fdbc9',
                             borderColor:'#6fdbc9',
                             borderWidth: 3,
@@ -54,7 +55,7 @@ export default class dashboardcontent extends Component {
                         },
                         {
                             label:'Expenses',
-                            data:["30000","750000","1900000","2500000","14000000"],
+                            data:Object.values(expensesdata),
                             backgroundColor:'#f48be3' ,
                             borderColor:'#f48be3' ,
                             borderWidth: 3,
@@ -100,7 +101,7 @@ export default class dashboardcontent extends Component {
                             <div className="col-sm-8">
                                 <h6 className="mt-3" style={{marginLeft:'400px',color:'#868785',fontFamily:'Acme',fontSize:'18px'}}>Helpline - 1800 102 5671</h6>
                                 <h6 style={{fontWeight:'normal',marginLeft:'420px',marginTop:'-5px',color:'#868785',fontFamily:'Acme',fontSize:'13px'}}>Mon-Sat 9:00AM - 7:00PM</h6>
-                                <p style={{marginLeft:'625px',marginTop:'-48px',fontFamily:'Acme',fontSize:'20px',color:'#021132'}}><Link to="/" style={{color:'#021132'}}>Home</Link></p>
+                                <p style={{marginLeft:'620px',marginTop:'-48px',fontFamily:'Acme',fontSize:'20px',color:'#021132'}}><Link to="/" style={{color:'#021132'}}>Home</Link></p>
                             </div>
                         </div>
                     </div>

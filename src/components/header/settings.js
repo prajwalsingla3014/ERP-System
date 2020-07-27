@@ -5,7 +5,7 @@ function Settings() {
         <ul className="navbar-nav ml-auto">
             <li className="nav-item dropdown">
                 <a className="nav-link" data-toggle="dropdown" href="#">
-                    <i className="fas fa-cog" style={{fontSize:'20px',color:'#021132'}} />
+                    <i className="fas fa-cog" style={{fontSize:'20px',color:'#021132',marginTop:'10px'}} />
                 </a>
                 <div className="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                     <a href="#" className="dropdown-item">

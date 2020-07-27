@@ -242,7 +242,8 @@ export default class PurchaseCreate extends React.Component {
         var some=new Date();
         some.setDate(some.getDate() + 5);
         var date2=some.toISOString().substr(0,10);
-        await this.setState({total_subtotal:total_subtotal,total_discount:total_discount,total_tax:total_tax,total_amount:total_amount,invoice_date:date,expected_delivery:date2})
+        var purno=((this.state.pur).slice(((this.state.pur).length-2),(this.state.pur).length) ) > 0 ? (this.state.pur).slice(0,(this.state.pur).length-1).concat(parseInt((this.state.pur).slice(((this.state.pur).length-2),(this.state.pur).length))+1) : this.state.pur;
+        await this.setState({total_subtotal:total_subtotal,total_discount:total_discount,total_tax:total_tax,total_amount:total_amount,invoice_date:date,expected_delivery:date2,invoice_no:purno})
         const item=[...this.state.purchased_items];
         var len=this.state.purchased_items.length;
         for(var i=0;i<len;i++)
@@ -406,44 +407,50 @@ export default class PurchaseCreate extends React.Component {
                                                 </div>
                                             </th>
                                             <th style={{width:'20%'}}><h6 style={{marginLeft:'70px',top:'130%',position:'sticky',fontFamily:'Acme'}}>Tax</h6>
-                                                <ul className="navbar-nav" style={{width:'20%'}}>
-                                                    <li className="nav-item dropdown" style={{width:'20%'}}>
-                                                        <a className="nav-link" data-toggle="dropdown" href="#" style={{width:'20%',marginLeft:'30px'}}>
-                                                            <i className="fas fa-chevron-down" style={{color:'black',marginLeft:'140px',fontSize:'15px'}}/>
-                                                        </a>
-                                                        <div className="dropdown-menu dropdown-menu-lg dropdown-menu-left">
-                                                            <h6 style={{marginLeft:'-10px'}}>
-                                                                <button type="button" className="btn" onClick={this.updateTax} value={this.state.taxes[0].tax1} style={{width:'100%'}}>
-                                                                    {this.state.taxes[0].tax1}
-                                                                </button>
-                                                            </h6>
-                                                            <div className="dropdown-divider"></div>
-                                                            <h6 style={{marginLeft:'-10px'}}>
-                                                                <button type="button" className="btn" onClick={this.updateTax} value={this.state.taxes[0].tax2} style={{width:'100%'}}>
-                                                                    {this.state.taxes[0].tax2}
-                                                                </button>
-                                                            </h6>
-                                                            <div className="dropdown-divider"></div>
-                                                            <h6 style={{marginLeft:'-10px'}}>
-                                                                <button type="button" className="btn" onClick={this.updateTax} value={this.state.taxes[0].tax3} style={{width:'100%'}}>
-                                                                    {this.state.taxes[0].tax3}
-                                                                </button>
-                                                            </h6>
-                                                            <div className="dropdown-divider"></div>
-                                                            <h6 style={{marginLeft:'-10px'}}>
-                                                                <button type="button" className="btn" onClick={this.updateTax} value={this.state.taxes[0].tax4} style={{width:'100%'}}>
-                                                                    {this.state.taxes[0].tax4}
-                                                                </button>
-                                                            </h6>
-                                                            <div className="dropdown-divider"></div>
-                                                            <h6 style={{marginLeft:'-10px'}}>
-                                                                <button type="button" className="btn" onClick={this.updateTax} value={this.state.taxes[0].tax5} style={{width:'100%'}}>
-                                                                    {this.state.taxes[0].tax5}
-                                                                </button>
-                                                            </h6>
-                                                        </div>
+                                        {/*<div className="dropdown"> 
+                                                <button className="btn dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{width:'100%',fontFamily:'Acme'}}>Tax
+                                                    <span className="caret" style={{marginLeft:'18px'}}></span>
+                                                </button>
+                                                <ul className="dropdown-menu dropdown-menu-lg">
+                                                    <li>
+                                                        <h6 style={{marginLeft:'-10px'}}>
+                                                            <button type="button" className="btn" onClick={this.updateTax} value={this.state.taxes[0].tax1} style={{width:'100%'}}>
+                                                                {this.state.taxes[0].tax1}
+                                                            </button>
+                                                        </h6>
+                                                    </li>
+                                                    <li>                                                        <div className="dropdown-divider"></div>
+                                                        <h6 style={{marginLeft:'-10px'}}>
+                                                            <button type="button" className="btn" onClick={this.updateTax} value={this.state.taxes[0].tax2} style={{width:'100%'}}>
+                                                                {this.state.taxes[0].tax2}
+                                                            </button>
+                                                        </h6></li>
+                                                    <li>
+                                                    <div className="dropdown-divider"></div>
+                                                        <h6 style={{marginLeft:'-10px'}}>
+                                                            <button type="button" className="btn" onClick={this.updateTax} value={this.state.taxes[0].tax3} style={{width:'100%'}}>
+                                                                {this.state.taxes[0].tax3}
+                                                            </button>
+                                                        </h6>
+                                                    </li>
+                                                    <li>
+                                                    <div className="dropdown-divider"></div>
+                                                        <h6 style={{marginLeft:'-10px'}}>
+                                                            <button type="button" className="btn" onClick={this.updateTax} value={this.state.taxes[0].tax4} style={{width:'100%'}}>
+                                                                {this.state.taxes[0].tax4}
+                                                            </button>
+                                                        </h6>
+                                                    </li>
+                                                    <li>
+                                                    <div className="dropdown-divider"></div>
+                                                        <h6 style={{marginLeft:'-10px'}}>
+                                                            <button type="button" className="btn" onClick={this.updateTax} value={this.state.taxes[0].tax5} style={{width:'100%'}}>
+                                                                {this.state.taxes[0].tax5}
+                                                            </button>
+                                                        </h6>
                                                     </li>
                                                 </ul>
+    </div>*/}
                                             </th>
                                             <th style={{width:'20%'}}><h6 style={{marginLeft:'45px',fontSize:'16px',fontFamily:'Acme'}}>Amount</h6></th>
                                         </tr>

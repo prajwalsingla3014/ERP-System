@@ -1,14 +1,36 @@
-import React from 'react'
-import { Link} from 'react-router-dom';
-export default function sidenav() {
-    return (
-        <div>
+import React, { Component } from 'react'
+import {Link} from 'react-router-dom'
+import axios from 'axios';
+export default class sidenav extends Component {
+    constructor(props)
+    {
+        super(props);
+        this.state={
+            employee:[{
+                id:' '
+            }]
+        }
+    }
+    componentDidMount()
+    {
+        axios.get("https://farzi-erp.herokuapp.com/persons_manager/employee/")
+            .then(res => {
+                this.setState({employee:res.data})
+                console.log(res);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+    render() {
+        return (
+            <div>
             <aside className="main-sidebar" style={{backgroundColor:'#f7f7f7'}}>
                 <a href="#" className="brand-link">
                 <img src="dist/img/AdminLTELogo.png" alt="User" className="brand-image img-circle elevation-3 mt-1"/>
                     <span className="brand-text ml-1" style={{fontSize:'26px'}}>
-                        <Link to="/user" style={{color:'#021132'}}>
-                            User
+                        <Link to="/user" style={{color:'#021132',fontFamily:'Acme',fontSize:'22px'}}>
+                            {this.state.employee[0].display_name}
                         </Link>
                     </span>
                 </a>
@@ -107,11 +129,11 @@ export default function sidenav() {
                                 <a href="#" className="nav-link">
                                     <i className="nav-icon fas fa-file-invoice-dollar" style={{fontSize:'15px',marginLeft:'-15px'}}/>
                                     <p className="ml-1" style={{fontSize:'18px',fontFamily:'Acme'}}>
-                                        <Link to="/sale" style={{color:'#021132'}}>
-                                            GST Filling
+                                        <Link to="/expenses" style={{color:'#021132'}}>
+                                            Expenses
                                         </Link>
-                                        <Link to="/">
-                                            <i className="fas fa-plus-circle mt-3" style={{fontSize:'18px',color:'#021132',marginLeft:'90px'}}></i>
+                                        <Link to="/expensescreate">
+                                            <i className="fas fa-plus-circle mt-3" style={{fontSize:'18px',color:'#021132',marginLeft:'102px'}}></i>
                                         </Link>
                                     </p>
                                 </a>
@@ -121,5 +143,6 @@ export default function sidenav() {
                 </div>
             </aside>
         </div>
-    )
+        )
+    }
 }

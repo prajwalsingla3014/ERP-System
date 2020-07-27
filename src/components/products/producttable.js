@@ -13,21 +13,21 @@ function Producttable(props) {
     })
     return (
         <table className="table table-hover" id="productdetail">
-                <thead>
-                    <tr>
-                        <th style={{fontSize:'16px',fontFamily:'Acme'}}>No</th>
-                        <th style={{fontSize:'16px',fontFamily:'Acme'}}>Name</th>
-                        <th style={{fontSize:'16px',fontFamily:'Acme'}}>Description</th>
-                        <th style={{fontSize:'16px',fontFamily:'Acme'}}>Unit</th>
-                        <th style={{fontSize:'16px',fontFamily:'Acme'}}>HSN_Code</th>
-                        <th style={{fontSize:'16px',fontFamily:'Acme'}}>Quantity</th>
-                        <th style={{fontSize:'16px',fontFamily:'Acme'}}>Amount</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {tb}
-                </tbody>
-            </table>
+            <thead>
+                <tr>
+                    <th style={{fontSize:'16px',fontFamily:'Acme'}}>No</th>
+                    <th style={{fontSize:'16px',fontFamily:'Acme'}}>Name</th>
+                    <th style={{fontSize:'16px',fontFamily:'Acme'}}>Description</th>
+                    <th style={{fontSize:'16px',fontFamily:'Acme'}}>Unit</th>
+                    <th style={{fontSize:'16px',fontFamily:'Acme'}}>HSN_Code</th>
+                    <th style={{fontSize:'16px',fontFamily:'Acme'}}>Quantity</th>
+                    <th style={{fontSize:'16px',fontFamily:'Acme'}}>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                {tb}
+            </tbody>
+        </table>
         )
     }
 

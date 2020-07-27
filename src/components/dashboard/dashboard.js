@@ -15,6 +15,8 @@ import SideMenu from "../preferences/sidemenu";
 import Users from "../user/users";
 import Purchase from "../purchase/purchase";
 import PurchaseCreate from "../purchase/purchasecreate";
+import ExpenseCreate from "../expenses/expensecreate";
+import Expenses from "../expenses/expenses";
 import Footer from "../footer/footer";
 export default class dashboard extends Component {
     render() {
@@ -42,6 +44,8 @@ export default class dashboard extends Component {
                             <Route path={"/userprofile"} component={Users} />
                             <Route path={"/purchase"} component={Purchase} />
                             <Route path={"/purchasecreate"} component={PurchaseCreate} />
+                            <Route path={"/expensescreate"} component={ExpenseCreate} />
+                            <Route path={"/expenses"} component={Expenses} />
                         </div>
                     </div>
                 </div>

@@ -94,10 +94,10 @@ export default class suppliers extends Component {
                         </div>
                     </div>
                     <div className="row">
-                        <div className={this.state.active ? 'col-3' : 'none'}>
+                        <div className={this.state.active ? 'col-4' : 'none'}>
                             {this.state.selectedId ? <SupplierSmall suppliers={this.state.suppliers} selectedIdHandler={this.setIdHandler} /> : null}
                         </div>
-                        <div className={this.state.active ? 'col-9' : 'none'}>
+                        <div className={this.state.active ? 'col-8' : 'none'}>
                             {this.state.selectedId ? <SupplierDetail supplier={this.state.detail} cancelHandler={this.cancel} /> : null}
                         </div>
                     </div>

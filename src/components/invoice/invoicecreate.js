@@ -243,7 +243,7 @@ export default class InvoiceCreate extends React.Component {
         var some=new Date();
         some.setDate(some.getDate() + 5);
         var date2=some.toISOString().substr(0,10);
-        var invno=Number(this.state.inv)+1;
+        var invno=((this.state.inv).slice(((this.state.inv).length-2),(this.state.inv).length) ) > 0 ? (this.state.inv).slice(0,(this.state.inv).length-1).concat(parseInt((this.state.inv).slice(((this.state.inv).length-2),(this.state.inv).length))+1) : this.state.inv;
         await this.setState({total_subtotal:total_subtotal,total_discount:total_discount,total_tax:total_tax,total_amount:total_amount,invoice_date:date,due_date:date2,invoice_no:invno})
         const item=[...this.state.sold_items];
         var len=this.state.sold_items.length;
@@ -364,7 +364,7 @@ export default class InvoiceCreate extends React.Component {
                             <div className="form-group row">
                                 <label className="col-sm-2 col-form-label" style={{fontSize:'20px',fontFamily:'Acme'}}>Invoice No *</label>
                                 <div className="col-sm-10">
-                                    <input type="text" className="form-control" onChange={this.changeHandler} name="invoice_no" value={Number(this.state.inv)+1 }></input>
+                                    <input type="text" className="form-control" onChange={this.changeHandler} name="invoice_no" value={((this.state.inv).slice(((this.state.inv).length-2),(this.state.inv).length) ) > 0 ? (this.state.inv).slice(0,(this.state.inv).length-1).concat(parseInt((this.state.inv).slice(((this.state.inv).length-2),(this.state.inv).length))+1) : this.state.inv }></input>
                                 </div>
                             </div>
                             <div className="form-group row">
@@ -390,7 +390,7 @@ export default class InvoiceCreate extends React.Component {
                                         <option value={this.state.pa[6]}>Due on receipt</option>
                                     </select>
                                 </div>
-                                <label className="col-sm-2 col-form-label " style={{fontSize:'20px',marginLeft:'85px',fontFamily:'Acme'}}>Due Date</label>
+                                <label className="col-sm-2 col-form-label " style={{fontSize:'20px',marginLeft:'84px',fontFamily:'Acme'}}>Due Date</label>
                                 <div className="col-sm-2">
                                     <input type="date" className="form-control" defaultValue={date2}></input>
                                 </div>

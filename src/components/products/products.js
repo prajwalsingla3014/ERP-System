@@ -44,7 +44,7 @@ class Products extends PureComponent {
         }
         else
         {
-            this.setState({selectedId:'',item:'',active:true});
+            this.setState({selectedId:'',item:'',active:false});
         }
     }
     render() {
