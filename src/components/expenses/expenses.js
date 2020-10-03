@@ -92,6 +92,7 @@ class Expenses extends Component {
                         </div>
                     </div>
                     <div className="row">
+                        {console.log(this.state.selectedId)}
                         <div className={this.state.active ? 'col-4' : 'none'}>
                             {this.state.selectedId ? <ExpenseSmall expenses={this.state.expenses} selectedIdHandler={this.setIdHandler} /> : null}
                         </div>

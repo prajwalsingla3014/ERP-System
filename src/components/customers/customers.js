@@ -83,6 +83,7 @@ export default class customers extends Component {
         return (
             <div>
                 <section className="content">
+                    {console.log(this.state.detail)}
                     <div className="row">
                         <div className={this.state.active ? 'none' : 'col-12'}>
                             <div className="card" style={{border:'none',boxShadow:'0 0 1px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.1)'}}>
